@@ -672,9 +672,23 @@ header:not(#accueil) nav {
 }
 
 .contenu-projet {
-  max-width: 900px;
+  max-width: 1280px;
   margin: 2.5rem auto;
   padding: 0 2rem;
+  column-count: 2;
+  column-gap: 2rem;
+}
+
+/* Chaque carte reste entière dans sa colonne */
+.contenu-projet > .section-card {
+  break-inside: avoid;
+}
+
+/* Le méta (badges) et les blocs larges s'étirent sur toute la largeur */
+.contenu-projet > .projet-meta,
+.contenu-projet > .section-card:has(.carrousel-container),
+.contenu-projet > .section-card:has(.scrollable-code) {
+  column-span: all;
 }
 
 .projet-meta {
@@ -1176,6 +1190,7 @@ header:not(#accueil) nav {
   .contenu-projet {
     padding: 0 1.25rem;
     margin: 1.5rem auto;
+    column-count: 1;
   }
 
   .section-card {
