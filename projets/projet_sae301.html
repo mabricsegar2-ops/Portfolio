@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAÉ 3.01 — Entrepôt de données &amp; ETL</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+  <header>
+    <h1>SAÉ 3.01 — Entrepôt de données &amp; processus ETL</h1>
+    <nav>
+      <a href="../index.html#but2" class="back-btn">
+        <span class="icon">←</span> Retour au portfolio
+      </a>
+    </nav>
+  </header>
+
+  <main class="contenu-projet">
+    <div class="projet-meta">
+      <span class="badge traiter-badge">Traiter</span>
+      <span class="badge developper-badge">Développer un outil décisionnel</span>
+      <span class="date">Semestre 3 · BUT 2 · 2025-2026</span>
+    </div>
+
+    <section class="section-card">
+      <h2>📖 Présentation du projet</h2>
+      <p>
+        Cette SAÉ porte sur la <strong>conception d'un entrepôt de données</strong> et la mise en place d'un processus
+        <strong>ETL</strong> (Extract, Transform, Load) pour alimenter une base décisionnelle à partir de données
+        annuelles brutes (fichiers <code>CSV</code> de 2019 à 2023).
+      </p>
+      <p>
+        L'objectif : centraliser des données réparties dans plusieurs fichiers hétérogènes au sein d'un modèle
+        structuré, prêt pour l'analyse et le reporting. Le projet a été réalisé en équipe.
+      </p>
+    </section>
+
+    <section class="section-card">
+      <h2>⚡ Travail réalisé</h2>
+      <ul class="task-list">
+        <li>✅ Analyse et nettoyage des fichiers sources annuels (CSV 2019 → 2023)</li>
+        <li>✅ Conception du modèle de l'entrepôt de données (modélisation sous Oracle SQL Data Modeler)</li>
+        <li>✅ Implémentation du schéma sous MySQL</li>
+        <li>✅ Mise en place du processus ETL (extraction, transformation, chargement)</li>
+        <li>✅ Intégration de sources hétérogènes dans une base unique cohérente</li>
+      </ul>
+    </section>
+
+    <section class="section-card">
+      <h2>📋 Exemples et documents</h2>
+      <!-- TODO Maxence : crée le dossier docs/3.01/ et ajoute tes captures (modèle de données,
+           schéma de l'entrepôt, extraits ETL). Remplace ensuite ce bloc par un carrousel
+           sur le modèle de projets/projet6.html. -->
+      <div class="reflection">
+        <p><em>Section à compléter : captures du modèle de données, du schéma de l'entrepôt et du processus ETL.</em></p>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2>🏆 Apprentissages critiques acquis</h2>
+
+      <div class="competence-card traiter">
+        <h3>AC21.02 | Réaliser le rôle central et spécifique de l'entrepôt de données dans la chaîne décisionnelle</h3>
+        <p>En concevant l'entrepôt à partir de données annuelles dispersées, j'ai compris son rôle de point central
+          de la chaîne décisionnelle : il consolide et historise les données pour permettre analyses et reporting.</p>
+      </div>
+
+      <div class="competence-card traiter">
+        <h3>AC21.03 | Identifier et résoudre les problèmes d'intégration de sources complémentaires et hétérogènes</h3>
+        <p>Les fichiers annuels présentaient des écarts de format et de qualité. Le processus ETL m'a permis de les
+          nettoyer, harmoniser et intégrer dans un schéma unique.</p>
+      </div>
+
+      <div class="competence-card developper">
+        <h3>AC14.03 | Prendre conscience des différences entre outils pour choisir le plus adapté</h3>
+        <p>J'ai utilisé Oracle SQL Data Modeler pour la modélisation et MySQL pour l'implémentation, en comprenant
+          l'intérêt de chaque outil à son étape de la chaîne.</p>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2>💭 Réflexion personnelle</h2>
+      <div class="reflection">
+        <p>Cette SAÉ est ma première vraie expérience d'<strong>informatique décisionnelle</strong> : passer de
+          fichiers bruts à un entrepôt structuré m'a fait comprendre concrètement la chaîne décisionnelle.</p>
+        <p>Elle a directement nourri mon stage à l'AFPA, où j'ai retrouvé les mêmes enjeux d'intégration de sources
+          hétérogènes et d'alimentation d'une base de pilotage.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Maxence ABRIC--SEGARRA</p>
+  </footer>
+
+  <div id="custom-lightbox" onclick="closeLightbox(event)">
+    <span class="lightbox-close" onclick="closeLightbox(event)">×</span>
+    <img id="lightbox-img" src="" alt="Agrandissement" />
+    <div class="lightbox-info">
+      <p id="lightbox-caption">Cliquez à l'extérieur pour fermer</p>
+    </div>
+  </div>
+
+  <div id="pdf-viewer">
+    <div class="pdf-header">
+      <h3>Visualisation PDF</h3>
+      <span id="pdf-close" onclick="closePDF()">×</span>
+    </div>
+    <iframe id="pdf-frame" src=""></iframe>
+  </div>
+
+  <script src="../script.js"></script>
+</body>
+
+</html>

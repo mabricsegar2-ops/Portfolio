@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projet 8 - SAÉ 2.03</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+  <header>
+    <h1>SAÉ 2.03 — Régression sur données réelles</h1>
+    <nav>
+      <a href="../index.html" class="back-btn">
+        <span class="icon">←</span> Retour au portfolio
+      </a>
+    </nav>
+  </header>
+
+  <main class="contenu-projet">
+    <div class="projet-meta">
+      <span class="badge analyser-badge">Analyser</span>
+      <span class="date">Semestre 2 - 2025</span>
+    </div>
+
+    <section class="section-card">
+      <h2>📖 Présentation du projet</h2>
+      <p>
+        Cette SAÉ m'a permis de travailler sur l'analyse des liens entre variables quantitatives à travers des méthodes
+        de régression sur des données réelles. J'ai dû préparer et analyser des
+        données pour répondre à une problématique métier spécifique, en l'occurrence sur la part des logements sociaux en France métropolitaine.
+      </p>
+      <p>
+        Les objectifs principaux étaient :
+      </p>
+      <ul>
+        <li>Mesurer et visualiser les liaisons entre variables quantitatives</li>
+        <li>Comparer différents modèles de régression pour choisir le plus pertinent</li>
+        <li>Produire des synthèses visuelles et numériques des résultats</li>
+      </ul>
+      <p>
+        Ce projet m'a confronté aux spécificités des données réelles et à l'importance du contexte dans l'interprétation
+        des résultats statistiques.
+      </p>
+    </section>
+
+    <section class="section-card">
+      <h2>⚡ Travail réalisé</h2>
+      <ul class="task-list">
+        <li>✅ Préparation et nettoyage des données réelles issues de data.gouv</li>
+        <li>✅ Calcul des indicateurs de liaison entre variables</li>
+        <li>✅ Comparaison des modèles et sélection du plus pertinent</li>
+        <li>✅ Visualisation des résultats sous forme de graphiques et tableaux</li>
+      </ul>
+    </section>
+
+    <section class="section-card">
+      <h2>📋 Exemples et documents</h2>
+
+      <div class="carrousel-container">
+        <div class="carrousel-slides">
+          <div class="carrousel-slide">
+            <img src="../docs/2.03/img1.png" alt="Graphique de régression"
+              onclick="openLightbox(this.src)" />
+            <div class="slide-text">
+              <h3>Analyse de régression</h3>
+              <p>Visualisation des données avec coefficient de corrélation.</p>
+            </div>
+          </div>
+
+          <div class="carrousel-slide">
+            <img src="../docs/2.03/img2.png" alt="Matrice de corrélation"
+              onclick="openLightbox(this.src)" />
+            <div class="slide-text">
+              <h3>Graphique</h3>
+              <p>Courbe statistique.</p>
+            </div>
+          </div>
+
+          <div class="carrousel-slide">
+            <img src="../docs/2.03/img3.png" alt="Matrice de corrélation"
+              onclick="openLightbox(this.src)" />
+            <div class="slide-text">
+              <h3>Analyse des résidus</h3>
+              <p>Représentation des résidus par rapport à l'intervalle.</p>
+            </div>
+          </div>
+
+          <div class="carrousel-slide">
+            <div class="pdf-preview-container">
+              <iframe src="../docs/2.03/regression-sae (1).pdf" class="pdf-preview"></iframe>
+              <button class="fullscreen-pdf" onclick="openPDF('../docs/2.03/regression-sae (1).pdf')">
+                <span class="icon">⤢</span> Plein écran
+              </button>
+            </div>
+            <div class="slide-text">
+              <h3>Fichier HTML final</h3>
+              <p>Rapport complet sur SAE 2.03</p>
+            </div>
+          </div>
+        </div>
+
+        <button class="carrousel-btn prev" onclick="moveSlide(-1)">❮</button>
+        <button class="carrousel-btn next" onclick="moveSlide(1)">❯</button>
+
+        <div class="carrousel-indicators">
+          <span class="indicator active" onclick="goToSlide(0)"></span>
+          <span class="indicator" onclick="goToSlide(1)"></span>
+          <span class="indicator" onclick="goToSlide(2)"></span>
+          <span class="indicator" onclick="goToSlide(3)"></span>
+        </div>
+      </div>
+
+      <div class="download-links">
+        <a href="../docs/2.03/regression-sae (1).html" class="download-link pdf" target="_blank">
+          <span class="icon">📄</span>
+          <div>
+            <strong>Rapport d'analyse complet</strong>
+            <small>Synthèse des résultats statistiques</small>
+          </div>
+        </a>
+        <a href="../docs/2.03/regression sae (1).rmd" class="download-link pdf">
+          <span class="icon">📊</span>
+          <div>
+            <strong>Scripts d'analyse</strong>
+            <small>Code R utilisé pour les calculs</small>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2>🏆 Compétences mobilisées</h2>
+
+      <div class="competence-card analyser">
+        <h3>Analyse statistique</h3>
+        <p>
+          Méthodes quantitatives avancées :
+        <ul>
+          <li>Calcul des coefficients de corrélation</li>
+          <li>Mise en œuvre de modèles de régression</li>
+          <li>Validation des hypothèses statistiques</li>
+        </ul>
+        </p>
+      </div>
+
+      <div class="competence-card valoriser">
+        <h3>Visualisation des données</h3>
+        <p>Représentation graphique des résultats :
+        <ul>
+          <li>Nuages de points avec droites de régression</li>
+          <li>Matrices de corrélation</li>
+          <li>Diagrammes résiduels</li>
+        </ul>
+        </p>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2>🏆 Apprentissage(s) Critique(s) Acquis</h2>
+
+      <div class="competence-card analyser">
+        <h3>AC12.03 | Comprendre l'intérêt des synthèses numériques et graphiques pour décrire une variable statistique
+        </h3>
+        <p>J'ai appris à choisir les indicateurs statistiques pertinents (coefficient de détermination, erreurs
+          types...) et les visualisations adaptées (nuages de points, histogrammes...) pour décrire efficacement les
+          variables étudiées.</p>
+      </div>
+
+      <div class="competence-card analyser">
+        <h3>AC12.04 | Comprendre l'intérêt des synthèses numériques et graphiques pour mettre en évidence des liaisons
+          entre variables</h3>
+        <p>Ce projet m'a permis de maîtriser les techniques pour quantifier et visualiser les relations entre variables,
+          notamment à travers les analyses de corrélation et de régression, et d'interpréter correctement ces résultats.
+        </p>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2>💭 Réflexion personnelle</h2>
+      <div class="reflection">
+        <p>Cette SAÉ m'a permis de prendre conscience des défis spécifiques liés à l'analyse de données réelles :</p>
+
+        <ul>
+          <li>L'importance cruciale de la phase de préparation des données avant analyse</li>
+          <li>La nécessité de comprendre le contexte métier pour interpréter correctement les résultats</li>
+        </ul>
+
+        <p>Points forts développés :</p>
+        <ul>
+          <li>Maîtrise des techniques de régression sous R</li>
+          <li>Capacité à produire des visualisations claires et informatives</li>
+          <li>Compréhension des limites des analyses statistiques</li>
+        </ul>
+
+        <p>Défis rencontrés :</p>
+        <ul>
+          <li>Gestion des valeurs aberrantes et des données manquantes</li>
+          <li>Choix du modèle de régression le plus adapté</li>
+          <li>Communication des résultats à des non-statisticiens</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Maxence ABRIC--SEGARRA</p>
+  </footer>
+
+  <!-- Lightbox pour images -->
+  <div id="custom-lightbox" onclick="closeLightbox(event)">
+    <span class="lightbox-close" onclick="closeLightbox(event)">×</span>
+    <img id="lightbox-img" src="" alt="Agrandissement" />
+    <div class="lightbox-info">
+      <p id="lightbox-caption">Cliquez à l'extérieur pour fermer</p>
+    </div>
+  </div>
+
+  <script src="../script.js"></script>
+</body>
+
+</html>

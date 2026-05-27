@@ -1,0 +1,244 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+load("H:/RStudio/SAE202/dataS1.RData")
+```
+
+```{r}
+library(questionr)
+```
+
+Question 1
+
+Oui, les fonctions var() et sd() sont adaptées à un usage en statistique inférentielle, car elles utilisent un estimateur non biaisé, ce qui est recommandé pour estimer les paramètres de la population à partir d’un échantillon.
+
+```{r}
+echantillon <- data[1,]
+```
+
+$$\hat{m} = \bar{x} = \frac{1}{n} \sum_{i=1}^{n} X_i$$
+$${\hat\sigma} = s = \sqrt{\frac{1}{n-1} \sum_{i=1}^{n} (X_i - \bar{X})^2}$$
+```{r}
+moy <- mean(echantillon)
+moy
+```
+
+```{r}
+écart_type <- sd(echantillon)
+écart_type
+```
+
+```{r}
+Ua <- qnorm(0.95)
+IF <- c(moy-Ua*écart_type,moy+Ua*écart_type)
+IF
+cat("Intervalle de fluctuation de IF = [",IF[1],";",IF[2],"]")
+```
+
+```{r}
+N <- sum(echantillon >= IF[1] & echantillon <= IF[2])
+N
+som = c(50)
+for (i in 1:50) {
+  echantillon2 = data[i,]
+  Ua <- qnorm(0.95)
+  moy <- mean(echantillon2)
+  écart_type <- sd(echantillon2)
+  IF2 <- c(moy-Ua*écart_type,moy+Ua*écart_type)
+  t1 = sum(echantillon2 >= IF2[1] & echantillon2 <= IF2[2])
+  som[i] = t1
+}
+min(som)
+```
+
+```{r}
+1-pbinom(919,1000,0.9)
+```
+
+```{r}
+load("H:/RStudio/SAE202/data.xlsx")
+```
+
+```{r}
+age_moyen <- mean(data$AGE)
+age_moyen
+```
+
+```{r}
+x <- data$AGE
+```
+
+```{r}
+echantillon <- sample(x,size = 100, replace = TRUE)
+```
+
+```{r}
+moy_echantillon <- mean(echantillon)
+moy_echantillon
+```
+
+```{r}
+ecarttype <- sd(echantillon)
+```
+
+```{r}
+echantillon <- sample(x,size = 100, replace = TRUE)
+moy_echantillon <- mean(echantillon)
+ecarttype <- sd(echantillon)
+IC <- c(moy_echantillon-(qnorm(0.975))*ecarttype/sqrt(100),moy_echantillon+(qnorm(0.975))*ecarttype/sqrt(100))
+IC
+```
+
+```{r}
+n <- 50
+som <- 0
+for (i in 1:n) {
+  echantillon <- sample(x,size = 100, replace = TRUE)
+  moy_echantillon <- mean(echantillon)
+  ecarttype <- sd(echantillon)
+  IC <- c(moy_echantillon-(qnorm(0.975))*ecarttype/sqrt(100),moy_echantillon+(qnorm(0.975))*ecarttype/sqrt(100))
+  t1 = (age_moyen >= IC[1] & age_moyen <= IC[2])
+  som = som + t1
+}
+(som/n)*100
+```
+
+```{r}
+data$AGE_rec <- cut(data$AGE,
+  include.lowest = TRUE,
+  right = FALSE,
+  dig.lab = 4,
+  breaks = c(0, 30, 50, max(data$AGE)),
+  labels = c("moins de 30 ans","entre 30 et 50 ans","plus de 50 ans")
+)
+
+t = table(data$AGE_rec)
+prop.table(t)
+```
+
+```{r}
+y = sum(data$ACTIFS=="D") /936
+y
+```
+
+```{r}
+x<- data$ACTIFS
+echantillon <- sample(x,size = 50, replace = FALSE)
+a = sum(echantillon=="D") /50
+d <- (1.96*sqrt(a*(1-a)/50))
+IC = c(a-d,a+d)
+cat("Intervalle de condiance a 95% : [",IC[1],"-",IC[2],"]")
+```
+```{r}
+n <- 50
+som <- 0
+for (i in 1:n) {
+  echantillon <- sample(x,size = 50, replace = FALSE)
+  a = sum(echantillon=="D") /50
+  d <- (1.96*sqrt(a*(1-a)/50))
+  IC = c(a-d,a+d)
+  t1 = (y >= IC[1] & y <= IC[2])
+  som = som + t1
+}
+som/n
+```
+
+```{r}
+library(readxl)
+data_bretagne <- read_excel("data_bretagne.xlsx")
+```
+
+```{r}
+som_population <- sum(data_bretagne$Pop)
+echantillon <- sample(data_bretagne$Pop,100,replace = FALSE)
+moy_echantillon <- mean(echantillon)
+ecarttype <- sd(echantillon)
+IC <- c(moy_echantillon-(qnorm(0.975))*ecarttype/sqrt(100),moy_echantillon+(qnorm(0.975))*ecarttype/sqrt(100))
+IC
+```
+
+
+```{r}
+ICbretagne <- c((moy_echantillon-(qnorm(0.975))*ecarttype/sqrt(100))*1232,(moy_echantillon+(qnorm(0.975))*ecarttype/sqrt(100))*1232)
+ICbretagne
+```
+
+
+```{r}
+n <- 50
+som <- 0
+y <- sum(data_bretagne$Pop)
+for (i in 0:n) {
+  echantillon <- sample(data_bretagne$Pop,100,replace = FALSE)
+  moy_echantillon <- mean(echantillon)
+  ecarttype <- sd(echantillon)
+  ICbretagne <- c((moy_echantillon-(qnorm(0.975))*ecarttype/sqrt(100))*1232,(moy_echantillon+(qnorm(0.975))*ecarttype/sqrt(100))*1232)
+  t1 = (y >= ICbretagne[1] & y <= ICbretagne[2])
+  som = som + t1
+}
+som/50
+```
+Pas assez d'enchantillon et trop petit
+
+```{r}
+data_bretagne_ordre <- data_bretagne[order(-data_bretagne$Pop), ]
+
+plot(data_bretagne_ordre$Pop, 
+        names = data_bretagne_ordre$Nom, 
+        las = 1, 
+        col = "darkblue", 
+       )
+```
+
+Forte disparité entre les 6 premieres villes
+
+Si pas de grandes villes dans l'echantillon :
+    -> m^ trop petit 
+    -> ecart type trop petit
+    les parametre sont sous estime donc l'IC est d'amplitude trop faible
+
+
+```{r}
+data_bretagne$POP_rec <- cut(data_bretagne$Pop,
+  include.lowest = TRUE,
+  right = FALSE,
+  dig.lab = 4,
+  breaks = c(0, 3000, 30000, max(data_bretagne$Pop)),
+  labels = c("moins de 3000","entre 3000 et 30000","plus de 30000 ")
+)
+
+t <- table(data_bretagne$POP_rec)
+prop.table(t)*100
+```
+
+```{r}
+ech <- sample(data_bretagne, size = 100)
+```
+
+
+Q8 : tirer un echantillon stratifie :
+    -> 79 petites communes
+    -> 20 communes moyennes
+    -> 1 grandes villes
+    
+Q9 : Tout les IC contiennent la vraie valeur
+m et sigma qui sont sur-estimes
+sigma trop eleve car on a forcé sur 1 grandes villes a etre dans l'echantillon  
+
+
+
+
+
+
+
+
+
+
+
+
+
+

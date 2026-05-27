@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projet 4 - SAÉ 1.04/1.05</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <header>
+    <h1>SAÉ 1.04/1.05 — Apprendre en situation la production de données en entreprise</h1>
+    <nav>
+      <a href="../index.html" class="back-btn">
+        <span class="icon">←</span> Retour au portfolio
+      </a>
+    </nav>
+  </header>
+
+  <main class="contenu-projet">
+    <div class="projet-meta">
+      <span class="badge valoriser-badge">Valoriser</span>
+      <span class="date">Semestre 1 - 2024</span>
+    </div>
+
+    <section class="section-card">
+      <h2>📖 Présentation du projet</h2>
+      <p>
+        Ce projet consistait en une analyse des résultats d'une entreprise, et de parvenir à construire un projet d'expansion de l'entreprise à l'étranger.
+      </p>
+      <br>
+      <p>
+        Nous avons choisi une entreprise de cidre bretonne basée à Guenrouët : Kérisac ETS, une entreprise avec de bons résultats économiques et un chiffre d'affaires en expansion.
+        Nous avons donc construit un projet en Afrique du Sud, là où la vente de cidre serait profitable pour cette entreprise.
+      </p>
+      <br>
+      <p>De plus, cette SAÉ comprenait un oral en anglais, permettant de se plonger dans un projet d'entreprise avec une présentation générale accessible à tous.</p>
+
+    </section>
+
+    <section class="section-card">
+      <h2>⚡ Travail réalisé</h2>
+      <ul class="task-list">
+        <li>✅ Analyse des résultats économiques d'une entreprise en vue d'une expansion</li>
+        <li>✅ Recherche mondiale d'un pays profitable à l'entreprise</li>
+        <li>✅ Analyse des consommations d'un pays</li>
+        <li>✅ Création d'un projet en Anglais</li>
+      </ul>
+    </section>
+
+    <section class="section-card">
+      <h2>📋 Exemples et documents</h2>
+      
+      <div class="carrousel-container">
+        <div class="carrousel-slides">
+          <!-- Slide 1 - Image -->
+          <div class="carrousel-slide active">
+            <img src="../docs/1.04/img1.png" alt="Graphique Excel" onclick="openLightbox(this.src)" />
+            <div class="slide-text">
+              <h3>Présentation du chiffre d'affaires de Kérisac</h3>
+              <p>Kérisac est depuis 1954 un leader de la vente de cidre ; son chiffre d'affaires entre 2013 et 2023 a subi une baisse due au COVID, mais il remonte à la hausse.</p>
+            </div>
+          </div>
+          
+          <!-- Slide 2 - Image -->
+          <div class="carrousel-slide">
+            <img src="../docs/1.04/img2.png" alt="Visualisation" onclick="openLightbox(this.src)" />
+            <div class="slide-text">
+              <h3>Avantages de l'Afrique du Sud</h3>
+              <p>Des tarifs avantageux pour l'exportation depuis la France, une consommation de cidre à la hausse dans la capitale ainsi qu'un PIB en hausse : ces indicateurs nous permettent de nous intéresser à l'exportation en Afrique du Sud.</p>
+            </div>
+          </div>
+
+          <div class="carrousel-slide">
+            <img src="../docs/1.04/img3.png" alt="Visualisation" onclick="openLightbox(this.src)" />
+            <div class="slide-text">
+              <h3>Avantages de l'Afrique du Sud</h3>
+              <p>L'Afrique du Sud fait face à une consommation élevée en 2023, ce qui nous permet de viser des consommateurs en masse.</p>
+            </div>
+          </div>
+
+          <div class="carrousel-slide">
+            <img src="../docs/1.04/img4.png" alt="Visualisation" onclick="openLightbox(this.src)" />
+            <div class="slide-text">
+              <h3>Informations sur ETS Guillet Frères (Kérisac)</h3>
+            </div>
+          </div>
+
+          
+        </div>
+        
+        <button class="carrousel-btn prev" onclick="moveSlide(-1)">❮</button>
+        <button class="carrousel-btn next" onclick="moveSlide(1)">❯</button>
+        
+        <div class="carrousel-indicators">
+          <span class="indicator active" onclick="goToSlide(0)"></span>
+          <span class="indicator" onclick="goToSlide(1)"></span>
+          <span class="indicator" onclick="goToSlide(2)"></span>
+          <span class="indicator" onclick="goToSlide(3)"></span>
+        </div>
+      </div>
+      
+      <div class="download-links">
+        <a href="../docs/1.04/kerisac.pptx" class="download-link excel">
+          <span class="icon">📊</span>
+          <div>
+            <strong>Présentation PowerPoint</strong>
+            <small>Télécharger le fichier de travail</small>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2>🏆 Compétence mobilisée</h2>
+      <div class="competence-card valoriser">
+        <h3>Valoriser</h3>
+        <p>🔗 Maîtrise des enjeux économiques d'une entreprise</p>
+
+         <p>📈 Capacité à identifier un marché favorable à l'exportation</p>
+
+         <p>✍️ Rédaction et présentation en anglais</p>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2>🏆 Apprentissage(s) Critique(s) Acquis</h2>
+      <div class="competence-card valoriser">
+        <h3>AC13.03 | Mesurer l’importance de mettre en évidence des résultats clés par l’utilisation d’indicateurs pertinents</h3>
+        <p>
+          J'ai sélectionné des KPI adaptés : le chiffre d'affaires de Kérisac, le PIB de l'Afrique du Sud, et la part de marché des cidres 
+          locaux (Savanna, Hunter's). Ces éléments étaient essentiels pour justifier notre projet.
+          Dans le PowerPoint, j'ai créé des graphiques simples (ex. : évolution du CA, modes de transport) pour rendre les données 
+          immédiatement compréhensibles.
+        </p>
+        <br>
+        <h3> AC13.06 | Mesurer l’importance d’une expression précise et nuancée dans la communication en français et dans une
+          langue étrangère des résultats</h3>
+        
+        <p>J'ai présenté notre projet d'expansion de Kérisac en anglais, en structurant clairement les arguments (marché sud-africain, 
+          avantages douaniers, etc.). Cela m'a permis de travailler ma capacité à communiquer des idées complexes dans une langue étrangère.
+        </p>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2>💭 Réflexion personnelle</h2>
+      <div class="reflection">
+        <p>Ce projet d'analyse et d'expansion internationale de Kérisac a été une expérience très enrichissante qui m'a permis de
+          développer des compétences à la fois techniques et linguistiques. Au-delà des apprentissages théoriques, cette SAÉ m'a offert une vision concrète des enjeux du monde professionnel.</p>
+        
+        <p>Les points forts de ce projet :</p>
+        <ul>
+          <li>Approche critique des données</li>
+          <li>Maîtrise des outils de visualisation</li>
+          <li>Travaux de groupes</li>
+        </ul>
+
+        <p>Ce projet a été bien plus qu'un exercice académique - c'était une immersion dans les réalités du business international. Les compétences acquises, tant en analyse qu'en communication, constituent désormais une base solide pour mes futurs défis professionnels ainsi qu'une amélioration sur mon niveau d'anglais. </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Maxence ABRIC--SEGARRA</p>
+  </footer>
+
+  <!-- Lightbox pour images -->
+  <div id="custom-lightbox" onclick="closeLightbox(event)">
+    <span class="lightbox-close" onclick="closeLightbox(event)">×</span>
+    <img id="lightbox-img" src="" alt="Agrandissement" />
+    <div class="lightbox-info">
+      <p id="lightbox-caption">Cliquez à l'extérieur pour fermer</p>
+    </div>
+  </div>
+
+  <script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projet 9 - SAÉ 2.04</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+  <header>
+    <h1>SAÉ 2.04 — Datavisualisation</h1>
+    <nav>
+      <a href="../index.html" class="back-btn">
+        <span class="icon">←</span> Retour au portfolio
+      </a>
+    </nav>
+  </header>
+
+  <main class="contenu-projet">
+    <div class="projet-meta">
+      <span class="badge traiter-badge">Traiter</span>
+      <span class="badge analyser-badge">Analyser</span>
+      <span class="badge valoriser-badge">Valoriser</span>
+      <span class="date">Semestre 2 - 2025</span>
+    </div>
+
+    <section class="section-card">
+      <h2>📖 Présentation du projet</h2>
+      <p>
+        Ce projet réalisé avec des données INSEE a consisté à valoriser les disparités éducatives en Bretagne à travers :
+      </p>
+      <ul>
+        <li>Une affiche synthétique mettant en avant les chiffres clés</li>
+        <li>Une analyse ciblée sur les inégalités femmes-hommes</li>
+      </ul>
+      <p>
+        L'objectif était de transformer des données complexes en supports accessibles pour différents publics (éducation nationale, collectivités territoriales).
+      </p>
+    </section>
+
+    <section class="section-card">
+      <h2>⚡ Travail réalisé</h2>
+      <ul class="task-list">
+        <li>✅ Conception d'une affiche percutante résumant les disparités</li>
+        <li>✅ Création de datavisualisations adaptées à chaque public</li>
+        <li>✅ Analyse des écarts femmes-hommes (6% vs 2% sans diplôme)</li>
+        <li>✅ Mise en avant des départements exemplaires (Finistère équilibré)</li>
+      </ul>
+    </section>
+
+    <section class="section-card">
+      <h2>📋 Exemples et documents</h2>
+      
+      <div class="carrousel-container">
+        <div class="carrousel-slides">
+          <div class="carrousel-slide">
+            <img src="../docs/2.04/img1.png" alt="Focus sur les écarts femmes-hommes" onclick="openLightbox(this.src)" />
+            <div class="slide-text">
+              <h3>Disparités territoriales</h3>
+              <p>Nous pouvons voir ici que la part des personnes scolarisés vont varier selon les villes importantes (Brest, Rennes), mais malgré ces écart nous restons dans le taux national</p>
+            </div>
+          </div>
+          
+          <!-- Slide 2 - Focus genre -->
+          <div class="carrousel-slide">
+            <img src="../docs/2.04/img2.png" alt="Focus sur les écarts femmes-hommes" onclick="openLightbox(this.src)" />
+            <div class="slide-text">
+              <h3>Analyse par départements</h3>
+              <p>Comparaison des départements selon les personnes non scolarisées : de faibles écarts, sauf dans les départements ayant des villes actives où l'on retrouve plus de personnes possédant un diplôme requérant davantage d'années d'études.</p>
+            </div>
+          </div>
+
+          <!-- Slide 3 - Comparaison régionale -->
+          <div class="carrousel-slide">
+            <img src="../docs/2.04/img3.png" alt="Comparaison départementale" onclick="openLightbox(this.src)" />
+            <div class="slide-text">
+              <h3>Disparités selon années d'études</h3>
+              <p>Nous pouvons voir ici que plus de femmes sont amenées à faire plus d'années post-bac en Bretagne</p>
+            </div>
+          </div>
+
+          <!-- Slide 4 - PDF Viewer -->
+          <div class="carrousel-slide">
+            <div class="pdf-preview-container">
+              <iframe src="../docs/2.04/challengedataviz_grp1 (3).pdf" class="pdf-preview"></iframe>
+              <button class="fullscreen-pdf" onclick="openPDF('../docs/2.04/challengedataviz_grp1 (3).pdf')">
+                <span class="icon">⤢</span> Plein écran
+              </button>
+            </div>
+            <div class="slide-text">
+              <h3>Affiche Finale</h3>
+              <p>Affiche finale avec indicateurs des disparités ainsi qu'une charte graphique en lien avec l'Insee</p>
+            </div>
+          </div>
+        </div>
+        
+        <button class="carrousel-btn prev" onclick="moveSlide(-1)">❮</button>
+        <button class="carrousel-btn next" onclick="moveSlide(1)">❯</button>
+        
+        <div class="carrousel-indicators">
+          <span class="indicator active" onclick="goToSlide(0)"></span>
+          <span class="indicator" onclick="goToSlide(1)"></span>
+          <span class="indicator" onclick="goToSlide(2)"></span>
+          <span class="indicator" onclick="goToSlide(3)"></span>
+        </div>
+      </div>
+      
+      <div class="download-links">
+        <a href="../docs/2.04/challengedataviz_grp1 (3).pdf" class="download-link pdf" target="_blank">
+          <span class="icon">🖼️</span>
+          <div>
+            <strong>Affiche complète</strong>
+            <small>PDF haute résolution</small>
+          </div>
+        </a>
+        <a href="../docs/2.04/données dataviz 2025.xlsx" class="download-link excel">
+          <span class="icon">📊</span>
+          <div>
+            <strong>Jeu de données</strong>
+            <small>Données INSEE brutes et nettoyées</small>
+          </div>
+        </a>
+        <a href="../docs/2.04/trame dataviz 2025 (3).pptx" class="download-link excel">
+          <span class="icon">📊</span>
+          <div>
+            <strong>TRAME</strong>
+            <small>Rendus d'une Trame résumant le projet</small>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2>🏆 Compétences mobilisées</h2>
+      
+      <div class="competence-card valoriser">
+        <h3>Valoriser</h3>
+        <p>
+          Production de l'affiche : Synthèse visuelle percutante mettant en avant :
+          <ul>
+            <li>Les chiffres clés (47,4% scolarisés nationalement)</li>
+            <li>Les contrastes régionaux</li>
+            <li>Les écarts femmes-hommes marquants</li>
+          </ul>
+        </p>
+      </div>
+      
+      <div class="competence-card analyser">
+        <h3>Analyser</h3>
+        <p>Identification des tendances clés :
+          <ul>
+            <li>8-9% de non-diplômés stables</li>
+            <li>Sur-représentation féminine dans le supérieur (Bac+5 : 56% femmes)</li>
+          </ul>
+        </p>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2>🏆 Apprentissage(s) Critique(s) Acquis</h2>
+      
+      <div class="competence-card analyser">
+        <h3>AC12.03 | Comprendre l’intérêt des synthèses numériques et graphiques pour décrire une variable statistique</h3>
+        <p>J’ai utilisé différents graphiques (diagrammes en barres, répartitions par genre, etc.) pour résumer les niveaux de diplôme et les différences régionales. Ces visualisations m’ont permis de rendre les données immédiatement lisibles, sans avoir à passer par de longues explications. J’ai ainsi compris l’importance de bien choisir un graphique pour décrire une variable statistique de façon claire et efficace.</p>
+      </div>
+      
+      <div class="competence-card valoriser">
+        <h3>AC13.05 | Comprendre les intérêts de la data visualisation et de l’infographie</h3>
+        <p>Ce projet m’a montré à quel point la datavisualisation peut rendre des données complexes accessibles. En construisant une infographie complète sur la scolarisation en Bretagne, j’ai appris à transformer des tableaux de chiffres en messages visuels clairs, adaptés à une audience. J’ai compris que l’infographie est un outil puissant pour communiquer efficacement les résultats d’une analyse.</p>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2>💭 Réflexion personnelle</h2>
+      <div class="reflection">
+        <p>Ce projet m'a fait prendre conscience de l'importance du <strong>design d'information</strong> dans la valorisation des données :</p>
+        
+        <ul>
+          <li>L'affiche a nécessité plusieurs versions pour trouver le bon équilibre entre rigueur statistique et accessibilité</li>
+          <li>Le choix des couleurs (bleu/blanc) pour représenter la même charte graphique que l'Insee</li>
+          <li>La simplification des messages (ex : "6% vs 2%") a un impact bien plus fort que des tableaux complexes</li>
+        </ul>
+        
+        <p>Points forts :</p>
+        <ul>
+          <li>Maîtrise d'outils de design (PowerPoint)</li>
+          <li>Capacité à extraire l'essentiel de données massives</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Maxence ABRIC--SEGARRA</p>
+  </footer>
+
+  <!-- Lightbox pour images -->
+  <div id="custom-lightbox" onclick="closeLightbox(event)">
+    <span class="lightbox-close" onclick="closeLightbox(event)">×</span>
+    <img id="lightbox-img" src="" alt="Agrandissement" />
+    <div class="lightbox-info">
+      <p id="lightbox-caption">Cliquez à l'extérieur pour fermer</p>
+    </div>
+  </div>
+
+  <!-- Visionneuse PDF -->
+  <div id="pdf-viewer">
+    <div class="pdf-header">
+      <h3>Visualisation PDF</h3>
+      <span id="pdf-close" onclick="closePDF()">×</span>
+    </div>
+    <iframe id="pdf-frame" src=""></iframe>
+  </div>
+
+  <script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — Maxence ABRIC--SEGARRA</title>
+  <meta name="description"
+    content="Portfolio de Maxence ABRIC--SEGARRA, étudiant en BUT Sciences des Données (parcours VCOD) à l'IUT de Vannes." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- Barre de navigation -->
+  <nav class="navbar" id="navbar">
+    <a href="#accueil" class="nav-logo">Maxence A.-S.</a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Ouvrir le menu">☰</button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#apropos">À propos</a></li>
+      <li><a href="#competences">Compétences</a></li>
+      <li><a href="#but1">SAÉ BUT1</a></li>
+      <li><a href="#but2">SAÉ BUT2</a></li>
+      <li><a href="#stage">Stage</a></li>
+      <li><a href="#but3">Projection</a></li>
+    </ul>
+  </nav>
+
+  <!-- En-tête / Hero -->
+  <header id="accueil">
+    <div class="entete-ligne">
+      <img src="photo.jpeg" alt="Photo de Maxence ABRIC--SEGARRA" class="photo-profil" />
+      <div class="texte-entete">
+        <h1>Maxence ABRIC--SEGARRA</h1>
+        <p class="sous-titre">Étudiant en BUT Sciences des Données</p>
+        <p class="sous-titre-2">IUT de Vannes — Parcours VCOD (Visualisation &amp; Conception d'Outils Décisionnels)</p>
+        <div class="entete-actions">
+          <a href="CV_Maxence_AbricSegarra.pdf" target="_blank" rel="noopener">
+            <span class="icon">📄</span> Mon CV
+          </a>
+          <a href="https://www.linkedin.com/in/maxence-abric-segarra-46a227332" target="_blank" rel="noopener">
+            <span class="icon">🔗</span> LinkedIn
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- À propos -->
+    <section class="section a-propos" id="apropos">
+      <div class="section-inner">
+        <h2 class="section-title">À propos</h2>
+        <p class="lead">
+          Étudiant en 2ᵉ année de BUT Sciences des Données à l'IUT de Vannes, je suis le parcours
+          <strong>VCOD</strong> (Visualisation et Conception d'Outils Décisionnels). Je transforme des données
+          brutes en outils d'aide à la décision : de la collecte et du traitement jusqu'à la valorisation par
+          la datavisualisation et le reporting automatisé.
+        </p>
+        <p>
+          Actuellement en stage à l'<strong>AFPA</strong>, j'automatise la production de rapports et d'indicateurs
+          de pilotage sur les données des centres de formation bretons.
+        </p>
+        <h3 class="competences-sous-titre">Outils &amp; technologies que je mobilise</h3>
+        <ul class="skill-tags">
+          <li>SQL</li>
+          <li>MySQL / Oracle</li>
+          <li>Access</li>
+          <li>Excel &amp; macros VBA</li>
+          <li>Power BI</li>
+          <li>R</li>
+          <li>Python</li>
+          <li>Flask / API REST</li>
+          <li>JavaScript</li>
+          <li>ETL</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Compétences du PN -->
+    <section class="section competences-pn" id="competences">
+      <div class="section-inner">
+        <h2 class="section-title">Mes compétences (Programme National)</h2>
+        <p class="section-intro">
+          Le parcours VCOD repose sur <strong>quatre compétences</strong>. Pour chacune, voici son niveau atteint
+          en BUT2 et les SAÉ qui m'ont permis de la développer.
+        </p>
+
+        <div class="comp-grid">
+          <article class="comp-card traiter">
+            <h3>Traiter des données à des fins décisionnelles</h3>
+            <p class="comp-niveau">Niveau 2 — Automatiser le traitement de données multidimensionnelles</p>
+            <p>Intervenir sur tout le cycle de vie de la donnée, intégrer des sources hétérogènes et alimenter un
+              entrepôt de données décisionnel.</p>
+            <div class="comp-sae">
+              <span>SAÉ 1.01</span><span>SAÉ 1.02</span><span>SAÉ 2.01</span><span>SAÉ 3.01</span>
+            </div>
+          </article>
+
+          <article class="comp-card analyser">
+            <h3>Analyser statistiquement les données</h3>
+            <p class="comp-niveau">Niveau 2 — Mettre en œuvre une analyse exploratoire</p>
+            <p>Mettre en évidence les grandes tendances, confronter une hypothèse à la réalité et maîtriser les
+              analyses multivariées et leurs limites de validité.</p>
+            <div class="comp-sae">
+              <span>SAÉ 1.03</span><span>SAÉ 2.02</span><span>SAÉ 2.03</span><span>SAÉ 2.06</span>
+            </div>
+          </article>
+
+          <article class="comp-card valoriser">
+            <h3>Valoriser une production en contexte professionnel</h3>
+            <p class="comp-niveau">Niveau 2</p>
+            <p>Choisir des indicateurs pertinents, défendre ses choix d'analyse et adapter sa communication à
+              l'interlocuteur, avec rigueur.</p>
+            <div class="comp-sae">
+              <span>SAÉ 1.04</span><span>SAÉ 1.06</span><span>SAÉ 2.04</span><span>SAÉ 2.05</span>
+            </div>
+          </article>
+
+          <article class="comp-card developper">
+            <h3>Développer un outil décisionnel</h3>
+            <p class="comp-niveau">Niveau 1 — Développer un composant d'une solution décisionnelle</p>
+            <p>Analyser un besoin, percevoir les enjeux de l'automatisation et de l'interopérabilité, et réaliser
+              une brique logicielle dans un contexte de reporting et de visualisation.</p>
+            <div class="comp-sae">
+              <span>SAÉ 3.01</span><span>TP Web</span><span>Stage AFPA</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SAÉ BUT1 -->
+    <section class="section projets-section" id="but1">
+      <div class="section-inner">
+        <h2 class="section-title">SAÉ — BUT 1 <span class="annee-tag">Niveau 1 · 2024-2025</span></h2>
+
+        <div class="filtre-buttons" data-grid="grid-but1">
+          <button class="filtre-btn active" data-filtre="all">Toutes</button>
+          <button class="filtre-btn" data-filtre="traiter">Traiter</button>
+          <button class="filtre-btn" data-filtre="analyser">Analyser</button>
+          <button class="filtre-btn" data-filtre="valoriser">Valoriser</button>
+        </div>
+
+        <div class="projets" id="grid-but1">
+          <div class="carre-projet" data-categories="traiter">
+            <a href="projets/projet1.html">
+              <div class="projet-header">
+                <h3>SAÉ 1.01</h3>
+                <span class="badge traiter-badge">Traiter</span>
+              </div>
+              <h4>Base de données SQL</h4>
+              <p>Reporting à partir de données SQL</p>
+            </a>
+          </div>
+
+          <div class="carre-projet" data-categories="traiter">
+            <a href="projets/projet2.html">
+              <div class="projet-header">
+                <h3>SAÉ 1.02</h3>
+                <span class="badge traiter-badge">Traiter</span>
+              </div>
+              <h4>Manipulation de fichiers</h4>
+              <p>Écriture et lecture de fichiers de données</p>
+            </a>
+          </div>
+
+          <div class="carre-projet" data-categories="analyser">
+            <a href="projets/projet3.html">
+              <div class="projet-header">
+                <h3>SAÉ 1.03</h3>
+                <span class="badge analyser-badge">Analyser</span>
+              </div>
+              <h4>Évolution de la pêche française</h4>
+              <p>Analyse exploratoire de données</p>
+            </a>
+          </div>
+
+          <div class="carre-projet" data-categories="valoriser">
+            <a href="projets/projet4.html">
+              <div class="projet-header">
+                <h3>SAÉ 1.04 / 1.05</h3>
+                <span class="badge valoriser-badge">Valoriser</span>
+              </div>
+              <h4>Kérisac</h4>
+              <p>Production de données en entreprise</p>
+            </a>
+          </div>
+
+          <div class="carre-projet" data-categories="valoriser">
+            <a href="projets/projet5.html">
+              <div class="projet-header">
+                <h3>SAÉ 1.06</h3>
+                <span class="badge valoriser-badge">Valoriser</span>
+              </div>
+              <h4>CPIE de Belle-Île</h4>
+              <p>Mise en œuvre d'une enquête</p>
+            </a>
+          </div>
+
+          <div class="carre-projet" data-categories="traiter">
+            <a href="projets/projet6.html">
+              <div class="projet-header">
+                <h3>SAÉ 2.01</h3>
+                <span class="badge traiter-badge">Traiter</span>
+              </div>
+              <h4>Base de données relationnelle</h4>
+              <p>Conception et implémentation (Merise, SQL)</p>
+            </a>
+          </div>
+
+          <div class="carre-projet" data-categories="analyser">
+            <a href="projets/projet7.html">
+              <div class="projet-header">
+                <h3>SAÉ 2.02</h3>
+                <span class="badge analyser-badge">Analyser</span>
+              </div>
+              <h4>Estimation &amp; intervalles</h4>
+              <p>Estimation par échantillonnage</p>
+            </a>
+          </div>
+
+          <div class="carre-projet" data-categories="analyser">
+            <a href="projets/projet8.html">
+              <div class="projet-header">
+                <h3>SAÉ 2.03</h3>
+                <span class="badge analyser-badge">Analyser</span>
+              </div>
+              <h4>Régression sous R</h4>
+              <p>Régression sur données réelles</p>
+            </a>
+          </div>
+
+          <div class="carre-projet" data-categories="traiter analyser valoriser">
+            <a href="projets/projet9.html">
+              <div class="projet-header">
+                <h3>SAÉ 2.04</h3>
+                <span class="badge multi-badge">Complet</span>
+              </div>
+              <h4>Disparités éducatives en Bretagne</h4>
+              <p>Datavisualisation</p>
+            </a>
+          </div>
+
+          <div class="carre-projet" data-categories="valoriser">
+            <a href="projets/projet10.html">
+              <div class="projet-header">
+                <h3>SAÉ 2.05</h3>
+                <span class="badge valoriser-badge">Valoriser</span>
+              </div>
+              <h4>Indicateurs TERSTRAT</h4>
+              <p>Indicateurs de performance</p>
+            </a>
+          </div>
+
+          <div class="carre-projet" data-categories="traiter analyser valoriser">
+            <a href="projets/projet11.html">
+              <div class="projet-header">
+                <h3>SAÉ 2.06</h3>
+                <span class="badge multi-badge">Complet</span>
+              </div>
+              <h4>Analyse &amp; datavisualisation</h4>
+              <p>Analyse complète de données</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SAÉ BUT2 -->
+    <section class="section projets-section but2-section" id="but2">
+      <div class="section-inner">
+        <h2 class="section-title">SAÉ — BUT 2 <span class="annee-tag">Niveau 2 · 2025-2026</span></h2>
+        <p class="section-intro">
+          La 2ᵉ année (semestres 3 et 4) introduit la 4ᵉ compétence du parcours VCOD :
+          <strong>Développer un outil décisionnel</strong>.
+        </p>
+
+        <div class="projets" id="grid-but2">
+          <div class="carre-projet" data-categories="traiter developper">
+            <a href="projets/projet_sae301.html">
+              <div class="projet-header">
+                <h3>SAÉ 3.01</h3>
+                <span class="badge developper-badge">Décisionnel</span>
+              </div>
+              <h4>Entrepôt de données &amp; ETL</h4>
+              <p>Modélisation et alimentation d'une base décisionnelle</p>
+            </a>
+          </div>
+
+          <div class="carre-projet" data-categories="traiter developper">
+            <a href="projets/projet_web.html">
+              <div class="projet-header">
+                <h3>TP noté Web</h3>
+                <span class="badge developper-badge">Décisionnel</span>
+              </div>
+              <h4>Application web &amp; API REST</h4>
+              <p>Flask, SQLAlchemy multi-bases, AJAX</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stage -->
+    <section class="section stage-section" id="stage">
+      <div class="section-inner">
+        <h2 class="section-title">Stage — AFPA <span class="annee-tag">Semestre 4 · 2026</span></h2>
+
+        <div class="stage-card">
+          <div class="stage-head">
+            <div>
+              <h3>Automatisation de rapports &amp; outils de pilotage</h3>
+              <p class="stage-meta">AFPA — Auray (56) · 31 mars → 19 juin 2026 · 11 semaines</p>
+            </div>
+            <div class="stage-badges">
+              <span class="badge developper-badge">Développer un outil décisionnel</span>
+              <span class="badge traiter-badge">Traiter</span>
+            </div>
+          </div>
+          <p>
+            Au sein du service Exploitation Bretagne, j'automatise la production des rapports de suivi
+            (marchés du PRF du Conseil Régional, indicateurs de performance des centres) à partir de données
+            internes et externes hétérogènes, pour des livrables faciles à actualiser et à partager.
+          </p>
+          <ul class="stage-points">
+            <li>Bookmarklet JavaScript automatisant l'extraction en masse des états d'activité (API interne)</li>
+            <li>Consolidation de dizaines de fichiers Excel en une base de données unique</li>
+            <li>Macros Excel (VBA) et fiche d'indicateurs automatisée</li>
+            <li>Reporting Power BI et PowerPoint « Indicateurs Tous centres »</li>
+          </ul>
+          <a href="projets/projet_stage.html" class="stage-link">Voir le détail du stage →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projection BUT3 -->
+    <section class="section but3-section" id="but3">
+      <div class="section-inner">
+        <h2 class="section-title">Et après ? — Projection BUT 3</h2>
+        <p class="section-intro">
+          Je souhaite réaliser ma 3ᵉ année <strong>en alternance</strong>. Mon stage à l'AFPA a confirmé mon intérêt
+          pour l'informatique décisionnelle ; je veux désormais renforcer trois compétences clés du parcours VCOD.
+        </p>
+
+        <div class="but3-grid">
+          <article class="but3-card developper">
+            <p class="but3-niveau">Niveau 2 visé — Participer au déploiement d'une solution décisionnelle</p>
+            <h3>Développer un outil décisionnel</h3>
+            <p>Après avoir développé des composants (automatisation, reporting) pendant mon stage, je veux apprendre à
+              déployer une solution décisionnelle complète et durable — du besoin jusqu'à la mise en production, avec
+              des méthodes de développement et un gestionnaire de versions. L'alternance et les SAÉ BUT3 d'analyse et
+              de conception d'outils décisionnels seront mes leviers.</p>
+          </article>
+
+          <article class="but3-card traiter">
+            <p class="but3-niveau">Niveau 3 visé — Intégrer le traitement de données complexes</p>
+            <h3>Traiter des données</h3>
+            <p>Je veux monter en compétence sur les données volumineuses et les flux (Big Data) ainsi que sur
+              l'industrialisation des pipelines ETL. Une alternance orientée ingénierie de données serait l'occasion de
+              manipuler des sources massives et hétérogènes à grande échelle.</p>
+          </article>
+
+          <article class="but3-card valoriser">
+            <p class="but3-niveau">Niveau 3 visé</p>
+            <h3>Valoriser une production</h3>
+            <p>Je souhaite renforcer la dimension professionnelle de mes restitutions : respect de la réglementation
+              (RGPD, anonymisation), communication adaptée à des interlocuteurs variés et capacité à être force de
+              proposition. L'immersion longue en entreprise est le meilleur cadre pour cela.</p>
+          </article>
+        </div>
+
+        <p class="but3-objectif">
+          🎯 <strong>Mon objectif :</strong> devenir polyvalent à l'intersection de la
+          <strong>BI / informatique décisionnelle</strong>, de l'<strong>ingénierie de données (ETL)</strong> et du
+          <strong>développement d'applications data</strong>.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Maxence ABRIC--SEGARRA — Portfolio BUT Sciences des Données (VCOD)</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

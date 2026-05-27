@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stage AFPA — Automatisation de reporting</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+  <header>
+    <h1>Stage — Automatisation de rapports &amp; outils de pilotage (AFPA)</h1>
+    <nav>
+      <a href="../index.html#stage" class="back-btn">
+        <span class="icon">←</span> Retour au portfolio
+      </a>
+    </nav>
+  </header>
+
+  <main class="contenu-projet">
+    <div class="projet-meta">
+      <span class="badge developper-badge">Développer un outil décisionnel</span>
+      <span class="badge traiter-badge">Traiter</span>
+      <span class="date">Semestre 4 · 31 mars → 19 juin 2026 (11 semaines)</span>
+    </div>
+
+    <section class="section-card">
+      <h2>📖 Présentation</h2>
+      <p>
+        J'ai réalisé mon stage de 2ᵉ année à l'<strong>AFPA d'Auray</strong> (Agence nationale pour la formation
+        professionnelle des adultes), au sein du service <strong>Exploitation Bretagne</strong>, encadré par la
+        Responsable de Projet Exploitation.
+      </p>
+      <p>
+        Le sujet : <strong>automatiser la production de rapports et d'outils de pilotage</strong> sur les données de
+        production des centres de formation bretons. Concrètement, deux finalités :
+      </p>
+      <ul>
+        <li>l'appui au suivi des marchés relevant du PRF (Programme Régional de Formation du Conseil Régional) ;</li>
+        <li>l'appui au suivi des indicateurs de performance des centres.</li>
+      </ul>
+      <p>
+        Les données provenant de sources variées (internes et externes) et de formats hétérogènes, l'enjeu était de
+        produire des rapports <strong>fiables, faciles à actualiser et à partager</strong>.
+      </p>
+    </section>
+
+    <section class="section-card">
+      <h2>⚡ Travail réalisé</h2>
+      <ul class="task-list">
+        <li>✅ Automatisation de l'<strong>extraction en masse</strong> des états d'activité via un script
+          (bookmarklet JavaScript) interrogeant l'API interne</li>
+        <li>✅ <strong>Consolidation</strong> de dizaines de fichiers Excel hétérogènes en une base de données unique</li>
+        <li>✅ Développement de <strong>macros Excel (VBA)</strong> et d'une fiche d'indicateurs automatisée</li>
+        <li>✅ Production de <strong>tableaux de bord Power BI</strong> et d'un support PowerPoint « Indicateurs Tous
+          centres »</li>
+        <li>✅ Mise en place d'un processus reproductible, documenté et actualisable mensuellement</li>
+      </ul>
+    </section>
+
+    <section class="section-card">
+      <h2>🛠️ Focus technique — automatiser l'extraction des données</h2>
+      <p>
+        La récupération manuelle des états d'activité, fichier par fichier, représentait des dizaines de
+        téléchargements répétitifs. J'ai écrit un <strong>bookmarklet JavaScript</strong> exécuté dans le navigateur
+        qui parcourt la liste des actions de formation et déclenche automatiquement chaque export via des appels
+        <code>fetch</code> à l'API interne, puis enregistre les fichiers. Principe (simplifié et anonymisé) :
+      </p>
+      <div class="scrollable-code">
+        <pre>// Pour chaque action de formation, générer puis télécharger l'export
+for (const id of actionIds) {
+  const body = new FormData();
+  body.append("type", "XLS");
+  body.append("moisDebut", moisDeb);
+  body.append("moisFin", moisFin);
+  body.append("row_id", id);
+
+  // 1) Demander la génération de l'export
+  const gen = await fetch(URL_GENERATION, { method: "POST", body });
+  if (!gen.ok) { erreurs++; continue; }
+
+  // 2) Récupérer le fichier produit et le télécharger
+  const res = await fetch(URL_EXPORT + id);
+  if (res.ok) {
+    const blob = await res.blob();
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = nom[id] + ".xls";
+    a.click();
+    URL.revokeObjectURL(a.href);
+    ok++;
+  }
+  await new Promise(r =&gt; setTimeout(r, 1000)); // ne pas surcharger le serveur
+}</pre>
+      </div>
+      <p>
+        Ce script transforme une tâche manuelle de plusieurs dizaines de minutes en une opération de quelques
+        secondes, reproductible chaque mois — c'est tout l'enjeu de l'<strong>automatisation et de
+        l'interopérabilité</strong> d'une chaîne de traitement.
+      </p>
+    </section>
+
+    <section class="section-card">
+      <h2>📋 Rendus du stage</h2>
+      <!-- TODO Maxence : place ici tes captures (Power BI, fiche indicateurs, BDD consolidée).
+           Crée le dossier docs/stage/ et ajoute tes images, puis remplace ce bloc par un carrousel
+           identique à ceux des autres pages projet (voir projets/projet6.html pour le modèle). -->
+      <div class="reflection">
+        <p><em>Section à compléter avec les captures d'écran des livrables (tableaux de bord Power BI, fiche
+            d'indicateurs, base consolidée), dans le respect de la confidentialité des données AFPA.</em></p>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2>🏆 Compétences mobilisées &amp; Apprentissages critiques</h2>
+
+      <div class="competence-card developper">
+        <h3>AC14.02 | Percevoir les enjeux de l'automatisation et de l'interopérabilité d'un ensemble de tâches</h3>
+        <p>En automatisant l'extraction des états d'activité puis leur consolidation, j'ai conçu une chaîne de
+          traitement reproductible reliant plusieurs sources et outils (API interne → Excel → base consolidée →
+          Power BI). J'ai mesuré l'intérêt d'automatiser des tâches répétitives pour fiabiliser et accélérer la
+          production de reporting.</p>
+      </div>
+
+      <div class="competence-card developper">
+        <h3>AC14.01 | Comprendre le rôle fondamental de l'analyse des besoins et de l'existant dans un projet
+          décisionnel</h3>
+        <p>Avant de développer, j'ai analysé les besoins de suivi (marchés PRF, indicateurs de performance) et
+          l'existant (sources de données, fichiers manuels) afin de concevoir une solution adaptée aux attentes du
+          service.</p>
+      </div>
+
+      <div class="competence-card traiter">
+        <h3>AC21.03 | Identifier et résoudre les problèmes d'intégration de sources complémentaires et hétérogènes</h3>
+        <p>Les données provenaient de fichiers et formats variés. J'ai dû les nettoyer, les harmoniser et les
+          consolider dans une base unique pour permettre un reporting cohérent.</p>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2>💭 Réflexion personnelle</h2>
+      <div class="reflection">
+        <p>Ce stage m'a confronté à un vrai besoin métier : transformer un travail manuel, long et source d'erreurs,
+          en un processus automatisé et fiable.</p>
+        <ul>
+          <li>J'ai compris qu'une bonne solution décisionnelle commence par l'analyse du besoin et de l'existant ;</li>
+          <li>L'automatisation n'a de valeur que si elle est documentée et reproductible par d'autres ;</li>
+          <li>La qualité et l'harmonisation des données conditionnent la fiabilité de tout reporting.</li>
+        </ul>
+        <p>Cette expérience confirme mon intérêt pour la <strong>conception d'outils décisionnels</strong>, cœur du
+          parcours VCOD.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Maxence ABRIC--SEGARRA</p>
+  </footer>
+
+  <!-- Lightbox pour images -->
+  <div id="custom-lightbox" onclick="closeLightbox(event)">
+    <span class="lightbox-close" onclick="closeLightbox(event)">×</span>
+    <img id="lightbox-img" src="" alt="Agrandissement" />
+    <div class="lightbox-info">
+      <p id="lightbox-caption">Cliquez à l'extérieur pour fermer</p>
+    </div>
+  </div>
+
+  <!-- Visionneuse PDF -->
+  <div id="pdf-viewer">
+    <div class="pdf-header">
+      <h3>Visualisation PDF</h3>
+      <span id="pdf-close" onclick="closePDF()">×</span>
+    </div>
+    <iframe id="pdf-frame" src=""></iframe>
+  </div>
+
+  <script src="../script.js"></script>
+</body>
+
+</html>

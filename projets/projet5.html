@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projet 5 - SAÉ 1.06</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+  <header>
+    <h1>SAÉ 1.06 — Mise en œuvre d'une enquête</h1>
+    <nav>
+      <a href="../index.html#but1" class="back-btn">
+        <span class="icon">←</span> Retour au portfolio
+      </a>
+    </nav>
+  </header>
+
+  <main class="contenu-projet">
+    <div class="projet-meta">
+      <span class="badge valoriser-badge">Valoriser</span>
+      <span class="date">Semestre 1 - 2024</span>
+    </div>
+
+    <section class="section-card">
+      <h2>📖 Présentation du projet</h2>
+      <p>
+        Dans le cadre de la SAÉ 1.06 — Mise en œuvre d'une enquête — nous avons travaillé sur deux enquêtes distinctes
+        menées au cours du semestre. La première visait à recueillir des informations sur les étudiants de première
+        année (SD1) à travers un questionnaire de rentrée. Elle nous a permis de nous familiariser avec la conception
+        de questions, la collecte de réponses et le traitement de données réelles.
+      </p>
+      <p>
+        La seconde partie, plus approfondie, a été réalisée en partenariat avec le CPIE de Belle-Île-en-Mer. Le but
+        était de comprendre pourquoi une partie des habitants ne connaissent pas cette association pourtant active
+        localement. Nous avons donc conçu un questionnaire adapté à un public plus large (résidents principaux,
+        secondaires et professionnels), en limitant les biais et en rendant les questions accessibles.
+      </p>
+      <p>
+        Après avoir collecté près de 200 réponses, nous avons nettoyé les données, créé des indicateurs de connaissance
+        et mené des analyses statistiques (univariées et bivariées). Ces analyses ont permis d'identifier les profils
+        les moins informés et de proposer des pistes concrètes pour améliorer la communication du CPIE.
+      </p>
+      <p>
+        Ce projet m'a permis de découvrir toutes les étapes d'une enquête professionnelle : de la construction du
+        questionnaire à la restitution finale des résultats, en passant par l'analyse de données. Il m'a aussi appris
+        à adapter mon travail à des publics variés et à valoriser les résultats de manière claire et utile.
+      </p>
+    </section>
+
+    <section class="section-card">
+      <h2>⚡ Travail réalisé</h2>
+      <ul class="task-list">
+        <li>✅ Conception de deux questionnaires adaptés à des publics différents : étudiants et habitants de
+          Belle-Île-en-Mer</li>
+        <li>✅ Diffusion et collecte des réponses en ligne et sur le terrain, avec près de 200 réponses exploitables</li>
+        <li>✅ Nettoyage des données (corrections de formats, suppression des réponses hors-cadre) et création
+          d'indicateurs personnalisés</li>
+        <li>✅ Analyse univariée et bivariée à l'aide de tableaux, graphiques et indicateurs statistiques</li>
+        <li>✅ Restitution des résultats à l'oral avec support visuel (PowerPoint) et rédaction d'un rapport écrit
+          structuré</li>
+      </ul>
+    </section>
+
+    <section class="section-card">
+      <h2>📋 Exemples et documents — Partie 1</h2>
+      <p>La première partie de cette SAÉ s'est faite sur un questionnaire de rentrée pour les étudiants en SD1 ; je
+        commence donc par cela avant le projet en lien avec le CPIE de Belle-Île-en-Mer.</p>
+
+      <div class="carrousel-container">
+        <div class="carrousel-slides">
+          <div class="carrousel-slide">
+            <img src="../docs/1.06/img1.png" alt="Questionnaire de rentrée" onclick="openLightbox(this.src)" />
+            <div class="slide-text">
+              <h3>Questionnaire de rentrée</h3>
+              <p>Ci-dessus le questionnaire de rentrée qui nous servira de base pour la SAÉ 1.06.</p>
+              <p>L'ensemble des étudiants y ont répondu.</p>
+            </div>
+          </div>
+
+          <div class="carrousel-slide">
+            <img src="../docs/1.06/img2.png" alt="Exemple de questions" onclick="openLightbox(this.src)" />
+            <div class="slide-text">
+              <h3>Exemple de questions</h3>
+              <p>Les questions du questionnaire pouvaient contenir des réponses ouvertes, ce qui peut amener à des
+                données fausses qu'il faudra modifier par la suite. Par exemple, aucune indication n'est écrite pour le
+                département (5 chiffres, 2 chiffres, en toutes lettres...).</p>
+            </div>
+          </div>
+
+          <div class="carrousel-slide">
+            <img src="../docs/1.06/img3.png" alt="Contrôle de saisie" onclick="openLightbox(this.src)" />
+            <div class="slide-text">
+              <h3>Contrôle de saisie</h3>
+              <p>Suite aux réponses du questionnaire de rentrée, nous avons dû nettoyer les données aberrantes ou les
+                erreurs de saisie (mauvais formats). On peut voir ci-dessus le contrôle de saisie des données
+                modifiées : on y retrouve de mauvais formats de date, de code postal ou encore de nombres.</p>
+            </div>
+          </div>
+
+          <div class="carrousel-slide">
+            <div class="pdf-preview-container">
+              <iframe src="../docs/1.06/td4_maxence-rehan.pdf" class="pdf-preview"></iframe>
+              <button class="fullscreen-pdf" onclick="openPDF('../docs/1.06/td4_maxence-rehan.pdf')">
+                <span class="icon">⤢</span> Plein écran
+              </button>
+            </div>
+            <div class="slide-text">
+              <h3>Analyse univariée</h3>
+              <p>Multiples graphiques univariés sur l'ensemble des étudiants.</p>
+            </div>
+          </div>
+        </div>
+
+        <button class="carrousel-btn prev" onclick="moveSlide(-1)">❮</button>
+        <button class="carrousel-btn next" onclick="moveSlide(1)">❯</button>
+
+        <div class="carrousel-indicators">
+          <span class="indicator active" onclick="goToSlide(0)"></span>
+          <span class="indicator" onclick="goToSlide(1)"></span>
+          <span class="indicator" onclick="goToSlide(2)"></span>
+          <span class="indicator" onclick="goToSlide(3)"></span>
+        </div>
+      </div>
+
+      <div class="download-links">
+        <a href="../docs/1.06/td4_maxence-rehan.pdf" class="download-link" target="_blank">
+          <span class="icon">📄</span>
+          <div>
+            <strong>Analyse univariée (PDF)</strong>
+            <small>Télécharger le fichier de travail</small>
+          </div>
+        </a>
+        <a href="../docs/1.06/sd_td2_v1.xlsx" class="download-link">
+          <span class="icon">📊</span>
+          <div>
+            <strong>Document Excel nettoyé</strong>
+            <small>Télécharger le fichier de travail</small>
+          </div>
+        </a>
+        <a href="https://educ.sphinxonline.net/surveyserver/s/oxkk6c" class="download-link" target="_blank"
+          rel="noopener">
+          <span class="icon">🔗</span>
+          <div>
+            <strong>Questionnaire Sphinx</strong>
+            <small>Lien vers le questionnaire en ligne</small>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2>📋 Exemples et documents — Partie 2 (CPIE)</h2>
+      <p>Deuxième partie de la SAÉ 1.06, en lien avec le CPIE de Belle-Île-en-Mer.</p>
+
+      <div class="carrousel-container">
+        <div class="carrousel-slides">
+          <div class="carrousel-slide">
+            <div class="pdf-preview-container">
+              <iframe src="../docs/1.06/enquete_cpie_version_finale.pdf" class="pdf-preview"></iframe>
+              <button class="fullscreen-pdf" onclick="openPDF('../docs/1.06/enquete_cpie_version_finale.pdf')">
+                <span class="icon">⤢</span> Plein écran
+              </button>
+            </div>
+            <div class="slide-text">
+              <h3>Questionnaire pour le CPIE</h3>
+              <p>Notre questionnaire pour les habitants de Belle-Île-en-Mer.</p>
+              <p>Nous avons évité au maximum les questions ouvertes pour limiter les biais et les valeurs aberrantes.</p>
+            </div>
+          </div>
+
+          <div class="carrousel-slide">
+            <img src="../docs/1.06/img4.png" alt="Nettoyage des données CPIE" onclick="openLightbox(this.src)" />
+            <div class="slide-text">
+              <h3>Nettoyage des données</h3>
+              <p>Suite aux réponses des habitants de Belle-Île-en-Mer, nous nettoyons les données. Les valeurs
+                aberrantes sont modifiées ou supprimées et les questions sans réponse sont marquées NA ; si l'habitant
+                n'était pas concerné, la réponse est marquée NC. Cela nous permet de ne pas biaiser nos calculs par la
+                suite.</p>
+            </div>
+          </div>
+
+          <div class="carrousel-slide">
+            <img src="../docs/1.06/img5.png" alt="Analyse univariée CPIE" onclick="openLightbox(this.src)" />
+            <div class="slide-text">
+              <h3>Analyse univariée</h3>
+              <p>Suite au nettoyage des données, nous commençons par créer des graphiques avec la répartition d'une
+                seule variable : l'analyse univariée.</p>
+              <p>Ci-dessus, nous pouvons par exemple voir la répartition des âges au sein des répondants de l'île.</p>
+            </div>
+          </div>
+
+          <div class="carrousel-slide">
+            <img src="../docs/1.06/img6.png" alt="Analyse bivariée CPIE" onclick="openLightbox(this.src)" />
+            <div class="slide-text">
+              <h3>Analyse bivariée</h3>
+              <p>Après divers graphiques en analyse univariée, nous allons nous pencher sur une analyse bivariée,
+                mettant en lien deux variables afin d'expliquer des phénomènes attendus ou non.</p>
+              <p>Ci-dessus, nous pouvons par exemple voir la répartition des âges en fonction de leur connaissance du
+                CPIE.</p>
+            </div>
+          </div>
+
+          <div class="carrousel-slide">
+            <img src="../docs/1.06/img7.png" alt="Tableau statistique CPIE" onclick="openLightbox(this.src)" />
+            <div class="slide-text">
+              <h3>Tableau statistique</h3>
+              <p>Les tableaux nous permettront de voir également s'il y a un lien entre l'âge et la connaissance du
+                CPIE.</p>
+              <p>Le tableau du khi² nous dira alors que les deux variables sont plutôt indépendantes, malgré une
+                sur-représentation des 18-29 ans dans « aucune connaissance ».</p>
+            </div>
+          </div>
+
+          <div class="carrousel-slide">
+            <div class="pdf-preview-container">
+              <iframe src="../docs/1.06/doc sae commun.pdf" class="pdf-preview"></iframe>
+              <button class="fullscreen-pdf" onclick="openPDF('../docs/1.06/doc sae commun.pdf')">
+                <span class="icon">⤢</span> Plein écran
+              </button>
+            </div>
+            <div class="slide-text">
+              <h3>Rapport final SAÉ 1.06</h3>
+              <p>Rapport final présentant de multiples analyses univariées et bivariées, montrant vers quelle
+                population se tourner et comment le faire.</p>
+            </div>
+          </div>
+        </div>
+
+        <button class="carrousel-btn prev" onclick="moveSlide(-1)">❮</button>
+        <button class="carrousel-btn next" onclick="moveSlide(1)">❯</button>
+
+        <div class="carrousel-indicators">
+          <span class="indicator active" onclick="goToSlide(0)"></span>
+          <span class="indicator" onclick="goToSlide(1)"></span>
+          <span class="indicator" onclick="goToSlide(2)"></span>
+          <span class="indicator" onclick="goToSlide(3)"></span>
+          <span class="indicator" onclick="goToSlide(4)"></span>
+          <span class="indicator" onclick="goToSlide(5)"></span>
+        </div>
+      </div>
+
+      <div class="download-links">
+        <a href="../docs/1.06/enquete_cpie_version_finale.pdf" class="download-link" target="_blank">
+          <span class="icon">📄</span>
+          <div>
+            <strong>Questionnaire Sphinx (PDF)</strong>
+            <small>Télécharger le fichier de travail</small>
+          </div>
+        </a>
+        <a href="../docs/1.06/doc sae commun.pdf" class="download-link" target="_blank">
+          <span class="icon">📄</span>
+          <div>
+            <strong>Rapport final</strong>
+            <small>Télécharger le fichier de travail</small>
+          </div>
+        </a>
+        <a href="../docs/1.06/sae 106 cpie.pptx" class="download-link">
+          <span class="icon">📊</span>
+          <div>
+            <strong>Présentation PowerPoint</strong>
+            <small>Télécharger le fichier de travail</small>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2>🏆 Compétences mobilisées</h2>
+
+      <div class="competence-card traiter">
+        <h3>Traiter</h3>
+        <p>
+          Nettoyage des données brutes issues du questionnaire : suppression des réponses non valides, correction des
+          formats (dates, codes postaux, textes libres). Utilisation de formules Excel telles que <code>SI()</code>,
+          <code>OU()</code>, <code>ET()</code>, <code>SOMME()</code> pour organiser et filtrer les données.
+        </p>
+      </div>
+
+      <div class="competence-card analyser">
+        <h3>Analyser</h3>
+        <p>
+          Création de tableaux croisés et analyse statistique (univariée et bivariée) pour mettre en évidence
+          d'éventuelles corrélations entre des variables clés comme l'âge, le lieu de résidence ou le niveau de
+          connaissance du CPIE.
+        </p>
+      </div>
+
+      <div class="competence-card valoriser">
+        <h3>Valoriser</h3>
+        <p>
+          Réalisation de graphiques et d'infographies pour illustrer les résultats de façon claire et visuelle. Ces
+          visuels ont facilité la compréhension des données lors des restitutions orales et écrites.
+        </p>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2>🏆 Apprentissages critiques acquis</h2>
+
+      <div class="competence-card valoriser">
+        <h3>AC13.01 | Prendre connaissance des biais rencontrés dans la mise en place d'une enquête</h3>
+        <p>
+          Lors de la conception du questionnaire pour le CPIE, j'ai veillé à limiter les questions ouvertes afin de
+          réduire les biais liés à l'interprétation des réponses. J'ai également supprimé deux réponses hors cadre de
+          l'étude, ce qui m'a permis de mieux comprendre l'impact des biais sur la qualité des données collectées.
+        </p>
+      </div>
+
+      <div class="competence-card valoriser">
+        <h3>AC13.02 | Identifier l'importance de contextualiser ses données</h3>
+        <p>
+          J'ai analysé les réponses en croisant les données avec des éléments comme l'âge ou le lieu de résidence. Cela
+          m'a permis de donner du sens aux résultats et de formuler des interprétations plus précises, en identifiant
+          par exemple pourquoi certains groupes connaissaient moins le CPIE.
+        </p>
+      </div>
+
+      <div class="competence-card valoriser">
+        <h3>AC13.04 | Lors de la restitution des résultats, mesurer l'importance d'expliciter également la démarche
+          suivie</h3>
+        <p>
+          J'ai présenté de manière claire notre méthodologie, du nettoyage des données à la création d'indicateurs, en
+          expliquant notamment comment nous avons mesuré la connaissance du CPIE. Cela a permis de rendre notre analyse
+          plus transparente et compréhensible, surtout pour un public non spécialiste.
+        </p>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2>💭 Réflexion personnelle</h2>
+      <div class="reflection">
+        <p>
+          Cette enquête m'a permis de mieux comprendre comment se déroule un vrai travail de terrain. J'ai appris qu'il
+          ne suffit pas de poser des questions : il faut aussi bien les formuler pour éviter les erreurs ou les
+          mauvaises interprétations. Ensuite, il faut trier et corriger les données pour pouvoir les analyser
+          correctement.
+        </p>
+        <p>
+          Ce projet m'a aussi montré qu'il est important d'adapter ses explications à un public non spécialiste. J'ai
+          donc fait attention à être clair dans mes présentations, que ce soit à l'écrit ou à l'oral. Grâce à cette
+          expérience, je me sens plus à l'aise pour analyser des données et les présenter de manière simple et efficace.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Maxence ABRIC--SEGARRA</p>
+  </footer>
+
+  <!-- Lightbox pour images -->
+  <div id="custom-lightbox" onclick="closeLightbox(event)">
+    <span class="lightbox-close" onclick="closeLightbox(event)">×</span>
+    <img id="lightbox-img" src="" alt="Agrandissement" />
+    <div class="lightbox-info">
+      <p id="lightbox-caption">Cliquez à l'extérieur pour fermer</p>
+    </div>
+  </div>
+
+  <!-- Visionneuse PDF -->
+  <div id="pdf-viewer">
+    <div class="pdf-header">
+      <h3>Visualisation PDF</h3>
+      <span id="pdf-close" onclick="closePDF()">×</span>
+    </div>
+    <iframe id="pdf-frame" src=""></iframe>
+  </div>
+
+  <script src="../script.js"></script>
+</body>
+
+</html>

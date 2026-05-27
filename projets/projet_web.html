@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TP noté Web — Application &amp; API REST</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+  <header>
+    <h1>TP noté Web — Application web &amp; API REST</h1>
+    <nav>
+      <a href="../index.html#but2" class="back-btn">
+        <span class="icon">←</span> Retour au portfolio
+      </a>
+    </nav>
+  </header>
+
+  <main class="contenu-projet">
+    <div class="projet-meta">
+      <span class="badge developper-badge">Développer un outil décisionnel</span>
+      <span class="badge traiter-badge">Traiter</span>
+      <span class="date">BUT 2 · Rendu mars 2026</span>
+    </div>
+
+    <section class="section-card">
+      <h2>📖 Présentation du projet</h2>
+      <p>
+        Développement d'une <strong>application web de gestion d'une librairie en ligne</strong> (consultation de
+        livres, commande, gestion du stock et historique client). Le projet couvre toute la chaîne, de la base de
+        données relationnelle à l'interface, en passant par une <strong>API REST</strong>.
+      </p>
+      <p>
+        Il m'a permis de mettre en pratique plusieurs approches d'accès aux données et de comparer leurs intérêts
+        respectifs.
+      </p>
+    </section>
+
+    <section class="section-card">
+      <h2>⚡ Travail réalisé</h2>
+      <ul class="task-list">
+        <li>✅ <strong>CGI Python + MySQL</strong> : affichage et commande de livres, vérification du stock,
+          création de client, gestion du commit/rollback</li>
+        <li>✅ <strong>SQLAlchemy</strong> : accès multi-bases (MySQL, PostgreSQL, Oracle, SQLite) via un DSN
+          construit dynamiquement</li>
+        <li>✅ <strong>API REST avec Flask</strong> : points de terminaison <code>/books</code>,
+          <code>/customers</code>, <code>/orders</code>, <code>/inventories</code> et leurs relations</li>
+        <li>✅ <strong>AJAX (JavaScript)</strong> : commande et mise à jour du stock côté client, calcul HT/TVA/TTC,
+          affichage de l'historique des commandes</li>
+        <li>✅ Adaptation du schéma MySQL (clés auto-incrémentées, contraintes de clés étrangères, nettoyage des
+          données invalides)</li>
+      </ul>
+    </section>
+
+    <section class="section-card">
+      <h2>📋 Exemples et documents</h2>
+      <!-- TODO Maxence : crée le dossier docs/web/ et ajoute tes captures (interface, réponse API JSON,
+           extraits de code). Remplace ensuite ce bloc par un carrousel sur le modèle de projets/projet6.html. -->
+      <div class="reflection">
+        <p><em>Section à compléter : captures de l'interface, exemples de réponses de l'API REST et extraits de
+            code.</em></p>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2>🏆 Apprentissages critiques acquis</h2>
+
+      <div class="competence-card developper">
+        <h3>AC14.04 | Comprendre le cycle de vie d'un projet informatique</h3>
+        <p>De la conception de la base à l'interface en passant par l'API, j'ai suivi les étapes d'un projet de
+          développement complet et structuré.</p>
+      </div>
+
+      <div class="competence-card traiter">
+        <h3>AC21.05 | Apprécier l'intérêt de briques logicielles existantes et savoir les utiliser</h3>
+        <p>L'utilisation de Flask et de l'ORM SQLAlchemy m'a montré l'intérêt de s'appuyer sur des briques
+          logicielles éprouvées plutôt que de tout réécrire, notamment pour gérer plusieurs SGBD avec un même code.</p>
+      </div>
+
+      <div class="competence-card traiter">
+        <h3>AC21.04 | Comprendre la nécessité de tester, corriger et documenter un programme</h3>
+        <p>La gestion du commit/rollback, le nettoyage des données invalides et la documentation des rendus m'ont
+          appris l'importance de la robustesse et de la traçabilité d'un programme.</p>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2>💭 Réflexion personnelle</h2>
+      <div class="reflection">
+        <p>Ce projet m'a fait découvrir la logique des <strong>API REST</strong> et l'intérêt de séparer la donnée
+          (back-end) de son affichage (front-end via AJAX).</p>
+        <p>Pouvoir cibler plusieurs SGBD avec un même code grâce à un ORM est une compétence directement réutilisable
+          pour développer des composants de solutions décisionnelles.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Maxence ABRIC--SEGARRA</p>
+  </footer>
+
+  <div id="custom-lightbox" onclick="closeLightbox(event)">
+    <span class="lightbox-close" onclick="closeLightbox(event)">×</span>
+    <img id="lightbox-img" src="" alt="Agrandissement" />
+    <div class="lightbox-info">
+      <p id="lightbox-caption">Cliquez à l'extérieur pour fermer</p>
+    </div>
+  </div>
+
+  <div id="pdf-viewer">
+    <div class="pdf-header">
+      <h3>Visualisation PDF</h3>
+      <span id="pdf-close" onclick="closePDF()">×</span>
+    </div>
+    <iframe id="pdf-frame" src=""></iframe>
+  </div>
+
+  <script src="../script.js"></script>
+</body>
+
+</html>

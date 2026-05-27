@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projet 1 - SAÉ 1.01</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+  <header>
+    <h1>SAÉ 1.01 — Reporting à partir de données SQL</h1>
+    <nav>
+      <a href="../index.html" class="back-btn">
+        <span class="icon">←</span> Retour au portfolio
+      </a>
+    </nav>
+  </header>
+
+  <main class="contenu-projet">
+    <div class="projet-meta">
+      <span class="badge traiter-badge">Traiter</span>
+      <span class="date">Semestre 1 - 2024</span>
+    </div>
+    <section class="section-card">
+      <h2>📖 Présentation du projet</h2>
+      <p>
+        Ce projet consiste à créer un reporting à partir de données SQL.
+        L'objectif est de manipuler des données issues d'une base de données relationnelle,
+        d'effectuer des requêtes complexes et de produire des visualisations pertinentes sous Excel.
+      </p>
+      <p>
+        Réalisé dans le cadre de la SAÉ 1.01, il met l'accent sur la compréhension des bases de données
+        relationnelles et l'utilisation du langage SQL. J'ai utilisé Microsoft Access pour la gestion de la base
+        de données et Excel pour l'analyse et la visualisation.
+      </p>
+      <p>
+        L'objectif principal était de produire des rapports dynamiques en utilisant des requêtes SQL pour extraire
+        et agréger les données nécessaires. J'ai appris à rédiger des requêtes complexes (jointures, fonctions
+        d'agrégation) et à organiser les résultats dans un tableau Excel pour une meilleure lisibilité.
+      </p>
+    </section>
+
+    <section class="section-card">
+      <h2>⚡ Travail réalisé</h2>
+      <ul class="task-list">
+        <li>✅ Connexion à une base de données Access</li>
+        <li>✅ Écriture de requêtes SELECT avec filtres complexes</li>
+        <li>✅ Utilisation de jointures et fonctions d'agrégation en SQL</li>
+        <li>✅ Organisation d'un reporting sous forme de tableau Excel</li>
+        <li>✅ Création de graphiques pour la visualisation</li>
+      </ul>
+    </section>
+
+    <section class="section-card">
+  <h2>📋 Exemples et documents</h2>
+  
+  <div class="carrousel-container">
+    <div class="carrousel-slides">
+      <!-- Slide 1 - Image -->
+      <div class="carrousel-slide active">
+        <img src="../docs/1.01/photo1.png" alt="Graphique Excel" onclick="openLightbox(this.src)" />
+        <div class="slide-text">
+          <h3>Relations entre tables</h3>
+          <p>Visualisation des relations entre chacune des tables du fichier Access.</p>
+        </div>
+      </div>
+      
+      <!-- Slide 2 - Image -->
+      <div class="carrousel-slide">
+        <img src="../docs/1.01/photo2.png" alt="Graphique Excel" onclick="openLightbox(this.src)" />
+        <div class="slide-text">
+          <h3>Requêtes SQL</h3>
+          <p>Exemple de requêtes SQL utilisées pour créer un tableau demandé.</p>
+        </div>
+      </div>
+
+      <!-- Slide 3 - Image -->
+      <div class="carrousel-slide">
+        <img src="../docs/1.01/photo3.png" alt="Graphique Excel" onclick="openLightbox(this.src)" />
+        <div class="slide-text">
+          <h3>Graphique d'analyse 1</h3>
+          <p>Graphique créé grâce à la requête précédente pour visualiser le nombre de votes par thème.</p>
+        </div>
+      </div>
+
+      <!-- Slide 4 - Image -->
+      <div class="carrousel-slide">
+        <img src="../docs/1.01/photo4.png" alt="Graphique Excel" onclick="openLightbox(this.src)" />
+        <div class="slide-text">
+          <h3>Graphique d'analyse 2</h3>
+          <p>Visualisation d'un graphique "lollipop"</p>
+        </div>
+      </div>
+      
+      <!-- Slide 3 - PDF Viewer -->
+      <div class="carrousel-slide">
+        <div class="pdf-preview-container">
+          <iframe src="../docs/1.01/pdf1.pdf" class="pdf-preview"></iframe>
+          <button class="fullscreen-pdf" onclick="openPDF('../docs/1.01/pdf1.pdf')">
+            <span class="icon">⤢</span> Plein écran
+          </button>
+        </div>
+        <div class="slide-text">
+          <h3>Rapport complet</h3>
+          <p>Document PDF contenant l'analyse détaillée et les conclusions.</p>
+        </div>
+      </div>
+    </div>
+    
+    <button class="carrousel-btn prev" onclick="moveSlide(-1)">❮</button>
+    <button class="carrousel-btn next" onclick="moveSlide(1)">❯</button>
+    
+    <div class="carrousel-indicators">
+    <span class="indicator active" onclick="goToSlide(0)"></span>
+    <span class="indicator" onclick="goToSlide(1)"></span>
+    <span class="indicator" onclick="goToSlide(2)"></span>
+    <span class="indicator" onclick="goToSlide(3)"></span>
+    <span class="indicator" onclick="goToSlide(4)"></span>
+    </div>
+  </div>
+  
+  <div class="download-links">
+    <a href="../docs/1.01/excel.xlsx" class="download-link excel">
+      <span class="icon">📊</span>
+      <div>
+        <strong>Fichier Excel complet</strong>
+        <small>Télécharger le fichier de travail</small>
+      </div>
+    </a>
+    <a href="../docs/1.01/access.accdb" class="download-link excel">
+      <span class="icon">📊</span>
+      <div>
+        <strong>Fichier Access complet</strong>
+        <small>Télécharger le fichier de travail</small>
+      </div>
+    </a>
+    <a href="../docs/1.01/pdf1.pdf" class="download-link pdf" target="_blank">
+      <span class="icon">📄</span>
+      <div>
+        <strong>Rapport PDF</strong>
+        <small>Ouvrir dans un nouvel onglet</small>
+      </div>
+    </a>
+  </div>
+</section>
+
+    
+
+    <section class="section-card">
+      <h2>🏆 Compétence mobilisée</h2>
+      <div class="competence-card traiter">
+        <h3>Traiter</h3>
+        <p>Extraction, structuration et restitution de données via SQL. Maîtrise des requêtes complexes et de l'agrégation de données pour produire des analyses pertinentes.</p>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2>🏆 Apprentissage(s) Critique(s) Acquis</h2>
+      <div class="competence-card traiter">
+        <h3>AC11.03 : Connaître la syntaxe des langages et savoir l’utiliser</h3>
+        <p>J’ai rédigé des requêtes SQL pour extraire et agréger les données nécessaires aux indicateurs clés du site. 
+          Par exemple, j’ai utilisé GROUP BY, JOIN, ORDER BY et des fonctions d’agrégation (COUNT, AVG) pour produire des rapports dynamiques et adaptés à l’interface.</p>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2>💭 Réflexion personnelle</h2>
+      <div class="reflection">
+        <p>Cette SAÉ m'a permis de découvrir la puissance du langage SQL pour l'extraction de données. J'ai particulièrement apprécié la logique des jointures et la création de requêtes complexes.</p>
+        
+        <p>Les points forts de ce projet :</p>
+        <ul>
+          <li>Compréhension approfondie des bases de données relationnelles</li>
+          <li>Maîtrise des fonctions d'agrégation (SUM, COUNT, AVG)</li>
+          <li>Capacité à créer des visualisations pertinentes sous Excel</li>
+        </ul>
+
+        <p>Cette expérience constitue une base solide pour mes futurs projets d'analyse de données.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Maxence ABRIC--SEGARRA</p>
+  </footer>
+
+  <!-- Lightbox pour images -->
+  <div id="custom-lightbox" onclick="closeLightbox(event)">
+    <span class="lightbox-close" onclick="closeLightbox(event)">×</span>
+    <img id="lightbox-img" src="" alt="Agrandissement" />
+    <div class="lightbox-info">
+      <p id="lightbox-caption">Cliquez à l'extérieur pour fermer</p>
+    </div>
+  </div>
+
+  <!-- Visionneuse PDF -->
+  <div id="pdf-viewer">
+    <div class="pdf-header">
+      <h3>Visualisation PDF</h3>
+      <span id="pdf-close" onclick="closePDF()">×</span>
+    </div>
+    <iframe id="pdf-frame" src=""></iframe>
+  </div>
+
+  <script src="../script.js"></script>
+</body>
+</html>

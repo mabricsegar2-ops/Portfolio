@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projet 11 - SAÉ 2.06</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+  <header>
+    <h1>SAÉ 2.06 — Analyse de données, reporting et datavisualisation</h1>
+    <nav>
+      <a href="../index.html" class="back-btn">
+        <span class="icon">←</span> Retour au portfolio
+      </a>
+    </nav>
+  </header>
+
+  <main class="contenu-projet">
+    <div class="projet-meta">
+      <span class="badge traiter-badge">Traiter</span>
+      <span class="badge analyser-badge">Analyser</span>
+      <span class="badge valoriser-badge">Valoriser</span>
+      <span class="date">Semestre 2 - 2025</span>
+    </div>
+
+    <section class="section-card">
+      <h2>📖 Présentation du projet</h2>
+      <p>
+        Dans le cadre de ce projet mené en collaboration avec les équipes de l'AP-HP (Assistance Publique – Hôpitaux de Paris) et de la plateforme Compare, nous avons travaillé sur le développement d'un système d'analyse de données cliniques issues de questionnaires remplis par des patients.
+      </p>
+      <p>
+        L'objectif principal était de permettre aux patients atteints de maladies chroniques de remplir des questionnaires. Ces données étaient ensuite exploitées pour calculer automatiquement des scores cliniques standardisés, permettant de suivre l'évolution de leur état de santé :
+      </p>
+      <ul>
+        <li>Calcul de 10 indicateurs cliniques (qualité de vie, sommeil, anxiété, etc.)</li>
+        <li>Génération automatique de fiches patients personnalisées au format PDF</li>
+        <li>Développement d'une interface web pour la consultation des résultats</li>
+      </ul>
+      <p>
+        Ce projet visait à transformer les réponses des patients en informations interprétables, utiles à la fois pour les professionnels de santé et les patients eux-mêmes dans un cadre de suivi personnalisé.
+      </p>
+    </section>
+
+    <section class="section-card">
+      <h2>⚡ Travail réalisé</h2>
+      <ul class="task-list">
+        <li>✅ Conception d'un traitement des données sous R</li>
+        <li>✅ Implémentation des algorithmes de calcul des scores cliniques</li>
+        <li>✅ Automatisation de la génération des rapports PDF</li>
+        <li>✅ Création d'une interface web sécurisée pour la consultation des résultats</li>
+      </ul>
+    </section>
+
+    <section class="section-card">
+      <h2>📋 Exemples et documents</h2>
+      
+      <div class="carrousel-container">
+        <div class="carrousel-slides">
+          <div class="carrousel-slide">
+            <img src="../docs/2.06/img_scoretab.png" alt="Tableau des scores patients" onclick="openLightbox(this.src)" />
+            <div class="slide-text">
+              <h3>Tableau consolidé</h3>
+              <p>Extrait du tableau complet des scores (MYMOP, EPICES, PSQI...) pour l'ensemble des patients analysés.</p>
+            </div>
+          </div>
+          
+          <div class="carrousel-slide">
+            <div class="pdf-preview-container">
+              <iframe src="../docs/2.06/fichepatient_part_1_28_05_2025.pdf" class="pdf-preview"></iframe>
+              <button class="fullscreen-pdf" onclick="openPDF('../docs/2.06/fichepatient_part_1_28_05_2025.pdf')">
+                <span class="icon">⤢</span> Plein écran
+              </button>
+            </div>
+            <div class="slide-text">
+              <h3>Rapport d'analyse</h3>
+              <p>Analyse complète des corrélations entre les différents indicateurs cliniques.</p>
+            </div>
+          </div>
+        </div>
+        
+        <button class="carrousel-btn prev" onclick="moveSlide(-1)">❮</button>
+        <button class="carrousel-btn next" onclick="moveSlide(1)">❯</button>
+        
+        <div class="carrousel-indicators">
+          <span class="indicator active" onclick="goToSlide(0)"></span>
+          <span class="indicator" onclick="goToSlide(1)"></span>
+        </div>
+      </div>
+      
+      <div class="download-links">
+        <a href="../docs/2.06/fichepatient_part_1_28_05_2025.pdf" class="download-link pdf" target="_blank">
+          <span class="icon">📄</span>
+          <div>
+            <strong>Fiche patient type</strong>
+            <small>Exemple de PDF généré</small>
+          </div>
+        </a>
+        <a href="../docs/2.06/rapport ap.docx" class="download-link pdf">
+          <span class="icon">🔍</span>
+          <div>
+            <strong>Rapport technique (en cours)</strong>
+            <small>Documentation en cours de rédaction</small>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2>🏆 Compétences mobilisées</h2>
+      
+      <div class="competence-card traiter">
+        <h3>Traiter</h3>
+        <p>
+          Préparation et structuration des données médicales :
+          <ul>
+            <li>Nettoyage des données patients</li>
+            <li>Standardisation des formats</li>
+            <li>Gestion des données sensibles (RGPD)</li>
+          </ul>
+        </p>
+      </div>
+      
+      <div class="competence-card analyser">
+        <h3>Analyser</h3>
+        <p>Calcul et interprétation des indicateurs cliniques :
+          <ul>
+            <li>Implémentation des algorithmes de score sous R</li>
+            <li>Validation statistique des résultats</li>
+          </ul>
+        </p>
+      </div>
+
+      <div class="competence-card valoriser">
+        <h3>Valoriser</h3>
+        <p>Restitution des résultats :
+          <ul>
+            <li>Automatisation de la génération de PDF</li>
+            <li>Conception de l'interface web</li>
+            <li>Rédaction de rapports techniques et analytiques</li>
+          </ul>
+        </p>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2>🏆 Apprentissage(s) Critique(s) Acquis</h2>
+
+      <div class="competence-card traiter">
+        <h3>AC12.02 | Comprendre qu'une analyse correcte ne peut émaner que de données propres et préparées</h3>
+        <p>J'ai appris à nettoyer rigoureusement les données médicales avant analyse, en gérant les valeurs manquantes et les incohérences. La création de pipelines de traitement reproductibles sous R était essentielle pour garantir la qualité des résultats.</p>
+      </div>
+
+      <div class="competence-card analyser">
+        <h3>AC12.03 | Comprendre l'intérêt des synthèses numériques et graphiques pour décrire une variable statistique</h3>
+        <p>Le calcul des 10 scores cliniques (PHQ-9, GAD-7, etc.) et leur visualisation dans les fiches patients m'ont montré l'importance de bien choisir les indicateurs et leur représentation pour une interprétation clinique pertinente.</p>
+      </div>
+
+      <div class="competence-card valoriser">
+        <h3>AC13.05 | Comprendre les intérêts de la data visualisation et de l'infographie</h3>
+        <p>Ce projet m'a permis de concevoir des visualisations adaptées à différents publics (fiches patients simplifiées vs rapports techniques détaillés) et de comprendre l'impact de la dataviz dans le domaine médical.</p>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2>💭 Réflexion personnelle</h2>
+      <div class="reflection">
+        <p>Ce projet complexe m'a confronté aux enjeux du traitement de données sensibles dans le domaine médical :</p>
+        
+        <ul>
+          <li>L'importance cruciale de la précision dans les calculs cliniques</li>
+          <li>La nécessité de rendre accessibles des résultats complexes</li>
+          <li>Les défis techniques de l'automatisation des rapports</li>
+        </ul>
+        
+        <p>Points forts développés :</p>
+        <ul>
+          <li>Maîtrise avancée de R pour le calcul d'indicateurs complexes</li>
+          <li>Capacité à concevoir des systèmes complets (traitement → analyse → restitution)</li>
+          <li>Sensibilisation aux enjeux éthiques des données de santé</li>
+        </ul>
+
+        <p>Défis rencontrés :</p>
+        <ul>
+          <li>Gestion des cas particuliers dans les calculs de scores</li>
+          <li>Optimisation des temps de génération des PDF</li>
+          <li>Conception d'une interface accessible à des publics non techniques</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Maxence ABRIC--SEGARRA</p>
+  </footer>
+
+  <!-- Lightbox pour images -->
+  <div id="custom-lightbox" onclick="closeLightbox(event)">
+    <span class="lightbox-close" onclick="closeLightbox(event)">×</span>
+    <img id="lightbox-img" src="" alt="Agrandissement" />
+    <div class="lightbox-info">
+      <p id="lightbox-caption">Cliquez à l'extérieur pour fermer</p>
+    </div>
+  </div>
+
+  <!-- Visionneuse PDF -->
+  <div id="pdf-viewer">
+    <div class="pdf-header">
+      <h3>Visualisation PDF</h3>
+      <span id="pdf-close" onclick="closePDF()">×</span>
+    </div>
+    <iframe id="pdf-frame" src=""></iframe>
+  </div>
+
+  <script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projet 7 - SAÉ 2.02</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+  <header>
+    <h1>SAÉ 2.02 — Estimation par échantillonnage</h1>
+    <nav>
+      <a href="../index.html" class="back-btn">
+        <span class="icon">←</span> Retour au portfolio
+      </a>
+    </nav>
+  </header>
+
+  <main class="contenu-projet">
+    <div class="projet-meta">
+      <span class="badge analyser-badge">Analyser</span>
+      <span class="date">Semestre 2 - 2025</span>
+    </div>
+
+    <section class="section-card">
+      <h2>📖 Présentation du projet</h2>
+      <p>
+        Dans le cadre de cette SAÉ, nous avons réalisé une étude statistique approfondie sur des données démographiques et socio-économiques, avec un focus particulier sur les techniques d'estimation par échantillonnage.
+      </p>
+      <p>
+        Les objectifs principaux étaient :
+      </p>
+      <ul>
+        <li>Comprendre la différence entre échantillon et population</li>
+        <li>Maîtriser les intervalles de confiance et de fluctuation</li>
+        <li>Appréhender les problématiques des sondages</li>
+        <li>Analyser l'impact de la taille d'échantillon sur la précision</li>
+      </ul>
+      <p>
+        Ce projet nous a permis d'acquérir une solide compréhension des méthodes d'estimation statistique et de leur application concrète dans des contextes professionnels.
+      </p>
+    </section>
+
+    <section class="section-card">
+      <h2>⚡ Travail réalisé</h2>
+      <ul class="task-list">
+        <li>✅ Analyse des caractéristiques des sources de données</li>
+        <li>✅ Calcul d'intervalles de confiance et de fluctuation sur RStudio</li>
+        <li>✅ Simulation d'échantillonnages répétés</li>
+        <li>✅ Analyse des résultats et rédaction du rapport</li>
+      </ul>
+    </section>
+
+    <section class="section-card">
+      <h2>📋 Exemples et documents</h2>
+
+      <div class="carrousel-container">
+        <div class="carrousel-slides">
+          
+          <div class="carrousel-slide">
+            <img src="../docs/2.02/img1.png" alt="Intervalle de confiance" onclick="openLightbox(this.src)" />
+            <div class="slide-text">
+              <h3>Intervalle de confiance</h3>
+              <p>Calcul et visualisation d'intervalles de confiance sur des données démographiques.</p>
+            </div>
+          </div>
+
+          <div class="carrousel-slide">
+            <img src="../docs/2.02/img2.png" alt="Analyse population" onclick="openLightbox(this.src)" />
+            <div class="slide-text">
+              <h3>Analyse comparative</h3>
+              <p>Vérification de la qualité de notre échantillon : suit-il bien la loi demandée ?</p>
+            </div>
+          </div>
+
+          <div class="carrousel-slide">
+            <img src="../docs/2.02/img3.png" alt="Analyse population" onclick="openLightbox(this.src)" />
+            <div class="slide-text">
+              <h3>Échantillon de villes en fonction de leur population</h3>
+              <p>Population stratifiée qui montre que certaines villes bretonnes sont plus habitées que d'autres.</p>
+            </div>
+          </div>
+
+          <div class="carrousel-slide">
+            <div class="pdf-preview-container">
+              <iframe src="../docs/2.02/sae-202-2.nb.pdf" class="pdf-preview"></iframe>
+              <button class="fullscreen-pdf" onclick="openPDF('../docs/2.02/sae-202-2.nb.pdf')">
+                <span class="icon">⤢</span> Plein écran
+              </button>
+            </div>
+            <div class="slide-text">
+              <h3>Rapport complet</h3>
+              <p>Documentation PDF du RNotebook.</p>
+            </div>
+          </div>
+        </div>
+
+        <button class="carrousel-btn prev" onclick="moveSlide(-1)">❮</button>
+        <button class="carrousel-btn next" onclick="moveSlide(1)">❯</button>
+
+        <div class="carrousel-indicators">
+          <span class="indicator active" onclick="goToSlide(0)"></span>
+          <span class="indicator" onclick="goToSlide(1)"></span>
+          <span class="indicator" onclick="goToSlide(2)"></span>
+          <span class="indicator" onclick="goToSlide(3)"></span>
+        </div>
+      </div>
+
+      <div class="download-links">
+        <a href="../docs/2.02/sae-202-2.nb.html" class="download-link pdf" target="_blank">
+          <span class="icon">📄</span>
+          <div>
+            <strong>Rapport complet</strong>
+            <small>Documentation technique du projet</small>
+          </div>
+        </a>
+        <a href="../docs/2.02/2.02/sae-202-2.rmd" class="download-link">
+          <span class="icon">💾</span>
+          <div>
+            <strong>Scripts R</strong>
+            <small>Codes R complet</small>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2>🏆 Apprentissage(s) Critique(s) Acquis</h2>
+
+      <div class="competence-card analyser">
+        <h3>AC12.01 | Caractéristiques des sources de données</h3>
+        <p>Ce projet m'a permis de comprendre l'importance de considérer les spécificités des données (variabilité, précision) avant toute analyse, notamment à travers le travail sur des données démographiques réelles.</p>
+      </div>
+
+      <div class="competence-card analyser">
+        <h3>AC12.06 | Fluctuation d'échantillonnage</h3>
+        <p>Les simulations répétées d'échantillonnage m'ont fait prendre conscience de l'impact de la variabilité aléatoire et de l'importance de la taille d'échantillon dans la précision des estimations.</p>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2>💭 Réflexion personnelle</h2>
+      <div class="reflection">
+        <p>Ce projet m'a confronté aux défis de l'inférence statistique :</p>
+
+        <ul>
+          <li>L'importance cruciale de la qualité des données avant analyse</li>
+          <li>La compréhension des limites des estimations par intervalle</li>
+          <li>Les compromis entre taille d'échantillon et précision</li>
+        </ul>
+
+        <p>Points forts développés :</p>
+        <ul>
+          <li>Maîtrise des techniques d'estimation statistique</li>
+          <li>Capacité à interpréter et communiquer des résultats d'analyse</li>
+          <li>Compétences avancées en R pour les simulations</li>
+        </ul>
+
+        <p>Défis rencontrés :</p>
+        <ul>
+          <li>Gestion des biais d'échantillonnage</li>
+          <li>Optimisation des calculs pour les simulations répétées</li>
+          <li>Communication des incertitudes statistiques</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Maxence ABRIC--SEGARRA</p>
+  </footer>
+
+  <!-- Lightbox pour images -->
+  <div id="custom-lightbox" onclick="closeLightbox(event)">
+    <span class="lightbox-close" onclick="closeLightbox(event)">×</span>
+    <img id="lightbox-img" src="" alt="Agrandissement" />
+    <div class="lightbox-info">
+      <p id="lightbox-caption">Cliquez à l'extérieur pour fermer</p>
+    </div>
+  </div>
+
+  <!-- Visionneuse PDF -->
+  <div id="pdf-viewer">
+    <div class="pdf-header">
+      <h3>Visualisation PDF</h3>
+      <span id="pdf-close" onclick="closePDF()">×</span>
+    </div>
+    <iframe id="pdf-frame" src=""></iframe>
+  </div>
+
+  <script src="../script.js"></script>
+</body>
+</html>

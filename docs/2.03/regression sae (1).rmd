@@ -1,0 +1,346 @@
+---
+title: "Régression sur données réelles"
+author: "CHAKRA Adam, ABRIC--SEGARRA Maxence "
+output:
+  html_document : 
+        toc: true
+        number_sections : TRUE
+        toc_float : TRUE
+        theme : readable
+        hightlight : tango
+        
+---
+```{r}
+## Global options
+knitr::opts_chunk$set(cache = TRUE)
+```
+# Installation et importation des libraries utilisées
+```{r}
+#Ajouter au fur et à mesure les librairies R que vous utilisez
+library(skimr)
+library(psych)
+library(Hmisc)
+library(GGally)
+library(readxl)
+library(corrplot)
+```
+
+```{r}
+Regressiondonneees_1 <- read_excel("Regressiondonneees 1.xlsx")
+```
+
+
+# Séance 1
+## 1. Définition de la problématique.
+### Population étudié
+La population étudiée sont les départements de France 
+Il y a 100 individus et chaque individus représente un département 
+### Liste des variables
+Nom_departement : Nom du département 
+
+Nombre _Habitants : Nombre habitants par département 
+
+Nombre_logements : Nombre de logements dans le département 
+
+Nombre_Logements_Sociaux : Nombres de logements sociaux parmi les logements 
+
+Nombre_logements_vacants : Nombres de logements vacants parmi les logements 
+
+Nombre_logements_individuels : Nombres de logements individuels parmi les logements
+### Variable expliqué
+
+Nombre_Logements_Sociaux : Nombres de logements sociaux parmi les logements
+
+```{r}
+# Code utilisé pour illustrer la réponse
+dim(x = Regressiondonneees_1) # donne le nombre de lignes et colonnes 
+names(x = Regressiondonneees_1) # donne les noms des variables 
+```
+### 2. Analyses descriptives univariées
+
+```{r}
+# Code pour réaliser l'analyse univariées
+summary(Regressiondonneees_1)
+psych::describe(Regressiondonneees_1)
+Hmisc::describe(Regressiondonneees_1)
+```
+### Moyennes des Variables 
+```{r}
+moy_habitant <- mean(Regressiondonneees_1$`Nombre _habitants`)
+moy_logement <- mean(Regressiondonneees_1$Nombre_de_logements)
+moy_sociaux <- mean(Regressiondonneees_1$Nombre_Logements_Sociaux)
+moy_vacants <- mean(Regressiondonneees_1$Nombre_logements_vacants)
+moy_individuels <- mean(Regressiondonneees_1$Nombre_logements_individuels)
+```
+```{r}
+hist(Regressiondonneees_1$Nombre_Logements_Sociaux, main="Histogramme de nombre de logement sociaux", xlab="Nombre de logement sociaux",ylab = "nombre de département" ,ylim = c(0,60),col="blue", border="black")
+```
+
+
+
+
+
+
+### Variance 
+```{r}
+var_sociaux<- mean(Regressiondonneees_1$Nombre_Logements_Sociaux*Regressiondonneees_1$Nombre_Logements_Sociaux) - mean(Regressiondonneees_1$Nombre_Logements_Sociaux)*mean(Regressiondonneees_1$Nombre_Logements_Sociaux)
+var_sociaux
+```
+```{r}
+var_logement <- mean(Regressiondonneees_1$Nombre_de_logements * Regressiondonneees_1$Nombre_de_logements) - mean(Regressiondonneees_1$Nombre_de_logements) * mean(Regressiondonneees_1$Nombre_de_logements)
+var_logement
+```
+
+
+
+### 2. Analyses descriptives bivarié
+```{r}
+ggpairs(Regressiondonneees_1[,c("Nombre _habitants","Nombre_de_logements","Nombre_Logements_Sociaux","Nombre_logements_vacants","Nombre_logements_individuels")],progress=FALSE)
+```
+```{r}
+
+corr_matrix <- cor(Regressiondonneees_1[, c("Nombre _habitants","Nombre_de_logements","Nombre_Logements_Sociaux","Nombre_logements_vacants","Nombre_logements_individuels")], method = "pearson")
+corr_matrix
+```
+
+
+
+```{r}
+corrplot(corr_matrix, 
+         method = "color", 
+         col = colorRampPalette(c("blue", "white", "red"))(200), 
+         addCoef.col = "black", 
+         tl.col = "black", 
+         tl.srt = 45)
+```
+
+
+
+
+### Analyse fonction pairs x corrplot
+Les variables Nombre _habitants et Nombre_de_logements sont fortement corrélées, tandis que les relations entre Nombre_logements_vacants et Nombre_logements_individuels sont faibles. Le ggpairs offre une visualisation détaillée des relations, et corrplot résume ces relations avec une représentation visuelle claire.
+
+### interpretation
+On a choisi le Nombre_Logements_Sociaux comme variable explicative, car il présente une corrélation  de 0.91 avec Nombre_de_logements. 
+
+
+
+# Séance 2
+
+
+
+
+
+## Equation du modèle :
+
+
+
+
+
+$$totlogsoc_i =  a \times totlog_i + b + e_i $$
+avec : 
+
+  - $totlog_i$ = L'observation du nombre de logement 
+  
+  - $totlogsoc_i$ = L'observation du nombre de logements sociaux
+       b = l'ordonnée à l'origine 
+       a = La pente 
+       $e_i$ = Les erreurs inconnues
+       
+$$
+â = \frac{\text{cov}(totlog, totlogsoc)}{\text{var}(totlog)} # formule des MCO â égale à la covaiance de X et Y divisé par la variance de X
+$$ 
+
+$$
+\hat{b} = \bar{totlogsoc} - â \times \bar{totlog} # b chapeau égale à la moyenne des logements sociaux - le â multiplié par la moyenne des logements totales
+$$ 
+
+$$
+\widehat{totlogsoc} = a \times totlog + b
+$$
+b = la moyenne(totlog) - â * moyenne(totlogsoc)
+$$P(a,b) = \sum_{i=1}^{n}(y_i - ax_i - b)^2$$
+
+```{r}
+model <- lm(Nombre_Logements_Sociaux ~ Nombre_de_logements, data = Regressiondonneees_1)
+plot(Regressiondonneees_1$Nombre_de_logements, Regressiondonneees_1$Nombre_Logements_Sociaux,ylab ="nombre de logement sociaux",xlab= "nombre de logements") 
+```
+
+
+```{r}
+summary(model)
+```
+
+```{r}
+produit <- Regressiondonneees_1$Nombre_de_logements * Regressiondonneees_1$Nombre_Logements_Sociaux
+covariance<-mean(produit) - moy_sociaux * moy_logement
+covariance
+```
+```{r}
+â <- covariance / var_logement
+â 
+```
+```{r}
+b_chapeau <- moy_sociaux - â * moy_logement
+b_chapeau 
+```
+
+
+
+
+## Equation de la droite ajustée :
+
+
+
+
+$$\widehat{totlogsoc}_i = \hat{a}(totlog) + \hat{b} $$
+$$\widehat{totlogsoc}_i = 0.2182129 (totlogsoc)_i -17 \ 265.91 $$
+```{r}
+plot(Regressiondonneees_1$Nombre_de_logements,
+Regressiondonneees_1$Nombre_Logements_Sociaux,
+col="orange",pch=20,
+xlab="nombre de logement sociaux",
+ylab="nombre de logement totale",
+main="")
+abline(model,col="red")
+```
+
+
+
+
+
+### Coefficient de détermination R²
+
+
+
+
+
+  $$R² = 0.829$$
+$$R² ajustée = 0.8273$$
+```{r}
+Regressiondonneees_1$Nombre_de_logements2 <- (Regressiondonneees_1$ Nombre_de_logements)^2 # Création d'une nouvelle variable 'Nombre_de_logements2' qui est le carré de 'Nombre_de_logements'
+mod2 <- lm(formula =Nombre_Logements_Sociaux~Nombre_de_logements + Nombre_de_logements2, data = Regressiondonneees_1) # Création du modèle de régression linéaire mod2 avec 'Nombre_de_logements' et 'Nombre_de_logements2' comme variables explicatives
+summary(mod2) 
+```
+```{r}
+plot(Regressiondonneees_1$Nombre_de_logements,
+Regressiondonneees_1$Nombre_Logements_Sociaux,
+col="orange",pch=20,
+xlab="nombre de logement sociaux",
+ylab="nombre de logement totale",
+main="")
+abline(model,col="red")
+curve(mod2$coef[1]+mod2$coef[2]*x+mod2$coef[3]*x^2,0,1400000,add=T,col="blue")
+```
+la pente positive de la ligne de regression montre une relation positive entre le nombre de logements sociaux et le nombre de logements. Cela signifie que une augmentation du nombre de logements sociaux est associé a une augmentation du nombre de logements
+
+
+
+### Equation du modèle 
+
+
+
+
+$$totlogsoc_i = a \times \sqrt{totlog} + b$$
+
+
+### Equation du modèle ajustée 
+
+
+
+
+$$totlogsoc_i = a \times totlog² + a \times totlog + b$$
+
+
+### Coefficient de détermination R²
+
+
+
+$$R² = 0.9005$$
+
+
+
+### Coefficient de détermination R² ajustée 
+
+
+
+$$R² ajustée = 0.8985$$
+
+
+
+# Séance 3 
+
+Pour comparer les ajustements nous pouvons comparer le R² du modèle 1 par rapport au R² du modèle 2 
+
+  -$Les \ deux\ Critères :$ on peut utiliser R² ou la variance de chacun des modèles 
+
+
+mod1, R² = 0.829 : Cela signifie que 82.9% de la variance de la variable dépendante est expliquée par le modèle 1.
+mod2, R² = 0.900 : Cela signifie que 90% de la variance de la variable dépendante est expliquée par le modèle 2.
+
+
+## Définition du résidus 
+
+
+$$e_i = y_i - \bar{y}$$
+## Valeur des résidus pour chaque modèle 
+
+```{r}
+residus <- residuals(model) # utilisation de la fonction residuals
+residus
+```
+
+
+```{r}
+residus2 <- residuals(mod2)
+residus2
+```
+
+## Analyse de la qualité d'ajustement pour chaque modèle 
+
+```{r}
+plot(residus)
+```
+
+```{r}
+hist(residus, main = "Distribution des résidus du modèle 1   ")
+```
+
+```{r}
+sigma_res<-summary(model)$sigma # Récupération de l'écart-type des résidus du modèle
+plot(1:nrow(Regressiondonneees_1),residus,pch=20,xlab="", 
+             ylab="Résidus")# Traçage du graphique des résidus
+abline(h=2*sigma_res,col="orange",lwd=2) # Tracé des lignes horizontales à ± 2 écarts-types des résidus
+abline(h=-2*sigma_res,col="orange",lwd=2) 
+```
+
+```{r}
+hist(residus2, main = "Distribution des résidus du modèle 2   ") # traçage d'un hidtogramme 
+```
+```{r}
+sigma_res2<-summary(mod2)$sigma
+plot(1:nrow(Regressiondonneees_1),residus2,pch=20,xlab="",
+             ylab="Résidus")
+abline(h=2*sigma_res2,col="orange",lwd=2)
+abline(h=-2*sigma_res2,col="orange",lwd=2)
+```
+
+
+
+Les résidus supérieurs et infèrieurs à 50 000 indiquent que, pour certains quartiers, l'écart entre les valeurs observées et celles prédites par le modèle est très important. 
+
+sur notre modèle 1 on en observe 6 et sur  notre modele 2 on en observe seulement 5
+
+Le modèle 2 (avec R² = 0.900) semble mieux ajuster les données que le modèle 1 (R² = 0.829), ce qui suggère que mod2 pourrait être un modèle plus performant. 
+
+
+
+
+
+
+
+
+
+
+
+

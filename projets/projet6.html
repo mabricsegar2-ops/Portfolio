@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projet 6 - SAÉ 2.01</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+  <header>
+    <h1>SAÉ 2.01 — Conception et implémentation d'une base de données</h1>
+    <nav>
+      <a href="../index.html" class="back-btn">
+        <span class="icon">←</span> Retour au portfolio
+      </a>
+    </nav>
+  </header>
+
+  <main class="contenu-projet">
+    <div class="projet-meta">
+      <span class="badge traiter-badge">Traiter</span>
+      <span class="date">Semestre 2 - 2025</span>
+    </div>
+
+    <section class="section-card">
+      <h2>📖 Présentation du projet</h2>
+      <p>
+        Dans le cadre de cette SAÉ, nous avons conçu et implémenté une base de données relationnelle complète pour
+        l'entreprise CompuDistri, spécialisée dans la vente de composants informatiques.
+      </p>
+      <p>
+        L'objectif principal était de numériser et structurer l'ensemble des processus métiers de l'entreprise :
+      </p>
+      <ul>
+        <li>Gestion des clients et fournisseurs</li>
+        <li>Suivi des stocks et des articles</li>
+        <li>Gestion des ventes et facturation</li>
+        <li>Administration du personnel</li>
+      </ul>
+      <p>
+        Ce projet nous a permis de maîtriser l'ensemble du processus de création d'une base de données, depuis l'analyse
+        des besoins jusqu'à l'implémentation finale dans un SGBD, tout en répondant aux besoins spécifiques de
+        l'entreprise.
+      </p>
+    </section>
+
+    <section class="section-card">
+      <h2>⚡ Travail réalisé</h2>
+      <ul class="task-list">
+        <li>✅ Analyse détaillée des besoins métier</li>
+        <li>✅ Conception du modèle conceptuel des données (MCD) avec Looping</li>
+        <li>✅ Création du dictionnaire de données complet</li>
+        <li>✅ Implémentation SQL de la base de données</li>
+        <li>✅ Rédaction de la documentation technique</li>
+      </ul>
+    </section>
+
+    <section class="section-card">
+      <h2>📋 Exemples et documents</h2>
+
+      <div class="carrousel-container">
+        <div class="carrousel-slides">
+
+          <div class="carrousel-slide">
+            <img src="../docs/2.01/img1.png" alt="Extrait du dictionnaire de données"
+              onclick="openLightbox(this.src)" />
+            <div class="slide-text">
+              <h3>Dictionnaire de données</h3>
+              <p>Extrait du dictionnaire détaillant les tables CLIENT, FACTURE et EMPLOYE avec leurs attributs.</p>
+            </div>
+          </div>
+          <div class="carrousel-slide">
+            <img src="../docs/2.01/img2.png" alt="Extrait du dictionnaire de données"
+              onclick="openLightbox(this.src)" />
+            <div class="slide-text">
+              <h3>Dictionnaire de données</h3>
+              <p>Extrait du dictionnaire détaillant les tables CLIENT, FACTURE et EMPLOYE avec leurs attributs.</p>
+            </div>
+          </div>
+          <div class="carrousel-slide">
+            <img src="../docs/2.01/img3.png" alt="Extrait du dictionnaire de données"
+              onclick="openLightbox(this.src)" />
+            <div class="slide-text">
+              <h3>Modèle Conceptuel de Données</h3>
+              <p>Schéma complet du MLD réalisé avec Looping, incluant les 8 entités principales et leurs relations.</p>
+            </div>
+          </div>
+
+          <div class="carrousel-slide">
+            <img src="../docs/2.01/img4.png" alt="Modèle Conceptuel de Données"
+              onclick="openLightbox(this.src)" />
+            <div class="slide-text">
+              <h3>Modèle Conceptuel de Données</h3>
+              <p>Schéma complet du MCD réalisé avec Looping, incluant les 8 entités principales et leurs relations.</p>
+            </div>
+          </div>
+          <div class="carrousel-slide">
+            <img src="../docs/2.01/img5.png" alt="Modèle Conceptuel de Données"
+              onclick="openLightbox(this.src)" />
+            <div class="slide-text">
+              <h3>Modèle Conceptuel de Données</h3>
+              <p>Schéma complet du MLD réalisé avec Looping, incluant les 8 entités principales et leurs relations.</p>
+            </div>
+          </div>
+          <div class="carrousel-slide">
+            <img src="../docs/2.01/img6.png" alt="Modèle Conceptuel de Données"
+              onclick="openLightbox(this.src)" />
+            <div class="slide-text">
+              <h3>Requêtes SQL</h3>
+              <p>Requêtes SQL permettant la création des tables à implémenter dans notre base.</p>
+            </div>
+          </div>
+
+          
+
+          <div class="carrousel-slide">
+            <div class="pdf-preview-container">
+              <iframe src="../docs/2.01/sae201_rapport.pdf" class="pdf-preview"></iframe>
+              <button class="fullscreen-pdf" onclick="openPDF('../docs/2.01/sae201_rapport.pdf')">
+                <span class="icon">⤢</span> Plein écran
+              </button>
+            </div>
+            <div class="slide-text">
+              <h3>Rapport Complet</h3>
+              <p>Rapport incluant les MCD, MLD, création de requêtes et dictionnaire de données.</p>
+            </div>
+          </div>
+        </div>
+
+        <button class="carrousel-btn prev" onclick="moveSlide(-1)">❮</button>
+        <button class="carrousel-btn next" onclick="moveSlide(1)">❯</button>
+
+        <div class="carrousel-indicators">
+          <span class="indicator active" onclick="goToSlide(0)"></span>
+          <span class="indicator" onclick="goToSlide(1)"></span>
+          <span class="indicator" onclick="goToSlide(2)"></span>
+          <span class="indicator" onclick="goToSlide(3)"></span>
+          <span class="indicator" onclick="goToSlide(4)"></span>
+          <span class="indicator" onclick="goToSlide(5)"></span>
+          <span class="indicator" onclick="goToSlide(6)"></span>
+        </div>
+      </div>
+
+      <div class="download-links">
+        <a href="../docs/2.01/sae201_rapport.pdf" class="download-link pdf" target="_blank">
+          <span class="icon">📄</span>
+          <div>
+            <strong>Rapport complet</strong>
+            <small>Documentation technique du projet</small>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2>🏆 Apprentissage(s) Critique(s) Acquis</h2>
+
+      <div class="competence-card traiter">
+        <h3>AC11.01 | Correctement interpréter et prendre en compte le besoin du commanditaire ou du client</h3>
+        <p>L'analyse détaillée du cahier des charges m'as
+          permis de comprendre l'importance d'une bonne compréhension des besoins métiers avant toute conception
+          technique. J'ai appris à traduire des exigences métier en spécifications techniques précises pour la base de
+          données.</p>
+      </div>
+
+      <div class="competence-card traiter">
+        <h3>AC11.04 | Mesurer l'importance de maîtriser la structure des données à exploiter</h3>
+        <p>Ce projet m'a montré l'impact crucial d'une bonne structuration des données sur l'efficacité du système. La
+          conception rigoureuse du modèle relationnel a permis d'optimiser les performances et de garantir l'intégrité
+          des données pour l'ensemble des processus métiers de l'entreprise.</p>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2>💭 Réflexion personnelle</h2>
+      <div class="reflection">
+        <p>Ce projet complexe m'a confronté aux défis de la conception d'une base de données relationnelle complète :
+        </p>
+
+        <ul>
+          <li>L'importance cruciale d'une bonne modélisation initiale</li>
+          <li>La gestion des relations complexes entre entités</li>
+          <li>Les défis techniques de l'implémentation SQL</li>
+        </ul>
+
+        <p>Points forts développés :</p>
+        <ul>
+          <li>Maîtrise de la méthode Merise et des outils de modélisation</li>
+          <li>Capacité à concevoir des schémas relationnels optimaux</li>
+          <li>Compétences avancées en SQL pour l'implémentation</li>
+        </ul>
+
+        <p>Défis rencontrés :</p>
+        <ul>
+          <li>Gestion des clés primaires</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Maxence ABRIC--SEGARRA</p>
+  </footer>
+
+  <!-- Lightbox pour images -->
+  <div id="custom-lightbox" onclick="closeLightbox(event)">
+    <span class="lightbox-close" onclick="closeLightbox(event)">×</span>
+    <img id="lightbox-img" src="" alt="Agrandissement" />
+    <div class="lightbox-info">
+      <p id="lightbox-caption">Cliquez à l'extérieur pour fermer</p>
+    </div>
+  </div>
+
+  <!-- Visionneuse PDF -->
+  <div id="pdf-viewer">
+    <div class="pdf-header">
+      <h3>Visualisation PDF</h3>
+      <span id="pdf-close" onclick="closePDF()">×</span>
+    </div>
+    <iframe id="pdf-frame" src=""></iframe>
+  </div>
+
+  <script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projet 3 - SAÉ 1.03</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <header>
+    <h1>SAÉ 1.03 — Préparation et synthèse d'un tableau de données</h1>
+    <nav>
+      <a href="../index.html" class="back-btn">
+        <span class="icon">←</span> Retour au portfolio
+      </a>
+    </nav>
+  </header>
+
+  <main class="contenu-projet">
+    <div class="projet-meta">
+      <span class="badge analyser-badge">Analyser</span>
+      <span class="date">Semestre 1 - 2024</span>
+    </div>
+
+    <section class="section-card">
+      <h2>📖 Présentation du projet</h2>
+      <p>
+        Ce projet consistait en une analyse critique de l'article « Résultats économiques de la flotte de pêche française (2015-2021) » publié par l'Agreste
+        (ministère de l'Agriculture). En groupe avec Adam Chakra et Luigi Zajpt, nous avons évalué la rigueur statistique de l'article, la pertinence de ses visualisations de données et la validité de ses conclusions.
+      </p>
+      <p>
+        L'étude analysait la performance économique de la flotte française (6 159 navires) dans un contexte post-Covid, avec des données partiellement estimées (27% seulement de navires suivis). 
+        La France y apparaissait comme le 2ᵉ pays européen pour la valeur des captures, malgré des défis structurels (coûts énergétiques, maintien des marges).
+      </p>
+
+    </section>
+
+    <section class="section-card">
+      <h2>⚡ Travail réalisé</h2>
+      <ul class="task-list">
+        <li>✅ Décryptage des sources (Data Collection Framework 2021) et de leur fiabilité (estimations DOM/grands navires)</li>
+        <li>✅ Critique des graphiques : échelles trompeuses, redondance texte/visuels</li>
+        <li>✅ Calculs complémentaires : baisse de 15,8% des ETP depuis 2016, impact énergie (+13% des coûts)</li>
+      </ul>
+    </section>
+
+    <section class="section-card">
+      <h2>📋 Exemples et documents</h2>
+      
+      <div class="carrousel-container">
+        <div class="carrousel-slides">
+          <!-- Slide 3 - Image -->
+          <div class="carrousel-slide">
+            <img src="../docs/1.03/img3.png" alt="Matrice de corrélation" onclick="openLightbox(this.src)" />
+            <div class="slide-text">
+              <h3>Tableau extrait de l'article de l'Agreste sur les résultats économiques de la flotte de pêche française</h3>
+              <p>Extrait de l'un des tableaux de l'Agreste, que nous présenterons ensuite sous forme de synthèse et de graphiques.</p>
+            </div>
+          </div>
+          <!-- Slide 1 - Image -->
+          <div class="carrousel-slide active">
+            <img src="../docs/1.03/img2.png" alt="Analyse des données" onclick="openLightbox(this.src)" />
+            <div class="slide-text">
+              <h3>Présentation des données</h3>
+              <p>Données extraites de l'article de l'Agreste sur les résultats économiques de la flotte de pêche française.</p>
+            </div>
+          </div>
+          
+          <!-- Slide 2 - Image -->
+          <div class="carrousel-slide">
+            <img src="../docs/1.03/img1.png" alt="Visualisation" onclick="openLightbox(this.src)" />
+            <div class="slide-text">
+              <h3>Visualisations</h3>
+              <p>Différents types de graphiques créés pour analyser les données des 10 premiers pays selon différents critères.</p>
+            </div>
+          </div>
+
+          
+
+          <!-- Slide 4 - PDF Viewer -->
+          <div class="carrousel-slide">
+            <div class="pdf-preview-container">
+              <iframe src="../docs/1.03/sae maxence abric, adam chakra.pdf" class="pdf-preview"></iframe>
+              <button class="fullscreen-pdf" onclick="openPDF('../docs/1.03/sae maxence abric, adam chakra.pdf')">
+                <span class="icon">⤢</span> Plein écran
+              </button>
+            </div>
+            <div class="slide-text">
+              <h3>Synthèse complète</h3>
+              <p>Document PDF contenant l'analyse détaillée et les conclusions.</p>
+            </div>
+          </div>
+          <div class="carrousel-slide">
+            <div class="pdf-preview-container">
+              <iframe src="../docs/1.03/primeur2024-3_flottedepeche.pdf" class="pdf-preview"></iframe>
+              <button class="fullscreen-pdf" onclick="openPDF('../docs/1.03/primeur2024-3_flottedepeche.pdf')">
+                <span class="icon">⤢</span> Plein écran
+              </button>
+            </div>
+            <div class="slide-text">
+              <h3>Sujet de la SAÉ</h3>
+              <p>Article de l'Agreste sur les résultats économiques de la flotte de pêche française.</p>
+            </div>
+          </div>
+          
+        </div>
+        
+        <button class="carrousel-btn prev" onclick="moveSlide(-1)">❮</button>
+        <button class="carrousel-btn next" onclick="moveSlide(1)">❯</button>
+        
+        <div class="carrousel-indicators">
+          <span class="indicator active" onclick="goToSlide(0)"></span>
+          <span class="indicator" onclick="goToSlide(1)"></span>
+          <span class="indicator" onclick="goToSlide(2)"></span>
+          <span class="indicator" onclick="goToSlide(3)"></span>
+          <span class="indicator" onclick="goToSlide(4)"></span>
+        </div>
+      </div>
+      
+      <div class="download-links">
+        <a href="../docs/1.03/projet de la pêche française.pptx" class="download-link excel">
+          <span class="icon">📊</span>
+          <div>
+            <strong>Présentation PowerPoint</strong>
+            <small>Télécharger le fichier de travail</small>
+          </div>
+        </a>
+        <a href="../docs/1.03/sae maxence abric, adam chakra.pdf" class="download-link pdf" target="_blank">
+          <span class="icon">📄</span>
+          <div>
+            <strong>Rapport PDF</strong>
+            <small>Ouvrir dans un nouvel onglet</small>
+          </div>
+        </a>
+        <a href="../docs/1.03/primeur2024-3_flottedepeche.pdf" class="download-link pdf" target="_blank">
+          <span class="icon">📄</span>
+          <div>
+            <strong>Article de l'Agreste (PDF)</strong>
+            <small>Ouvrir dans un nouvel onglet</small>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2>🏆 Compétence mobilisée</h2>
+      <div class="competence-card analyser">
+        <h3>Analyser</h3>
+        <p>🔗 Maîtrise des enjeux croisés économie/écologie dans la pêche</p>
+
+         <p>📈 Capacité à identifier les limites d'un échantillon statistique</p> 
+
+         <p>✍️ Rédaction synthétique malgré la complexité des données</p>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2>🏆 Apprentissage(s) Critique(s) Acquis</h2>
+      <div class="competence-card analyser">
+        <h3>AC12.03 : Comprendre l’intérêt des synthèses numériques et graphiques pour décrire une variable statistique</h3>
+        <p>
+          Nous avons utilisé des graphiques pour représenter l’évolution du chiffre d’affaires, de la marge brute ou du nombre d’emplois. 
+          Ces synthèses visuelles nous ont permis de faire ressortir des tendances (hausse des coûts en 2021, baisse de la rentabilité) qui auraient été moins 
+          lisibles dans un simple tableau brut.
+        </p>
+        <br>
+        <h3>AC12.01 : Réaliser que les sources de données ont des caractéristiques propres à considérer (variation, précision, mise à jour...)</h3>
+        
+        <p>
+          En travaillant sur les données issues de l’article d’Agreste (mars 2024), nous avons constaté que les informations économiques variaient selon la taille des navires et 
+          l’année. Certaines données étaient issues d’estimations ou de sondages partiels (27 % des navires étudiés). 
+          Cette variabilité nous a amenés à faire preuve de prudence dans leur interprétation et à souligner les limites de précision dans notre présentation.
+        </p>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2>💭 Réflexion personnelle</h2>
+      <div class="reflection">
+        <p>Ce projet m'a permis de développer une méthodologie rigoureuse pour l'analyse de données.</p>
+        
+        <p>Les points forts de ce projet :</p>
+        <ul>
+          <li>Maîtrise d'esprit critique</li>
+          <li>Capacité à choisir les bonnes visualisations</li>
+          <li>Travaux de groupes</li>
+        </ul>
+
+        <p>Cette SAÉ m'a révélé l'importance du questionnement systématique des sources statistiques. La critique des graphiques (comme le choix des échelles en %) sera directement réutilisable pour le semestre 2.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Maxence ABRIC--SEGARRA</p>
+  </footer>
+
+  <!-- Lightbox pour images -->
+  <div id="custom-lightbox" onclick="closeLightbox(event)">
+    <span class="lightbox-close" onclick="closeLightbox(event)">×</span>
+    <img id="lightbox-img" src="" alt="Agrandissement" />
+    <div class="lightbox-info">
+      <p id="lightbox-caption">Cliquez à l'extérieur pour fermer</p>
+    </div>
+  </div>
+
+  <!-- Visionneuse PDF -->
+  <div id="pdf-viewer">
+    <div class="pdf-header">
+      <h3>Visualisation PDF</h3>
+      <span id="pdf-close" onclick="closePDF()">×</span>
+    </div>
+    <iframe id="pdf-frame" src=""></iframe>
+  </div>
+
+  <script src="../script.js"></script>
+</body>
+</html>

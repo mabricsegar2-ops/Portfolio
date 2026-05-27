@@ -1,0 +1,11 @@
+# Fichiers temporaires Office (verrouillage)
+~$*
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Dossiers d'éditeurs
+.vscode/
+.idea/
