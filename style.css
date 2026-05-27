@@ -399,13 +399,20 @@ header#accueil {
 /* ============================================================
    GRILLE PROJETS
    ============================================================ */
+/* Les sections de projets sont plus larges pour réduire les marges latérales */
+.projets-section .section-inner,
+.but2-section .section-inner {
+  max-width: 1340px;
+}
+
 .projets {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 1.5rem;
 }
 
 .carre-projet {
+  flex: 1 1 300px;
   background: var(--paper);
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
@@ -1125,6 +1132,14 @@ header:not(#accueil) nav {
     border-bottom: none;
   }
 
+  header#accueil {
+    padding: 3rem 1.25rem;
+  }
+
+  .entete-ligne {
+    gap: 1.5rem;
+  }
+
   .texte-entete {
     text-align: center;
   }
@@ -1147,5 +1162,80 @@ header:not(#accueil) nav {
 
   .stage-head {
     flex-direction: column;
+  }
+
+  /* Pages projet */
+  header:not(#accueil) {
+    padding: 2rem 1.25rem;
+  }
+
+  header:not(#accueil) h1 {
+    font-size: 1.4rem;
+  }
+
+  .contenu-projet {
+    padding: 0 1.25rem;
+    margin: 1.5rem auto;
+  }
+
+  .section-card {
+    padding: 1.5rem;
+  }
+
+  /* Carrousels : hauteur réduite + boutons recentrés */
+  .carrousel-slide img,
+  .pdf-preview-container,
+  .pdf-preview {
+    height: 240px;
+  }
+
+  .carrousel-btn {
+    top: 120px;
+    width: 36px;
+    height: 36px;
+  }
+
+  /* Évite le débordement horizontal du code */
+  .scrollable-code {
+    overflow: auto;
+  }
+
+  .scrollable-code pre {
+    white-space: pre;
+  }
+}
+
+@media (max-width: 460px) {
+  .photo-profil {
+    width: 140px;
+    height: 175px;
+  }
+
+  .texte-entete h1 {
+    font-size: 1.7rem;
+  }
+
+  .sous-titre {
+    font-size: 1.1rem;
+  }
+
+  .entete-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .entete-actions a {
+    width: 100%;
+    max-width: 260px;
+    justify-content: center;
+  }
+
+  .section-title {
+    font-size: 1.4rem;
+  }
+
+  .but3-objectif {
+    padding: 1.25rem;
+    font-size: 0.98rem;
   }
 }
