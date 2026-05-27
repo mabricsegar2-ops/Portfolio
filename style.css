@@ -550,6 +550,14 @@ header#accueil {
 /* ============================================================
    PROJECTION BUT3
    ============================================================ */
+.but3-section .section-inner {
+  max-width: 1340px;
+}
+
+.but3-section .section-intro {
+  max-width: none;
+}
+
 .but3-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -676,7 +684,7 @@ header:not(#accueil) nav {
   margin: 2.5rem auto;
   padding: 0 2rem;
   column-count: 2;
-  column-gap: 2rem;
+  column-gap: 3rem;
 }
 
 /* Chaque carte reste entière dans sa colonne */
@@ -710,7 +718,7 @@ header:not(#accueil) nav {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 2rem;
-  margin-bottom: 1.75rem;
+  margin-bottom: 2.5rem;
   box-shadow: var(--shadow-sm);
 }
 
