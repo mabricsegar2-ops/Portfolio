@@ -4,13 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TP noté Web — Application &amp; API REST</title>
+  <title>TP noté Web · Application web &amp; API REST (Fnuc)</title>
   <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
   <header>
-    <h1>TP noté Web — Application web &amp; API REST</h1>
+    <h1>TP noté Web · Application web &amp; API REST</h1>
     <nav>
       <a href="../index.html#but2" class="back-btn">
         <span class="icon">←</span> Retour au portfolio
@@ -20,79 +20,335 @@
 
   <main class="contenu-projet">
     <div class="projet-meta">
-      <span class="badge developper-badge">Développer un outil décisionnel</span>
+      <span class="badge developper-badge">Développer</span>
       <span class="badge traiter-badge">Traiter</span>
-      <span class="date">BUT 2 · Rendu mars 2026</span>
+      <span class="date">BUT 2 · R4.09 Programmation Web · Rendu mars 2026 · En solo</span>
     </div>
 
-    <section class="section-card">
-      <h2>Présentation du projet</h2>
+    <!-- ============================================================
+         PRÉSENTATION
+         ============================================================ -->
+    <section class="section-card pleine-largeur">
+      <h2>Présentation</h2>
       <p>
-        Développement d'une <strong>application web de gestion d'une librairie en ligne</strong> (consultation de
-        livres, commande, gestion du stock et historique client). Le projet couvre toute la chaîne, de la base de
-        données relationnelle à l'interface, en passant par une <strong>API REST</strong>.
+        TP noté de <strong>Programmation Web (R4.09)</strong>, réalisé <strong>seul</strong>, autour du cas
+        <strong>« La Fnuc »</strong> : une librairie en ligne (consulter un livre, le commander, gérer le stock et
+        l'historique d'un client). L'enjeu : implémenter le <strong>même besoin de trois façons</strong> pour comparer
+        les approches, et rendre chaque version <strong>connectable à plusieurs SGBD</strong>.
       </p>
-      <p>
-        Il m'a permis de mettre en pratique plusieurs approches d'accès aux données et de comparer leurs intérêts
-        respectifs.
-      </p>
-    </section>
-
-    <section class="section-card">
-      <h2>Travail réalisé</h2>
       <ul class="task-list">
-        <li><strong>CGI Python + MySQL</strong> : affichage et commande de livres, vérification du stock,
-          création de client, gestion du commit/rollback</li>
-        <li><strong>SQLAlchemy</strong> : accès multi-bases (MySQL, PostgreSQL, Oracle, SQLite) via un DSN
-          construit dynamiquement</li>
-        <li><strong>API REST avec Flask</strong> : points de terminaison <code>/books</code>,
-          <code>/customers</code>, <code>/orders</code>, <code>/inventories</code> et leurs relations</li>
-        <li><strong>AJAX (JavaScript)</strong> : commande et mise à jour du stock côté client, calcul HT/TVA/TTC,
-          affichage de l'historique des commandes</li>
-        <li>Adaptation du schéma MySQL (clés auto-incrémentées, contraintes de clés étrangères, nettoyage des
-          données invalides)</li>
+        <li><strong>CGI Python</strong> (Common Gateway Interface) accédant directement à MySQL ;</li>
+        <li><strong>CGI avec SQLAlchemy</strong>, connectable à MySQL, PostgreSQL, Oracle et SQLite ;</li>
+        <li><strong>Application Flask</strong> exposant une <strong>API REST</strong> consommée côté client en
+          <strong>JavaScript/AJAX</strong>.</li>
       </ul>
     </section>
 
+    <!-- ============================================================
+         RÉALISATION 1 · CGI MySQL
+         ============================================================ -->
     <section class="section-card">
-      <h2>Exemples et documents</h2>
-      <!-- TODO Maxence : crée le dossier docs/web/ et ajoute tes captures (interface, réponse API JSON,
-           extraits de code). Remplace ensuite ce bloc par un carrousel sur le modèle de projets/projet6.html. -->
-      <div class="reflection">
-        <p><em>Section à compléter : captures de l'interface, exemples de réponses de l'API REST et extraits de
-            code.</em></p>
+      <h2>CGI Python + MySQL</h2>
+      <ul class="task-list">
+        <li><strong>myshowbook</strong> · affiche un livre (titre, auteurs, prix, couverture, résumé) et propose un
+          lien vers la commande en transmettant le <code>bookId</code>.</li>
+        <li><strong>myorderbook</strong> · formulaire de commande (login, mot de passe, quantité) : vérification du
+          stock, création du client si absent, insertion de la commande, mise à jour du stock, avec gestion du
+          <strong>commit / rollback</strong>.</li>
+        <li><strong>Correction du schéma MySQL</strong> · ajout d'<code>AUTO_INCREMENT</code> sur les clés, nettoyage
+          des entrées invalides (ID = 0, commandes orphelines) et reconstruction de la contrainte de clé étrangère.</li>
+      </ul>
+    </section>
+
+    <!-- ============================================================
+         RÉALISATION 2 · CGI SQLAlchemy multi-bases
+         ============================================================ -->
+    <section class="section-card">
+      <h2>CGI avec SQLAlchemy (multi-bases)</h2>
+      <ul class="task-list">
+        <li>Mêmes fonctions (affichage + commande), mais via <strong>SQLAlchemy</strong> : un seul code pour
+          <strong>MySQL, PostgreSQL, Oracle et SQLite</strong>.</li>
+        <li><strong>DSN construit dynamiquement</strong> selon le paramètre CGI <code>db=</code>, qui est ensuite
+          <strong>propagé</strong> dans toute la chaîne d'appels pour conserver le même moteur.</li>
+        <li>Transactions gérées par <code>engine.begin()</code> (commit / rollback automatique) et mise à jour du
+          chiffre d'affaires cumulé du client.</li>
+      </ul>
+    </section>
+
+    <!-- ============================================================
+         RÉALISATION 3 · FLASK API REST + AJAX
+         ============================================================ -->
+    <section class="section-card">
+      <h2>Application Flask · API REST + AJAX</h2>
+      <p>
+        Version « web légère » : une <strong>API REST</strong> (approche <em>Code First</em>) sert les données, et une
+        couche <strong>JavaScript/AJAX</strong> construit les pages côté client en manipulant le DOM.
+      </p>
+      <ul class="task-list">
+        <li><strong>Points de terminaison complets</strong> : <code>/books</code>, <code>/customers</code>,
+          <code>/orders</code>, <code>/inventories</code> et leurs relations (<code>/books/&lt;id&gt;/topics</code>,
+          <code>/keywords</code>, <code>/orders</code>…), avec <em>linking</em> et <em>embedding</em>.</li>
+        <li>Implémentés avec <strong>SQLAlchemy (SQL Expression Language)</strong> et <strong>reflection</strong> des
+          tables existantes ; verbes <code>GET / POST / PATCH / DELETE</code>.</li>
+        <li>Côté client : commande d'un livre (vérification stock → <code>POST /orders</code> →
+          <code>PATCH /inventories</code>), historique des commandes et calcul <strong>HT / TVA / TTC</strong>.</li>
+      </ul>
+    </section>
+
+    <!-- ============================================================
+         TESTS & DOC API
+         ============================================================ -->
+    <section class="section-card">
+      <h2>Tests &amp; documentation de l'API</h2>
+      <p>
+        L'API a été documentée et rendue <strong>testable depuis le navigateur via Swagger UI</strong> (route
+        <code>/docs</code>), et vérifiée manuellement avec <strong>Postman</strong> sur l'ensemble des routes
+        (collections de requêtes GET / POST / PATCH / DELETE).
+      </p>
+    </section>
+
+    <!-- ============================================================
+         CARROUSEL DE CODE (extraits réels)
+         ============================================================ -->
+    <section class="section-card">
+      <h2>Extraits de code</h2>
+      <div class="carrousel-container">
+        <div class="carrousel-slides">
+
+          <!-- Slide 1 : CGI MySQL + transaction (Python) -->
+          <div class="carrousel-slide active">
+            <div class="scrollable-code"><pre>cur.execute("SELECT NIVEAU FROM stocks WHERE ARTICLE = %s", (raw_bookid,))
+stock = cur.fetchone()
+
+if not stock:
+    print("Article absent du stock")
+elif stock[0] &lt; qte:
+    print("Stock insuffisant : reste %s" % stock[0])
+else:
+    # Client connu ? sinon on le cree
+    cur.execute("SELECT ID FROM clients WHERE NOM=%s AND MOTDEPASSE=%s", (login, mdp))
+    row = cur.fetchone()
+    if row:
+        client_id = row[0]
+    else:
+        cur.execute("INSERT INTO clients (NOM, MOTDEPASSE, CACUMUL) VALUES (%s, %s, 0)", (login, mdp))
+        client_id = cur.lastrowid
+
+    cur.execute("INSERT INTO commandes (DATECOM, ARTICLE, CLIENT, QUANTITE) "
+                "VALUES (NOW(), %s, %s, %s)", (raw_bookid, client_id, qte))
+    cur.execute("UPDATE stocks SET NIVEAU = NIVEAU - %s WHERE ARTICLE = %s", (qte, raw_bookid))
+    con.commit()                 # validation de la transaction
+# except mysql.connector.Error:
+#     con.rollback()             # annulation en cas d'erreur</pre></div>
+            <div class="slide-text">
+              <h3>CGI MySQL · commande transactionnelle (Python)</h3>
+              <p>Requêtes paramétrées (anti-injection), création du client, commande, mise à jour du stock, commit / rollback.</p>
+            </div>
+          </div>
+
+          <!-- Slide 2 : SQL - correction du schéma -->
+          <div class="carrousel-slide">
+            <div class="scrollable-code"><pre>-- Nettoyage des donnees invalides avant migration
+DELETE FROM commandes WHERE CLIENT NOT IN (SELECT ID FROM clients);
+DELETE FROM commandes WHERE ID = 0;
+DELETE FROM clients   WHERE ID = 0;
+
+-- On retire la cle etrangere le temps de la migration
+ALTER TABLE commandes DROP FOREIGN KEY commandes_ibfk_2;
+
+-- Activation de l'AUTO_INCREMENT sur les cles primaires
+ALTER TABLE clients   MODIFY ID INT AUTO_INCREMENT;
+ALTER TABLE commandes MODIFY ID INT AUTO_INCREMENT;
+
+-- Reconstruction de la contrainte de cle etrangere
+ALTER TABLE commandes ADD CONSTRAINT commandes_ibfk_2
+    FOREIGN KEY (CLIENT) REFERENCES clients(ID);</pre></div>
+            <div class="slide-text">
+              <h3>SQL · correction du schéma MySQL</h3>
+              <p>Mise en place de l'<code>AUTO_INCREMENT</code> (nécessaire aux insertions via DB API), avec nettoyage des données et reconstruction des clés étrangères.</p>
+            </div>
+          </div>
+
+          <!-- Slide 3 : CGI SQLAlchemy multi-bases (Python) -->
+          <div class="carrousel-slide">
+            <div class="scrollable-code"><pre>from sqlalchemy import create_engine, text
+from config import config
+
+params = config()
+db_type = form.getvalue('db', 'mysql')   # moteur, mysql par defaut
+
+# DSN construit dynamiquement selon le moteur demande
+if db_type == 'postgresql':
+    dsn = "postgresql+psycopg2://{username}:{password}@{hostname}:{port}/{database}".format(**params)
+elif db_type == 'oracle':
+    dsn = "oracle+cx_oracle://{username}:{password}@{hostname}:{port}/{database}".format(**params)
+elif db_type == 'sqlite':
+    dsn = "sqlite:///./fnuc.db"
+else:
+    dsn = "mysql+mysqlconnector://{username}:{password}@{hostname}:{port}/{database}".format(**params)
+
+engine = create_engine(dsn)
+with engine.connect() as con:
+    query = text("SELECT titre, auteurs, prix FROM livres WHERE id = :id")
+    book = con.execute(query, {"id": book_id}).fetchone()</pre></div>
+            <div class="slide-text">
+              <h3>CGI SQLAlchemy · multi-bases</h3>
+              <p>Un seul code pour MySQL, PostgreSQL, Oracle et SQLite (DSN choisi selon le paramètre <code>db</code>).</p>
+            </div>
+          </div>
+
+          <!-- Slide 4 : route API REST (Python) -->
+          <div class="carrousel-slide">
+            <div class="scrollable-code"><pre># API REST : acces generique via SQLAlchemy (SEL) + reflection des tables
+metadata.reflect(bind=engine)
+
+def get_one(table_name, column_name, value):
+    table = metadata.tables[table_name]
+    rows = connection.execute(
+        sqlalchemy.select([table]).where(
+            getattr(table.c, column_name) == value)).fetchall()
+    return {"result": [dict(r) for r in rows]}
+
+@app.route("/books/&lt;int:id&gt;", methods=["GET"])
+def get_one_books(id):
+    return get_one("livres", "id", id)</pre></div>
+            <div class="slide-text">
+              <h3>API REST (Flask + SQLAlchemy)</h3>
+              <p>Accès générique aux tables réfléchies, exposé en GET / POST / PATCH / DELETE.</p>
+            </div>
+          </div>
+
+          <!-- Slide 5 : commande côté client (AJAX, JS) -->
+          <div class="carrousel-slide">
+            <div class="scrollable-code"><pre>async function processOrder(form) {
+    event.preventDefault();
+    const article  = form.article.value;
+    const quantite = parseInt(form.quantite.value);
+
+    // 1. Verification du stock (livre + inventaire embarque)
+    const dataBook  = await (await fetch("/books/" + article)).json();
+    const inventory = dataBook.result[0].inventory;
+    if (inventory.niveau &lt; quantite) {
+        alert("Stock insuffisant. Reste : " + inventory.niveau);
+        return false;
+    }
+    // 2. Creation de la commande
+    await fetch("/orders", {
+        method: "POST",
+        headers: { 'Content-type': "application/json" },
+        body: JSON.stringify({ article, client: form.client.value,
+                               datecom: form.datecom.value, quantite })
+    });
+    // 3. Baisse du stock
+    await fetch("/inventories/" + inventory.id, {
+        method: "PATCH",
+        headers: { 'Content-type': "application/json" },
+        body: JSON.stringify({ niveau: inventory.niveau - quantite })
+    });
+    alert("Commande validee avec succes !");
+}</pre></div>
+            <div class="slide-text">
+              <h3>Commande côté client (AJAX, fetch)</h3>
+              <p>Vérification du stock, création de la commande puis mise à jour de l'inventaire via l'API REST.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <button class="carrousel-btn prev" onclick="moveSlide(-1)">❮</button>
+        <button class="carrousel-btn next" onclick="moveSlide(1)">❯</button>
+
+        <div class="carrousel-indicators">
+          <span class="indicator active" onclick="goToSlide(0)"></span>
+          <span class="indicator" onclick="goToSlide(1)"></span>
+          <span class="indicator" onclick="goToSlide(2)"></span>
+          <span class="indicator" onclick="goToSlide(3)"></span>
+          <span class="indicator" onclick="goToSlide(4)"></span>
+        </div>
       </div>
     </section>
 
-    <section class="section-card">
+    <!-- ============================================================
+         COMPÉTENCES / AC
+         ============================================================ -->
+    <section class="section-card pleine-largeur">
       <h2>Apprentissages critiques acquis</h2>
 
       <div class="competence-card developper">
         <h3>AC14.04 | Comprendre le cycle de vie d'un projet informatique</h3>
-        <p>De la conception de la base à l'interface en passant par l'API, j'ai suivi les étapes d'un projet de
-          développement complet et structuré.</p>
+        <p>De la base de données à l'interface en passant par l'API REST, j'ai mené un projet de développement web
+          complet et structuré, en comparant trois approches (CGI, application Flask, API + client AJAX).</p>
       </div>
 
       <div class="competence-card traiter">
         <h3>AC21.05 | Apprécier l'intérêt de briques logicielles existantes et savoir les utiliser</h3>
-        <p>L'utilisation de Flask et de l'ORM SQLAlchemy m'a montré l'intérêt de s'appuyer sur des briques
-          logicielles éprouvées plutôt que de tout réécrire, notamment pour gérer plusieurs SGBD avec un même code.</p>
+        <p>Flask et l'ORM SQLAlchemy m'ont permis de cibler quatre SGBD (MySQL, PostgreSQL, Oracle, SQLite) avec un
+          même code, plutôt que de réécrire un accès spécifique par moteur.</p>
       </div>
 
       <div class="competence-card traiter">
         <h3>AC21.04 | Comprendre la nécessité de tester, corriger et documenter un programme</h3>
-        <p>La gestion du commit/rollback, le nettoyage des données invalides et la documentation des rendus m'ont
-          appris l'importance de la robustesse et de la traçabilité d'un programme.</p>
+        <p>Gestion du commit / rollback, correction du schéma MySQL, documentation de l'API (Swagger UI) et tests
+          manuels (Postman) m'ont appris l'importance de la robustesse et de la traçabilité.</p>
       </div>
     </section>
 
+    <!-- ============================================================
+         RÉFLEXION
+         ============================================================ -->
     <section class="section-card">
       <h2>Réflexion personnelle</h2>
       <div class="reflection">
-        <p>Ce projet m'a fait découvrir la logique des <strong>API REST</strong> et l'intérêt de séparer la donnée
+        <p>Mener ce projet <strong>en solo</strong> m'a obligé à tenir toute la chaîne : base de données, back-end et
+          front-end. J'y ai découvert la logique des <strong>API REST</strong> et l'intérêt de séparer la donnée
           (back-end) de son affichage (front-end via AJAX).</p>
-        <p>Pouvoir cibler plusieurs SGBD avec un même code grâce à un ORM est une compétence directement réutilisable
-          pour développer des composants de solutions décisionnelles.</p>
+        <p>Pouvoir cibler plusieurs SGBD avec un même code grâce à un ORM est directement réutilisable pour développer
+          des composants de solutions décisionnelles · ce que j'ai d'ailleurs retrouvé en stage.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         TÉLÉCHARGEMENTS
+         ============================================================ -->
+    <section class="section-card">
+      <h2>Téléchargements</h2>
+      <div class="download-links">
+        <a href="../docs/web/cgi_mysql_showbook.py" class="download-link" download>
+          <div>
+            <strong>CGI MySQL · affichage</strong>
+            <small>myshowbook (.py)</small>
+          </div>
+        </a>
+        <a href="../docs/web/cgi_mysql_orderbook.py" class="download-link" download>
+          <div>
+            <strong>CGI MySQL · commande</strong>
+            <small>myorderbook · stock, client, commit/rollback (.py)</small>
+          </div>
+        </a>
+        <a href="../docs/web/cgi_sqlalchemy_showbook.py" class="download-link" download>
+          <div>
+            <strong>CGI SQLAlchemy · affichage</strong>
+            <small>multi-bases, DSN dynamique (.py)</small>
+          </div>
+        </a>
+        <a href="../docs/web/cgi_sqlalchemy_orderbook.py" class="download-link" download>
+          <div>
+            <strong>CGI SQLAlchemy · commande</strong>
+            <small>multi-bases, engine.begin() (.py)</small>
+          </div>
+        </a>
+        <a href="../docs/web/flask_api_rest.py" class="download-link" download>
+          <div>
+            <strong>API REST Flask</strong>
+            <small>endpoints + relations, SQLAlchemy SEL (.py)</small>
+          </div>
+        </a>
+        <a href="../docs/web/schema_mysql_fnuc.sql" class="download-link" download>
+          <div>
+            <strong>Schéma MySQL · Fnuc</strong>
+            <small>tables, vues, contraintes (.sql)</small>
+          </div>
+        </a>
       </div>
     </section>
   </main>
@@ -101,6 +357,7 @@
     <p>&copy; 2026 Maxence ABRIC--SEGARRA</p>
   </footer>
 
+  <!-- Lightbox pour images -->
   <div id="custom-lightbox" onclick="closeLightbox(event)">
     <span class="lightbox-close" onclick="closeLightbox(event)">×</span>
     <img id="lightbox-img" src="" alt="Agrandissement" />
@@ -109,6 +366,7 @@
     </div>
   </div>
 
+  <!-- Visionneuse PDF -->
   <div id="pdf-viewer">
     <div class="pdf-header">
       <h3>Visualisation PDF</h3>

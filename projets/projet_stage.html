@@ -4,13 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stage AFPA — Automatisation de reporting</title>
+  <title>Stage AFPA · Automatisation de rapports &amp; outils de pilotage</title>
   <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
   <header>
-    <h1>Stage — Automatisation de rapports &amp; outils de pilotage (AFPA)</h1>
+    <h1>Stage · Automatisation de rapports &amp; outils de pilotage (AFPA)</h1>
     <nav>
       <a href="../index.html#stage" class="back-btn">
         <span class="icon">←</span> Retour au portfolio
@@ -19,137 +19,290 @@
   </header>
 
   <main class="contenu-projet">
+    <!-- Métadonnées : compétences mobilisées + dates (stage terminé) -->
     <div class="projet-meta">
-      <span class="badge developper-badge">Développer un outil décisionnel</span>
+      <span class="badge developper-badge">Développer</span>
       <span class="badge traiter-badge">Traiter</span>
-      <span class="date">Semestre 4 · 31 mars → 19 juin 2026 (11 semaines)</span>
+      <span class="badge analyser-badge">Analyser</span>
+      <span class="badge valoriser-badge">Valoriser</span>
+      <span class="date">Semestre 4 · 30 mars → 19 juin 2026 (12 semaines) · Stage terminé</span>
     </div>
 
-    <section class="section-card">
+    <!-- ============================================================
+         PRÉSENTATION
+         ============================================================ -->
+    <section class="section-card pleine-largeur">
       <h2>Présentation</h2>
       <p>
-        J'ai réalisé mon stage de 2ᵉ année à l'<strong>AFPA d'Auray</strong> (Agence nationale pour la formation
-        professionnelle des adultes), au sein du service <strong>Exploitation Bretagne</strong>, encadré par la
-        Responsable de Projet Exploitation.
+        J'ai réalisé mon stage de 2ᵉ année à la <strong>Direction Régionale Bretagne de l'AFPA</strong> (Agence
+        nationale pour la formation professionnelle des adultes), premier organisme de formation professionnelle des
+        adultes en France, depuis le centre d'<strong>Auray · Kervhal en Brech</strong>. J'ai été encadré par
+        <strong>Mme Lise Le Yondre</strong>, Responsable de Projet Exploitation Bretagne, et suivi par mon enseignante
+        référente <strong>Mme Fatma Aouissaoui</strong> (IUT de Vannes).
       </p>
       <p>
-        Le sujet : <strong>automatiser la production de rapports et d'outils de pilotage</strong> sur les données de
-        production des centres de formation bretons. Concrètement, deux finalités :
+        La mission : <strong>automatiser le traitement et la valorisation des données de production des neuf centres
+        bretons</strong>. Avant le stage, ces indicateurs de pilotage (chiffre d'affaires, couverture du budget,
+        saturation des plateaux techniques, entrées/sorties/abandons…) étaient produits manuellement · extraction,
+        nettoyage, compilation, copier-coller, mise en forme · soit plusieurs heures de travail mensuel et un risque
+        d'erreurs de calcul.
       </p>
-      <ul>
-        <li>l'appui au suivi des marchés relevant du PRF (Programme Régional de Formation du Conseil Régional),</li>
-        <li>l'appui au suivi des indicateurs de performance des centres.</li>
-      </ul>
       <p>
-        Les données provenant de sources variées (internes et externes) et de formats hétérogènes, l'enjeu était de
-        produire des rapports <strong>fiables, faciles à actualiser et à partager</strong>.
+        Une contrainte forte encadrait le travail : s'appuyer <strong>exclusivement sur la suite Microsoft</strong>
+        (installée sur tous les postes de l'AFPA). Le développement s'est donc fait en <strong>VBA</strong> et en
+        <strong>langage M (Power Query)</strong>, langages natifs des applications Microsoft, afin de garantir la
+        longévité et la maintenabilité des outils après mon départ.
       </p>
-    </section>
-
-    <section class="section-card">
-      <h2>Travail réalisé</h2>
-      <ul class="task-list">
-        <li>Automatisation de l'<strong>extraction en masse</strong> des états d'activité via un script
-          (bookmarklet JavaScript) interrogeant l'API interne</li>
-        <li><strong>Consolidation</strong> de dizaines de fichiers Excel hétérogènes en une base de données unique</li>
-        <li>Développement de <strong>macros Excel (VBA)</strong> et d'une fiche d'indicateurs automatisée</li>
-        <li>Production de <strong>tableaux de bord Power BI</strong> et d'un support PowerPoint « Indicateurs Tous
-          centres »</li>
-        <li>Mise en place d'un processus reproductible, documenté et actualisable mensuellement</li>
-      </ul>
-    </section>
-
-    <section class="section-card">
-      <h2>Focus technique — automatiser l'extraction des données</h2>
-      <p>
-        La récupération manuelle des états d'activité, fichier par fichier, représentait des dizaines de
-        téléchargements répétitifs. J'ai écrit un <strong>bookmarklet JavaScript</strong> exécuté dans le navigateur
-        qui parcourt la liste des actions de formation et déclenche automatiquement chaque export via des appels
-        <code>fetch</code> à l'API interne, puis enregistre les fichiers. Principe (simplifié et anonymisé) :
-      </p>
-      <div class="scrollable-code">
-        <pre>// Pour chaque action de formation, générer puis télécharger l'export
-for (const id of actionIds) {
-  const body = new FormData();
-  body.append("type", "XLS");
-  body.append("moisDebut", moisDeb);
-  body.append("moisFin", moisFin);
-  body.append("row_id", id);
-
-  // 1) Demander la génération de l'export
-  const gen = await fetch(URL_GENERATION, { method: "POST", body });
-  if (!gen.ok) { erreurs++; continue; }
-
-  // 2) Récupérer le fichier produit et le télécharger
-  const res = await fetch(URL_EXPORT + id);
-  if (res.ok) {
-    const blob = await res.blob();
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = nom[id] + ".xls";
-    a.click();
-    URL.revokeObjectURL(a.href);
-    ok++;
-  }
-  await new Promise(r =&gt; setTimeout(r, 1000)); // ne pas surcharger le serveur
-}</pre>
-      </div>
-      <p>
-        Ce script transforme une tâche manuelle de plusieurs dizaines de minutes en une opération de quelques
-        secondes, reproductible chaque mois — c'est tout l'enjeu de l'<strong>automatisation et de
-        l'interopérabilité</strong> d'une chaîne de traitement.
-      </p>
-    </section>
-
-    <section class="section-card">
-      <h2>Rendus du stage</h2>
-      <!-- TODO Maxence : place ici tes captures (Power BI, fiche indicateurs, BDD consolidée).
-           Crée le dossier docs/stage/ et ajoute tes images, puis remplace ce bloc par un carrousel
-           identique à ceux des autres pages projet (voir projets/projet6.html pour le modèle). -->
       <div class="reflection">
-        <p><em>Section à compléter avec les captures d'écran des livrables (tableaux de bord Power BI, fiche
-            d'indicateurs, base consolidée), dans le respect de la confidentialité des données AFPA.</em></p>
+        <p><strong>Problématique :</strong> comment automatiser la production des indicateurs de pilotage, de façon
+          fiable, tout en gardant des outils utilisables par des non-développeurs ?</p>
       </div>
     </section>
 
+    <!-- ============================================================
+         RÉALISATION 1 · FICHE INDICATEURS
+         ============================================================ -->
     <section class="section-card">
-      <h2>Compétences mobilisées &amp; Apprentissages critiques</h2>
+      <h2>Réalisation 1 · La Fiche Indicateurs</h2>
+      <p>
+        Chaque mois, la Direction Régionale produit les indicateurs des neuf centres puis les restitue sous forme
+        d'une <strong>fiche PowerPoint par centre</strong>. La tâche reposait sur quatre fichiers manipulés à la main
+        (classeur d'indicateurs mensuel, entrées-sorties-abandons, plan d'action commercial, EPM Power BI), avec des
+        filtrages et recopies manuels · plusieurs heures de travail, sources d'erreurs.
+      </p>
+      <ul class="task-list">
+        <li><strong>Architecture par TCD</strong> · un classeur à macros (<code>.xlsm</code>) où les indicateurs sont
+          calculés par <strong>tableaux croisés dynamiques</strong> plutôt que par des formules en chaîne, ce qui les
+          rend insensibles à la taille ou au décalage des colonnes des fichiers sources.</li>
+        <li><strong>Références fiabilisées</strong> · la fonction <code>GETPIVOTDATA</code> récupère les valeurs des
+          TCD <em>par leur sens</em> (« heures réalisées du centre de Brest ») et non par leur position, ce qui rend
+          les taux (dont le taux de couverture du budget) insensibles aux changements de structure.</li>
+        <li><strong>Code VBA modulaire</strong> · un module par indicateur (capacité, entrées-sorties, PAC,
+          couverture budget, mapping…) orchestré par une <strong>macro maîtresse</strong> idempotente : saisie du mois
+          cible, ouverture silencieuse des sources, traitements isolés, recalcul unique final et compte rendu.</li>
+        <li><strong>Génération automatique des fiches</strong> · une feuille de correspondance associe chaque forme du
+          modèle PowerPoint à une cellule source ; une macro remplit les neuf fiches et les exporte en PowerPoint et
+          PDF. Modifier la source d'un indicateur revient à changer une ligne, sans toucher au code.</li>
+      </ul>
 
-      <div class="competence-card developper">
-        <h3>AC14.02 | Percevoir les enjeux de l'automatisation et de l'interopérabilité d'un ensemble de tâches</h3>
-        <p>En automatisant l'extraction des états d'activité puis leur consolidation, j'ai conçu une chaîne de
-          traitement reproductible reliant plusieurs sources et outils (API interne → Excel → base consolidée →
-          Power BI). J'ai mesuré l'intérêt d'automatiser des tâches répétitives pour fiabiliser et accélérer la
-          production de reporting.</p>
+      <div class="scrollable-code">
+        <pre>Public Sub MettreAJour()
+  ' Met à jour tous les indicateurs à partir des fichiers sources
+  Dim moisMax As Long, calcPrec As Long
+  moisMax = CLng(InputBox("Jusqu'à quel mois ? (1-12)", "Mise à jour", "12"))
+
+  ' Figer le calcul : éviter le recalcul des dizaines de milliers de formules
+  calcPrec = Application.Calculation
+  Application.Calculation = xlCalculationManual
+  Application.ScreenUpdating = False
+
+  TraiterCapacite moisMax
+  TraiterEntreeSortie moisMax
+  AppliquerFiltrePAC moisMax
+
+  ' Un seul recalcul à la fin, puis restauration de l'état initial
+  Application.Calculate
+  Application.Calculation = calcPrec
+  Application.ScreenUpdating = True
+  MsgBox "Mise à jour terminée jusqu'au mois " &amp; moisMax
+End Sub</pre>
       </div>
 
-      <div class="competence-card developper">
-        <h3>AC14.01 | Comprendre le rôle fondamental de l'analyse des besoins et de l'existant dans un projet
-          décisionnel</h3>
-        <p>Avant de développer, j'ai analysé les besoins de suivi (marchés PRF, indicateurs de performance) et
-          l'existant (sources de données, fichiers manuels) afin de concevoir une solution adaptée aux attentes du
-          service.</p>
+      <div class="competence-card valoriser">
+        <h3>Résultat</h3>
+        <p>La mise à jour mensuelle, auparavant longue de plusieurs heures, s'effectue désormais en quelques minutes à
+          partir d'un seul fichier, et les neuf fiches sont générées intégralement. Mission mobilisant
+          <strong>Valoriser</strong> (restitution PowerPoint adaptée), <strong>Analyser</strong> (cohérence des
+          indicateurs) et <strong>Traiter</strong> (intégration de plusieurs sources).</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         RÉALISATION 2 · SUIVI QUALIFICATION EMPLOI
+         ============================================================ -->
+    <section class="section-card">
+      <h2>Réalisation 2 · Automatisation du Suivi Qualification Emploi</h2>
+      <p>
+        Le suivi QE (Qualification Emploi) nécessite une vision croisée des heures de formation issues de deux systèmes
+        d'information : <strong>Gesplan</strong> (horaires de session) et <strong>Parcours</strong> (heures des
+        stagiaires). L'objectif : produire une <strong>base de données propre</strong> regroupant ces deux sources.
+      </p>
+      <ul class="task-list">
+        <li><strong>Compilation Power Query (langage M)</strong> · parcours automatique des 70 fichiers stagiaires
+          (Parcours) : suppression des lignes vides, sélection et typage des colonnes, empilement dans une table
+          unique avec la source pour clé.</li>
+        <li><strong>Filtre qualité Gesplan</strong> · une ligne « offre-mois » n'est conservée que si au moins un de
+          ses indicateurs (prévisionnel, réalisé, projeté) est non nul : environ <strong>5 148 lignes brutes réduites
+          à ~2 018 lignes utiles</strong>, sans perte d'aucune offre.</li>
+        <li><strong>Optimisation des performances</strong> · la première version croisait les sources avec des
+          <code>RECHERCHEV</code> (~16 000 formules en recalcul permanent, comportement en ~O(n²), classeur gelé une
+          dizaine de minutes). Je les ai remplacées par des <strong>dictionnaires en mémoire</strong>
+          (<code>Scripting.Dictionary</code>) : coût ramené à ~O(n), traitement en <strong>quelques secondes</strong>.</li>
+        <li><strong>Règles de regroupement</strong> · exclusion du double comptage (heures valorisées vs prévisionnel)
+          et marquage des nouveaux marchés (suffixe de clé pour les sessions à partir du 1ᵉʳ septembre 2027).</li>
+        <li><strong>Difficulté résolue</strong> · fichiers OneDrive « à la demande » non matérialisés localement :
+          gestion d'erreurs explicite et message guidant l'utilisateur en cas de souci.</li>
+      </ul>
+
+      <div class="scrollable-code">
+        <pre>let
+    Chemin = Excel.CurrentWorkbook(){[Name="CheminDossier"]}[Content]{0}[Column1],
+    Source = Folder.Files(Chemin),
+    Fichiers = Table.SelectRows(Source, each
+        Text.StartsWith([Extension], ".xls", Comparer.OrdinalIgnoreCase)
+        and not Text.StartsWith([Name], "~$")),
+    Extraction = Table.AddColumn(Fichiers, "TableData", each
+        let
+            DataBrute = Excel.Workbook([Content]){0}[Data],
+            Debut = List.PositionOf(DataBrute[Column1], "Code Région")
+        in
+            Table.PromoteHeaders(Table.Skip(DataBrute, Debut),
+                [PromoteAllScalars=true])),
+    Combined = Table.Combine(Extraction[TableData]),
+    Filtre = Table.SelectRows(Combined, each
+        [#"Code établissement"] &lt;&gt; null and not (
+            ([Prévisionnel_5] = 0 or [Prévisionnel_5] = null) and
+            ([Projeté_7] = 0 or [Projeté_7] = null) and
+            ([#"Réalisé + Engagé_6"] = 0 or [#"Réalisé + Engagé_6"] = null)
+        ))
+in Filtre</pre>
       </div>
 
       <div class="competence-card traiter">
-        <h3>AC21.03 | Identifier et résoudre les problèmes d'intégration de sources complémentaires et hétérogènes</h3>
-        <p>Les données provenaient de fichiers et formats variés. J'ai dû les nettoyer, les harmoniser et les
-          consolider dans une base unique pour permettre un reporting cohérent.</p>
+        <h3>Résultat</h3>
+        <p>La consolidation s'exécute désormais en quelques minutes et produit une base <strong>fiable, dédoublonnée
+          et documentée</strong>, sur laquelle reposent les analyses de suivi QE. C'est le cœur de la compétence
+          <strong>Traiter</strong> (intégration de sources, qualité, automatisation), avec <strong>Analyser</strong>
+          (règles d'agrégation et exclusion du double comptage).</p>
       </div>
     </section>
 
+    <!-- ============================================================
+         RÉALISATION 3 · PLANNING INTERACTIF
+         ============================================================ -->
+    <section class="section-card">
+      <h2>Réalisation 3 · Le planning interactif</h2>
+      <p>
+        M. Patrice Le Guedes, directeur des centres d'Auray et de Lorient, pilote ses formations via un planning Excel
+        (chaque ligne = une formation, chaque colonne = une semaine, les cases colorées = les périodes d'activité). Son
+        besoin : connaître <strong>instantanément le chiffre d'affaires et le budget MOPO</strong> (matière d'œuvre et
+        petit outillage) disponibles sur une période, sans aucun calcul ni saisie. Deux versions ont été livrées : une
+        à Auray, une à Lorient.
+      </p>
+      <ul class="task-list">
+        <li><strong>Calcul déclenché par la sélection</strong> · via l'événement
+          <code>Worksheet_SelectionChange</code> : l'utilisateur sélectionne une plage (une formation, un trimestre…)
+          et lit immédiatement, dans la barre d'état, le nombre de cases actives, le CA estimé et la MOPO estimée.
+          Aucun bouton, aucune formule à saisir.</li>
+        <li><strong>Exclusions par la mise en forme</strong> · les cases « PE » (période en entreprise), barrées
+          (annulées), hachurées, « brun tanné » (codes internes) ou à fond blanc sont écartées : seules les cases
+          réellement productives entrent dans le total, sans changer les habitudes de travail.</li>
+        <li><strong>Fonction personnalisée <code>HeuresHebdo</code></strong> · utilisable comme une formule de feuille,
+          elle reçoit les cinq jours d'une semaine et renvoie le volume d'heures selon le rythme du centre (7 h le
+          lundi, 8 h du mardi au jeudi, 4 h le vendredi = 35 h pour une semaine complète).</li>
+      </ul>
+
+      <div class="scrollable-code">
+        <pre>Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+  If Target.Cells.Count &gt; 5000 Then Exit Sub
+  If Intersect(Target, Range("G14:ZZ1000")) Is Nothing Then Exit Sub
+
+  For Each Cellule In Target
+    Heures = Cells(11, Cellule.Column).Value      ' heures de la semaine
+    Stagiaires = Cells(Cellule.Row, 2).Value      ' effectif de la formation
+    Taux = Cells(Cellule.Row, 3).Value            ' taux horaire (CA)
+    Taux2 = Cells(Cellule.Row, 4).Value           ' taux MOPO
+
+    If UCase(Trim(Cellule.Value)) = "PE" Then            ' période en entreprise
+    ElseIf Cellule.Font.Strikethrough Then               ' barré : annulé
+    ElseIf Cellule.Interior.Color = RGB(196, 156, 72) Then ' brun tanné
+    ElseIf Cellule.Interior.ColorIndex = -4142 _
+        Or Cellule.Interior.ColorIndex = 2 Then          ' blanc / sans fond
+    Else
+      TotalCout = TotalCout + Heures * Taux * Stagiaires
+      TotalCout2 = TotalCout2 + Heures * Taux2 * Stagiaires
+      NbCasesValides = NbCasesValides + 1
+    End If
+  Next Cellule
+
+  Application.StatusBar = "(" &amp; NbCasesValides &amp; " cases) - CA : " &amp; _
+     Format(TotalCout, "# ##0") &amp; "  | MOPO : " &amp; Format(TotalCout2, "# ##0")
+End Sub</pre>
+      </div>
+
+      <div class="competence-card developper">
+        <h3>Résultat</h3>
+        <p>Un outil de projection économique intégré au planning existant, sans bouton ni onglet supplémentaire, qui
+          respecte les habitudes de l'utilisateur. Mission mobilisant <strong>Développer</strong> (composant d'une
+          solution décisionnelle) et <strong>Traiter</strong>.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         RENDUS · emplacement pour captures (à compléter)
+         ============================================================ -->
+    <section class="section-card">
+      <h2>Rendus du stage</h2>
+      <!-- TODO Maxence : ajoute ici tes captures anonymisées (Fiche Indicateurs générée,
+           onglet TCD/GETPIVOTDATA, chiffrage instantané du planning). Crée le dossier
+           docs/stage/, dépose tes images, puis reprends le modèle de carrousel d'une autre
+           page projet (ex. projets/projet6.html). -->
+      <div class="reflection">
+        <p><em>Section à compléter avec les captures d'écran des livrables (fiche d'indicateurs générée, onglets TCD,
+            chiffrage instantané du planning), dans le respect de la confidentialité des données AFPA · toutes les
+            données affichées devront être anonymisées.</em></p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         COMPÉTENCES & BILAN
+         ============================================================ -->
+    <section class="section-card">
+      <h2>Compétences mobilisées &amp; bilan</h2>
+
+      <div class="competence-card traiter">
+        <h3>Traiter des données à des fins décisionnelles</h3>
+        <p>Intégration de sources hétérogènes (Gesplan, Parcours, fichiers mensuels), qualité et dédoublonnage des
+          données, automatisation complète des chaînes de traitement (Power Query + VBA).</p>
+      </div>
+
+      <div class="competence-card analyser">
+        <h3>Analyser statistiquement les données</h3>
+        <p>Construction et cohérence des indicateurs de pilotage, règles d'agrégation et d'exclusion du double comptage,
+          fiabilisation des calculs par les TCD et <code>GETPIVOTDATA</code>.</p>
+      </div>
+
+      <div class="competence-card valoriser">
+        <h3>Valoriser une production en contexte professionnel</h3>
+        <p>Restitution adaptée au destinataire (fiches PowerPoint par centre, chiffrage instantané pour la direction),
+          dans le respect de la confidentialité des données de production.</p>
+      </div>
+
+      <div class="competence-card developper">
+        <h3>Développer un outil décisionnel</h3>
+        <p>Conception de composants décisionnels durables et maintenables (VBA modulaire, langage M), pensés pour rester
+          utilisables par des non-développeurs après la fin du stage.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         RÉFLEXION PERSONNELLE
+         ============================================================ -->
     <section class="section-card">
       <h2>Réflexion personnelle</h2>
       <div class="reflection">
-        <p>Ce stage m'a confronté à un vrai besoin métier : transformer un travail manuel, long et source d'erreurs,
-          en un processus automatisé et fiable.</p>
+        <p>Ce stage m'a confronté à un vrai besoin métier : transformer un travail manuel, long et source d'erreurs, en
+          des processus automatisés et fiables, exécutés en quelques minutes par des utilisateurs non-développeurs.</p>
         <ul>
-          <li>J'ai compris qu'une bonne solution décisionnelle commence par l'analyse du besoin et de l'existant,</li>
-          <li>L'automatisation n'a de valeur que si elle est documentée et reproductible par d'autres,</li>
-          <li>La qualité et l'harmonisation des données conditionnent la fiabilité de tout reporting.</li>
+          <li>Une bonne solution décisionnelle commence par l'analyse du besoin et de l'existant (indicateurs réellement
+            utilisés, sources, formules de calcul) ;</li>
+          <li>La contrainte technique (suite Microsoft) m'a poussé à privilégier la pérennité et la maintenabilité des
+            outils plutôt que la solution la plus rapide à coder ;</li>
+          <li>Les performances comptent : passer de <code>RECHERCHEV</code> à des dictionnaires en mémoire a transformé
+            un classeur inutilisable en un outil instantané.</li>
         </ul>
-        <p>Cette expérience confirme mon intérêt pour la <strong>conception d'outils décisionnels</strong>, cœur du
-          parcours VCOD.</p>
+        <p>Cette expérience confirme mon intérêt pour la <strong>conception d'outils décisionnels</strong> et
+          l'informatique décisionnelle, cœur du parcours VCOD, et mon projet de poursuivre le BUT 3 en alternance.</p>
       </div>
     </section>
   </main>
@@ -158,7 +311,7 @@ for (const id of actionIds) {
     <p>&copy; 2026 Maxence ABRIC--SEGARRA</p>
   </footer>
 
-  <!-- Lightbox pour images -->
+  <!-- Lightbox pour images (utile dès que des captures seront ajoutées) -->
   <div id="custom-lightbox" onclick="closeLightbox(event)">
     <span class="lightbox-close" onclick="closeLightbox(event)">×</span>
     <img id="lightbox-img" src="" alt="Agrandissement" />

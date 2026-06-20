@@ -4,13 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SAÉ 3.01 — Entrepôt de données &amp; ETL</title>
+  <title>SAÉ 3.01 · Chaîne décisionnelle Darties (entrepôt &amp; ETL)</title>
   <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
   <header>
-    <h1>SAÉ 3.01 — Entrepôt de données &amp; processus ETL</h1>
+    <h1>SAÉ 3.01 · Chaîne décisionnelle complète (Darties)</h1>
     <nav>
       <a href="../index.html#but2" class="back-btn">
         <span class="icon">←</span> Retour au portfolio
@@ -21,73 +21,310 @@
   <main class="contenu-projet">
     <div class="projet-meta">
       <span class="badge traiter-badge">Traiter</span>
-      <span class="badge developper-badge">Développer un outil décisionnel</span>
-      <span class="date">Semestre 3 · BUT 2 · 2025-2026</span>
+      <span class="badge developper-badge">Développer</span>
+      <span class="badge analyser-badge">Analyser</span>
+      <span class="date">Semestre 3 · BUT 2 · Rendu décembre 2025</span>
     </div>
 
-    <section class="section-card">
-      <h2>Présentation du projet</h2>
+    <!-- ============================================================
+         PRÉSENTATION
+         ============================================================ -->
+    <section class="section-card pleine-largeur">
+      <h2>Présentation</h2>
       <p>
-        Cette SAÉ porte sur la <strong>conception d'un entrepôt de données</strong> et la mise en place d'un processus
-        <strong>ETL</strong> (Extract, Transform, Load) pour alimenter une base décisionnelle à partir de données
-        annuelles brutes (fichiers <code>CSV</code> de 2019 à 2023).
+        Projet fil rouge du parcours VCOD, réalisé <strong>en équipe de trois</strong> (avec Lucas Li-King
+        RATIARINAIVONJANAHARY et Robin LECULLEE) autour du cas <strong>Darties</strong>, enseigne de produits
+        électroménager, son et vidéo. L'objectif : construire une <strong>chaîne décisionnelle de bout en bout</strong>,
+        de la collecte des données jusqu'à l'analyse.
       </p>
       <p>
-        L'objectif : centraliser des données réparties dans plusieurs fichiers hétérogènes au sein d'un modèle
-        structuré, prêt pour l'analyse et le reporting. Le projet a été réalisé en équipe.
+        Quatre maillons s'enchaînent : <strong>collecte automatisée</strong> (scraping + web services),
+        <strong>base de production</strong> MySQL, <strong>entrepôt de données décisionnel</strong> (flocon dérivé en
+        étoile) et <strong>processus ETL</strong> en Python qui alimente l'entrepôt depuis la production, jusqu'aux
+        <strong>analyses OLAP</strong> et à la simulation économique.
       </p>
     </section>
 
+    <!-- ============================================================
+         RÉALISATION 1 · COLLECTE AUTOMATISÉE
+         ============================================================ -->
     <section class="section-card">
-      <h2>Travail réalisé</h2>
+      <h2>1 · Collecte automatisée des données</h2>
+      <p>
+        Pour enrichir le référentiel produits et convertir les montants, deux sources externes sont collectées
+        automatiquement, puis <strong>sauvegardées en CSV/JSON</strong> afin de se prémunir d'un changement ou d'une
+        indisponibilité du site/service.
+      </p>
       <ul class="task-list">
-        <li>Analyse et nettoyage des fichiers sources annuels (CSV 2019 → 2023)</li>
-        <li>Conception du modèle de l'entrepôt de données (modélisation sous Oracle SQL Data Modeler)</li>
-        <li>Implémentation du schéma sous MySQL</li>
-        <li>Mise en place du processus ETL (extraction, transformation, chargement)</li>
-        <li>Intégration de sources hétérogènes dans une base unique cohérente</li>
+        <li><strong>Scraping (Selenium)</strong> · collecte des produits Electrodépôt pour les trois familles
+          (<em>son</em>, <em>vidéo</em>, <em>électroménager</em> · ex. réfrigérateurs, hi-fi), avec attentes
+          conditionnelles et navigation pilotée, puis structuration en CSV via pandas.</li>
+        <li><strong>Web service (requests)</strong> · récupération des <strong>cours monétaires journaliers</strong>
+          face à l'euro (unité de compte de l'entrepôt), exportés en <code>exchange_rates.json</code> et en CSV.</li>
+        <li><strong>Définition des familles, catégories et sous-catégories</strong> retenues pour rattacher chaque
+          produit collecté à la nomenclature de l'entrepôt.</li>
       </ul>
     </section>
 
+    <!-- ============================================================
+         RÉALISATION 2 · PRODUCTION & ENTREPÔT DÉCISIONNEL
+         ============================================================ -->
     <section class="section-card">
-      <h2>Exemples et documents</h2>
-      <!-- TODO Maxence : crée le dossier docs/3.01/ et ajoute tes captures (modèle de données,
-           schéma de l'entrepôt, extraits ETL). Remplace ensuite ce bloc par un carrousel
-           sur le modèle de projets/projet6.html. -->
-      <div class="reflection">
-        <p><em>Section à compléter : captures du modèle de données, du schéma de l'entrepôt et du processus ETL.</em></p>
+      <h2>2 · Base de production &amp; entrepôt décisionnel</h2>
+      <p>
+        La modélisation a été faite sous <strong>Oracle SQL Developer Data Modeler</strong> (fichier <code>.dmd</code>)
+        puis implémentée et alimentée sous <strong>MySQL</strong>, sur deux schémas distincts.
+      </p>
+      <ul class="task-list">
+        <li><strong>Schéma de production (OLTP)</strong> · base relationnelle complète (magasins, produits, pays,
+          devises, cours, ventes…) créée et alimentée par scripts SQL.</li>
+        <li><strong>Entrepôt décisionnel (OLAP)</strong> · conçu <strong>en flocon</strong> puis
+          <strong>dérivé en étoile</strong> : tables de faits <code>faits_ventes</code> et <code>faits_cours</code>,
+          dimensions <code>dim_magasin</code>, <code>dim_produit</code> (sous-catégorie → catégorie → famille),
+          <code>dim_pays</code>, <code>dim_devise</code> et dimension temps.</li>
+        <li><strong>Vues matérialisées simulées</strong> pour accélérer les agrégats d'analyse.</li>
+      </ul>
+    </section>
+
+    <!-- ============================================================
+         RÉALISATION 3 · ETL PYTHON (luigi)
+         ============================================================ -->
+    <section class="section-card">
+      <h2>3 · Processus ETL en Python (luigi)</h2>
+      <p>
+        Le cœur du projet : un ETL <strong>orienté objet</strong> qui transfère et transforme les données de la
+        <strong>production (OLTP)</strong> vers l'<strong>entrepôt (OLAP)</strong>. Il s'appuie sur
+        <strong>luigi</strong> (orchestration des tâches et de leurs dépendances), <code>mysql-connector</code> /
+        <strong>SQLAlchemy</strong> pour l'accès aux bases et <code>pandas</code> pour la transformation. Il peut
+        s'exécuter en <strong>mode interactif, en batch ou en tâche planifiée Windows</strong> (module
+        <code>schedule</code>), et cible le serveur de production MySQL <code>projetud</code> de l'UBS.
+      </p>
+      <ul class="task-list">
+        <li><strong>ETL 1</strong> · dimensions devises/cours (<code>dim_devise</code>, <code>faits_cours</code>),
+          agrégation mensuelle des cours puis insertion/mise à jour dans l'OLAP.</li>
+        <li><strong>ETL 2</strong> · dimensions principales (<code>dim_magasin</code>, <code>dim_produit</code>,
+          <code>dim_pays</code>…) et table de faits <code>faits_ventes</code>, chargées depuis les CSV.</li>
+        <li><strong>ETL 3</strong> · chargement des <strong>objectifs commerciaux</strong> depuis les CSV annuels
+          (2019-2023) : conversion du mois en lettres → <code>id_temps</code>, récupération des clés
+          <code>id_magasin</code> / <code>id_produit</code>, puis <em>upsert</em> des colonnes
+          <code>ventes_objectif</code>, <code>ca_objectif</code> et <code>marge_objectif</code>.</li>
+      </ul>
+
+      <div class="scrollable-code">
+        <pre># ETL 3 · conversion du mois (en lettres) vers une clé de dimension temps
+MOIS_MAP = {
+    "JANVIER": "01", "FÉVRIER": "02", "MARS": "03", "AVRIL": "04",
+    "MAI": "05", "JUIN": "06", "JUILLET": "07", "AOÛT": "08",
+    "SEPTEMBRE": "09", "OCTOBRE": "10", "NOVEMBRE": "11", "DÉCEMBRE": "12"
+}
+
+def get_id_temps(annee, mois_lettres):
+    mois = MOIS_MAP[mois_lettres.strip().upper()]
+    return str(annee) + mois   # ex. (2023, "MARS") -> "202303"</pre>
       </div>
     </section>
 
+    <!-- ============================================================
+         SIMULATION & OLAP
+         ============================================================ -->
     <section class="section-card">
+      <h2>4 · Simulation économique &amp; analyses OLAP</h2>
+      <p>
+        Côté restitution, des <strong>scripts SQL et procédures stockées MySQL</strong> assurent la simulation
+        économique et les <strong>requêtes d'analyse OLAP</strong> sur l'entrepôt (croisements ventes/objectifs,
+        agrégats par famille de produits, conversions de devises via <code>faits_cours</code>) · la base prête pour un
+        cube et un reporting décisionnel.
+      </p>
+    </section>
+
+    <!-- ============================================================
+         RENDUS · emplacement pour captures
+         ============================================================ -->
+    <section class="section-card">
+      <h2>Rendus du projet</h2>
+      <!-- TODO Maxence : ajoute ici tes captures (modèle Data Modeler, schéma en étoile,
+           DAG luigi, résultat d'une requête OLAP). Crée le dossier docs/3.01/ puis reprends
+           le modèle de carrousel d'une autre page projet (ex. projets/projet6.html). -->
+      <p><em>Section à compléter avec les captures des livrables : modèle de données (Data Modeler), schéma
+          décisionnel en étoile, enchaînement des tâches ETL et résultats des requêtes OLAP.</em></p>
+    </section>
+
+    <!-- ============================================================
+         CARROUSEL DE CODE (extraits réels du rendu)
+         ============================================================ -->
+    <section class="section-card">
+      <h2>Extraits de code</h2>
+      <div class="carrousel-container">
+        <div class="carrousel-slides">
+
+          <!-- Slide 1 : scraping Selenium -->
+          <div class="carrousel-slide active">
+            <div class="scrollable-code"><pre>from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+driver = webdriver.Chrome(options=options)
+driver.get('https://www.electrodepot.fr/tv-image-son/television.html')
+
+# Attendre le chargement, puis collecter les liens produits
+WebDriverWait(driver, 20).until(
+    EC.presence_of_all_elements_located(
+        (By.CLASS_NAME, 'productlist-item_block')))
+
+product_links = []
+elements = driver.find_elements(
+    By.XPATH, '//div[contains(@class, "productlist-item_block")]/a[@href]')
+for element in elements:
+    href = element.get_attribute('href')
+    if href and href.endswith('.html'):
+        product_links.append(href)</pre></div>
+            <div class="slide-text">
+              <h3>Collecte par scraping (Selenium)</h3>
+              <p>Récupération automatisée des produits Electrodépôt (son, vidéo, électroménager).</p>
+            </div>
+          </div>
+
+          <!-- Slide 2 : collecte API (clé masquée) -->
+          <div class="carrousel-slide">
+            <div class="scrollable-code"><pre>import requests, csv
+
+for annee in range(2019, 2026):
+    params = {
+        "start_date": f"{annee}-01-01",
+        "end_date":   f"{annee}-12-31",
+        "base": "USD", "symbols": "JPY",
+        "access_key": "VOTRE_CLE_API"   # cle masquee
+    }
+    r = requests.get("https://api.exchangerate.host/timeframe", params=params)
+    if r.status_code == 200:
+        data = r.json()
+        for jour in sorted(data["quotes"]):
+            writer.writerow([jour, data["quotes"][jour]["USDJPY"]])</pre></div>
+            <div class="slide-text">
+              <h3>Collecte via web service (API)</h3>
+              <p>Cours monétaires journaliers face à l'euro, sauvegardés en CSV/JSON.</p>
+            </div>
+          </div>
+
+          <!-- Slide 3 : tâche ETL luigi -->
+          <div class="carrousel-slide">
+            <div class="scrollable-code"><pre>import luigi, mysql.connector
+from datetime import datetime
+from config import MYSQL_OLTP_CREDENTIALS, MYSQL_OLAP_CREDENTIALS
+
+class ExtractFromOLTP(luigi.Task):
+    def output(self):
+        return luigi.LocalTarget('data.txt')
+
+    def run(self):
+        cnx = mysql.connector.connect(**MYSQL_OLTP_CREDENTIALS)
+        cursor = cnx.cursor()
+        with open('last_update_luigi.txt') as f:
+            last = datetime.strptime(f.read().strip(), '%Y-%m-%d %H:%M:%S')
+        # Extraction incrementale : seulement les lignes modifiees
+        cursor.execute("""
+            SELECT DATECOM, ARTICLE, CLIENT,
+                   SUM(QUANTITE), SUM(PRIX*QUANTITE)
+            FROM Commandes
+            WHERE update_date &gt; %s
+            GROUP BY DATECOM, ARTICLE, CLIENT
+        """, (last,))</pre></div>
+            <div class="slide-text">
+              <h3>ETL orchestré par luigi</h3>
+              <p>Tâche d'extraction incrémentale OLTP → OLAP (identifiants stockés dans un module
+                <code>config</code> séparé).</p>
+            </div>
+          </div>
+
+        </div>
+
+        <button class="carrousel-btn prev" onclick="moveSlide(-1)">❮</button>
+        <button class="carrousel-btn next" onclick="moveSlide(1)">❯</button>
+
+        <div class="carrousel-indicators">
+          <span class="indicator active" onclick="goToSlide(0)"></span>
+          <span class="indicator" onclick="goToSlide(1)"></span>
+          <span class="indicator" onclick="goToSlide(2)"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         COMPÉTENCES / AC
+         ============================================================ -->
+    <section class="section-card pleine-largeur">
       <h2>Apprentissages critiques acquis</h2>
 
       <div class="competence-card traiter">
-        <h3>AC21.02 | Réaliser le rôle central et spécifique de l'entrepôt de données dans la chaîne décisionnelle</h3>
-        <p>En concevant l'entrepôt à partir de données annuelles dispersées, j'ai compris son rôle de point central
-          de la chaîne décisionnelle : il consolide et historise les données pour permettre analyses et reporting.</p>
+        <h3>AC21.02 | Comprendre le rôle central de l'entrepôt de données dans la chaîne décisionnelle</h3>
+        <p>En construisant l'entrepôt en flocon puis en étoile, alimenté depuis une base de production distincte, j'ai
+          mesuré son rôle de point de consolidation et d'historisation au service de l'analyse.</p>
       </div>
 
       <div class="competence-card traiter">
-        <h3>AC21.03 | Identifier et résoudre les problèmes d'intégration de sources complémentaires et hétérogènes</h3>
-        <p>Les fichiers annuels présentaient des écarts de format et de qualité. Le processus ETL m'a permis de les
-          nettoyer, harmoniser et intégrer dans un schéma unique.</p>
+        <h3>AC21.03 | Intégrer des sources complémentaires et hétérogènes</h3>
+        <p>Scraping, web services, CSV annuels et bases MySQL : l'ETL nettoie, harmonise et intègre ces sources
+          variées dans un modèle décisionnel cohérent.</p>
       </div>
 
       <div class="competence-card developper">
-        <h3>AC14.03 | Prendre conscience des différences entre outils pour choisir le plus adapté</h3>
-        <p>J'ai utilisé Oracle SQL Data Modeler pour la modélisation et MySQL pour l'implémentation, en comprenant
-          l'intérêt de chaque outil à son étape de la chaîne.</p>
+        <h3>AC14.02 | Percevoir les enjeux de l'automatisation et de l'interopérabilité</h3>
+        <p>L'ETL en POO orchestré par luigi, exécutable en interactif, en batch ou en tâche planifiée, m'a fait
+          concevoir une chaîne de traitement automatisée, reproductible et maintenable.</p>
+      </div>
+
+      <div class="competence-card developper">
+        <h3>AC14.03 | Choisir l'outil adapté à chaque étape</h3>
+        <p>Oracle SQL Developer Data Modeler pour la modélisation, MySQL pour les schémas, Selenium/requests pour la
+          collecte, luigi/SQLAlchemy pour l'ETL : chaque outil mobilisé à sa juste place.</p>
       </div>
     </section>
 
+    <!-- ============================================================
+         RÉFLEXION
+         ============================================================ -->
     <section class="section-card">
       <h2>Réflexion personnelle</h2>
       <div class="reflection">
-        <p>Cette SAÉ est ma première vraie expérience d'<strong>informatique décisionnelle</strong> : passer de
-          fichiers bruts à un entrepôt structuré m'a fait comprendre concrètement la chaîne décisionnelle.</p>
-        <p>Elle a directement nourri mon stage à l'AFPA, où j'ai retrouvé les mêmes enjeux d'intégration de sources
-          hétérogènes et d'alimentation d'une base de pilotage.</p>
+        <p>C'est mon <strong>premier vrai projet d'ingénierie de données complet</strong> et en équipe : passer de la
+          collecte brute à un entrepôt interrogeable m'a fait toucher du doigt chaque maillon de la chaîne
+          décisionnelle, avec ses exigences de qualité et de reproductibilité.</p>
+        <p>Cette SAÉ a directement préparé mon <strong>stage à l'AFPA</strong>, où j'ai retrouvé les mêmes enjeux :
+          intégration de sources hétérogènes, automatisation des traitements et alimentation d'une base de pilotage.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         TÉLÉCHARGEMENTS
+         ============================================================ -->
+    <section class="section-card">
+      <h2>Téléchargements</h2>
+      <div class="download-links">
+        <a href="../docs/3.01/collecte_scraping_electrodepot.ipynb" class="download-link" download>
+          <div>
+            <strong>Notebook · Collecte par scraping</strong>
+            <small>Selenium · produits Electrodépôt (.ipynb)</small>
+          </div>
+        </a>
+        <a href="../docs/3.01/collecte_cours_api.ipynb" class="download-link" download>
+          <div>
+            <strong>Notebook · Collecte API cours</strong>
+            <small>requests · cours monétaires, clé masquée (.ipynb)</small>
+          </div>
+        </a>
+        <a href="../docs/3.01/etl_python_luigi.ipynb" class="download-link" download>
+          <div>
+            <strong>Notebook · ETL Python (luigi)</strong>
+            <small>ETL 1 / 2 / 3, OLTP → OLAP (.ipynb)</small>
+          </div>
+        </a>
+        <a href="../docs/3.01/schema_decisionnel.sql" class="download-link" download>
+          <div>
+            <strong>Script SQL · Schéma décisionnel</strong>
+            <small>Flocon → étoile, vues matérialisées (.sql)</small>
+          </div>
+        </a>
       </div>
     </section>
   </main>
@@ -96,6 +333,7 @@
     <p>&copy; 2026 Maxence ABRIC--SEGARRA</p>
   </footer>
 
+  <!-- Lightbox pour images (utile dès que des captures seront ajoutées) -->
   <div id="custom-lightbox" onclick="closeLightbox(event)">
     <span class="lightbox-close" onclick="closeLightbox(event)">×</span>
     <img id="lightbox-img" src="" alt="Agrandissement" />
@@ -104,6 +342,7 @@
     </div>
   </div>
 
+  <!-- Visionneuse PDF -->
   <div id="pdf-viewer">
     <div class="pdf-header">
       <h3>Visualisation PDF</h3>
