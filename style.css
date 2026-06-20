@@ -5,9 +5,10 @@
   --ink: #14151a;
   --ink-2: #2a2d36;
   --paper: #ffffff;
-  --bg: #f4f5f7;
+  --bg: #e6ebf2; /* fond gris bleuté plus profond → les cartes blanches ressortent */
   --muted: #6b7280;
   --line: #e6e8ec;
+  --line-strong: #b3bcc9; /* bordure marquée et bien visible (cartes) */
 
   --c-traiter: #2563eb;
   --c-traiter-bg: #e8f0fe;
@@ -223,7 +224,7 @@ header#accueil {
   font-weight: 500;
   color: var(--muted);
   background: var(--paper);
-  border: 1px solid var(--line);
+  border: 1px solid var(--line-strong);
   padding: 0.25rem 0.75rem;
   border-radius: 999px;
 }
@@ -245,7 +246,7 @@ header#accueil {
    À PROPOS
    ============================================================ */
 .a-propos {
-  background: var(--paper);
+  background: var(--bg);
 }
 
 .competences-sous-titre {
@@ -264,8 +265,8 @@ header#accueil {
 }
 
 .skill-tags li {
-  background: var(--bg);
-  border: 1px solid var(--line);
+  background: var(--paper);
+  border: 1px solid var(--line-strong);
   border-radius: 999px;
   padding: 0.5rem 1.1rem;
   font-size: 0.92rem;
@@ -304,6 +305,7 @@ header#accueil {
   border-radius: var(--radius);
   padding: 1.75rem;
   box-shadow: var(--shadow-sm);
+  border: 1px solid var(--line-strong);
   border-top: 4px solid var(--muted);
   transition: var(--transition);
 }
@@ -375,7 +377,7 @@ header#accueil {
 .filtre-btn {
   background: var(--paper);
   color: var(--ink);
-  border: 1.5px solid var(--line);
+  border: 1.5px solid var(--line-strong);
   padding: 0.55rem 1.3rem;
   border-radius: 999px;
   cursor: pointer;
@@ -418,7 +420,7 @@ header#accueil {
   box-shadow: var(--shadow-sm);
   transition: var(--transition);
   overflow: hidden;
-  border: 1px solid var(--line);
+  border: 1px solid var(--line-strong);
 }
 
 .carre-projet:hover {
@@ -487,13 +489,13 @@ header#accueil {
 /* ============================================================
    BUT2 / STAGE
    ============================================================ */
-.but2-section { background: var(--paper); }
+.but2-section { background: var(--bg); }
 
-.stage-section { background: var(--paper); }
+.stage-section { background: var(--bg); }
 
 .stage-card {
-  background: var(--bg);
-  border: 1px solid var(--line);
+  background: var(--paper);
+  border: 1px solid var(--line-strong);
   border-left: 4px solid var(--c-developper);
   border-radius: var(--radius);
   padding: 2rem;
@@ -566,7 +568,7 @@ header#accueil {
 
 .but3-card {
   background: var(--paper);
-  border: 1px solid var(--line);
+  border: 1px solid var(--line-strong);
   border-top: 4px solid var(--muted);
   border-radius: var(--radius);
   padding: 1.75rem;
@@ -617,6 +619,69 @@ header#accueil {
 
 .but3-objectif strong {
   color: var(--paper);
+}
+
+/* ============================================================
+   SÉPARATEUR DE BLOCS (entre les années / le stage)
+   ============================================================ */
+.annee-sep {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.annee-sep::before,
+.annee-sep::after {
+  content: "";
+  flex: 1;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, var(--line-strong) 25%, var(--line-strong) 75%, transparent);
+}
+
+/* Petit losange central qui matérialise la transition */
+.annee-sep i {
+  flex: none;
+  width: 11px;
+  height: 11px;
+  border-radius: 3px;
+  background: var(--ink);
+  transform: rotate(45deg);
+}
+
+/* ============================================================
+   JAUGE DE DÉFILEMENT « LIQUIDE » (accueil)
+   Tube en verre fixé à droite ; le canvas dessine le liquide.
+   ============================================================ */
+.water-gauge {
+  position: fixed;
+  top: 14vh;
+  right: 14px;
+  width: 30px;
+  height: 72vh;
+  z-index: 90;
+  pointer-events: none; /* purement décoratif, ne bloque jamais la page */
+  border-radius: 16px;
+  border: 1px solid var(--line-strong);
+  background: rgba(255, 255, 255, 0.35);
+  box-shadow: inset 0 2px 8px rgba(20, 21, 26, 0.12), var(--shadow-sm);
+  overflow: hidden;
+}
+
+.water-gauge canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Sur petit écran, on masque la jauge (trop étroit / superflu) */
+@media (max-width: 760px) {
+  .water-gauge {
+    display: none;
+  }
 }
 
 /* ============================================================
@@ -679,24 +744,42 @@ header:not(#accueil) nav {
   transform: translateY(-2px);
 }
 
+/* Mise en page des pages projet : grille à 2 colonnes ALIGNÉES.
+   (On a remplacé l'ancien `column-count`, qui faisait couler le contenu
+   et désalignait les blocs, par une vraie grille CSS prévisible.)
+   align-items: start → chaque carte garde sa hauteur naturelle. */
 .contenu-projet {
-  max-width: 1280px;
+  max-width: 1180px;
   margin: 2.5rem auto;
   padding: 0 2rem;
-  column-count: 2;
-  column-gap: 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
 }
 
-/* Chaque carte reste entière dans sa colonne */
-.contenu-projet > .section-card {
-  break-inside: avoid;
-}
-
-/* Le méta (badges) et les blocs larges s'étirent sur toute la largeur */
+/* Le méta (badges) et les blocs larges (carrousel, code) s'étendent
+   sur toute la largeur de la grille. */
 .contenu-projet > .projet-meta,
+.contenu-projet > .section-card.pleine-largeur,
+.contenu-projet > .section-card:has(.reflection),
+.contenu-projet > .section-card:has(.download-links),
 .contenu-projet > .section-card:has(.carrousel-container),
 .contenu-projet > .section-card:has(.scrollable-code) {
-  column-span: all;
+  grid-column: 1 / -1;
+}
+
+/* Empêche les blocs au contenu large (code à lignes longues) d'élargir
+   la grille et de provoquer un débordement horizontal : on autorise les
+   items à rétrécir sous la largeur de leur contenu (le code scrolle alors). */
+.contenu-projet > * {
+  min-width: 0;
+}
+
+/* L'espacement vertical est géré par le gap de la grille : on neutralise
+   l'ancienne marge basse des cartes pour un espacement parfaitement régulier. */
+.contenu-projet > .section-card {
+  margin-bottom: 0;
 }
 
 .projet-meta {
@@ -715,7 +798,7 @@ header:not(#accueil) nav {
 
 .section-card {
   background: var(--paper);
-  border: 1px solid var(--line);
+  border: 1px solid var(--line-strong); /* contour net et bien visible */
   border-radius: var(--radius);
   padding: 2rem;
   margin-bottom: 2.5rem;
@@ -1198,7 +1281,7 @@ header:not(#accueil) nav {
   .contenu-projet {
     padding: 0 1.25rem;
     margin: 1.5rem auto;
-    column-count: 1;
+    grid-template-columns: 1fr;
   }
 
   .section-card {
