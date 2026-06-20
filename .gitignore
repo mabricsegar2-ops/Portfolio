@@ -9,3 +9,6 @@ desktop.ini
 # Dossiers d'éditeurs
 .vscode/
 .idea/
+
+# Outils locaux (config preview)
+.claude/
