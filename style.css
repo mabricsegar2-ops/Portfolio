@@ -2,30 +2,32 @@
    VARIABLES
    ============================================================ */
 :root {
-  --ink: #14151a;
-  --ink-2: #2a2d36;
-  --paper: #ffffff;
-  --bg: #e6ebf2; /* fond gris bleuté plus profond → les cartes blanches ressortent */
-  --muted: #6b7280;
-  --line: #e6e8ec;
-  --line-strong: #b3bcc9; /* bordure marquée et bien visible (cartes) */
+  /* Palette chaude et « humaine » : fond crème, encre brun-noir, accents adoucis */
+  --ink: #2a2520;
+  --ink-2: #4a4239;
+  --paper: #fffdf8;
+  --bg: #f3eee4; /* crème chaude → des cartes douces qui ressortent */
+  --muted: #8a7f70;
+  --line: #e7ddcd;
+  --line-strong: #cfc4b0; /* bordure chaude et visible (cartes) */
 
-  --c-traiter: #2563eb;
-  --c-traiter-bg: #e8f0fe;
-  --c-analyser: #7c3aed;
-  --c-analyser-bg: #f1e9fd;
-  --c-valoriser: #16a34a;
-  --c-valoriser-bg: #e6f5ec;
-  --c-developper: #0e7490;
-  --c-developper-bg: #e2f1f5;
+  --c-traiter: #3a6ea0;   /* bleu adouci */
+  --c-traiter-bg: #e9eff5;
+  --c-analyser: #7d5aae;  /* violet adouci */
+  --c-analyser-bg: #efe9f6;
+  --c-valoriser: #4f9159; /* vert adouci */
+  --c-valoriser-bg: #e8f1e6;
+  --c-developper: #c06a32; /* terracotta chaud (remplace le cyan froid) */
+  --c-developper-bg: #f7ebe0;
 
-  --shadow-sm: 0 1px 3px rgba(20, 21, 26, 0.08);
-  --shadow-md: 0 6px 20px rgba(20, 21, 26, 0.10);
-  --shadow-lg: 0 14px 40px rgba(20, 21, 26, 0.16);
+  --shadow-sm: 0 1px 3px rgba(70, 55, 40, 0.07);
+  --shadow-md: 0 6px 20px rgba(70, 55, 40, 0.10);
+  --shadow-lg: 0 14px 40px rgba(70, 55, 40, 0.14);
   --radius: 14px;
   --radius-sm: 10px;
   --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   --maxw: 1140px;
+  --serif: Georgia, 'Iowan Old Style', 'Times New Roman', serif;
 }
 
 /* ============================================================
@@ -56,6 +58,7 @@ a {
 }
 
 h1, h2, h3, h4 {
+  font-family: var(--serif);
   line-height: 1.25;
   letter-spacing: -0.01em;
 }
@@ -650,38 +653,6 @@ header#accueil {
   border-radius: 3px;
   background: var(--ink);
   transform: rotate(45deg);
-}
-
-/* ============================================================
-   JAUGE DE DÉFILEMENT « LIQUIDE » (accueil)
-   Tube en verre fixé à droite ; le canvas dessine le liquide.
-   ============================================================ */
-.water-gauge {
-  position: fixed;
-  top: 14vh;
-  right: 14px;
-  width: 30px;
-  height: 72vh;
-  z-index: 90;
-  pointer-events: none; /* purement décoratif, ne bloque jamais la page */
-  border-radius: 16px;
-  border: 1px solid var(--line-strong);
-  background: rgba(255, 255, 255, 0.35);
-  box-shadow: inset 0 2px 8px rgba(20, 21, 26, 0.12), var(--shadow-sm);
-  overflow: hidden;
-}
-
-.water-gauge canvas {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-/* Sur petit écran, on masque la jauge (trop étroit / superflu) */
-@media (max-width: 760px) {
-  .water-gauge {
-    display: none;
-  }
 }
 
 /* ============================================================
