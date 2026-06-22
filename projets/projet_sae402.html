@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAÉ 4.02 · Reporting d'une analyse multivariée</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+  <header>
+    <h1>SAÉ 4.02 · Reporting d'une analyse multivariée</h1>
+    <nav>
+      <a href="../index.html#but2" class="back-btn">
+        <span class="icon">←</span> Retour au portfolio
+      </a>
+    </nav>
+  </header>
+
+  <main class="contenu-projet">
+    <div class="projet-meta">
+      <span class="badge traiter-badge">Traiter</span>
+      <span class="badge analyser-badge">Analyser</span>
+      <span class="badge valoriser-badge">Valoriser</span>
+      <span class="date">Semestre 4 · BUT 2 · 2026</span>
+    </div>
+
+    <!-- ============================================================ -->
+    <section class="section-card">
+      <h2>Présentation du projet</h2>
+      <p>
+        Cette SAÉ porte sur le <strong>reporting d'une analyse exploratoire multivariée</strong> : concevoir une
+        restitution automatisée de résultats statistiques à l'aide de <strong>R-Shiny</strong>, en couplant
+        traitement, analyse et valorisation des données.
+      </p>
+      <p>
+        Le cas d'étude est la <strong>criminalité aux États-Unis en 2019</strong> : pour chacun des 50 États, on
+        dispose des taux (pour 100 000 habitants) de différents crimes — cambriolage, vol, vol de véhicule, menace,
+        meurtre, viol, agression physique. L'objectif : résumer cette information multivariée par une
+        <strong>Analyse en Composantes Principales (ACP)</strong> et la restituer de façon lisible.
+      </p>
+    </section>
+
+    <!-- ============================================================ -->
+    <section class="section-card">
+      <h2>Travail réalisé</h2>
+      <ul class="task-list">
+        <li>Découverte et prise en main de <strong>R-Shiny</strong> (ui / server / global, widgets, sorties
+          interactives) et création d'une première interface sur les données de criminalité</li>
+        <li><strong>Préparation des données</strong> : centrage-réduction des variables (passage en données
+          centrées-réduites pour rendre les taux comparables)</li>
+        <li>Mise en œuvre d'une <strong>ACP</strong> : calcul des composantes principales et du plan factoriel F1×F2</li>
+        <li><strong>Interprétation</strong> des axes et positionnement des États selon leur profil de criminalité</li>
+        <li>Identification des États extrêmes par variable (les plus et moins touchés pour chaque type de crime)</li>
+        <li>Restitution dans une <strong>application R-Shiny</strong> (statistiques descriptives, corrélations,
+          onglet ACP)</li>
+      </ul>
+    </section>
+
+    <!-- ============================================================ -->
+    <section class="section-card pleine-largeur">
+      <h2>ACP &amp; plan factoriel</h2>
+      <p>
+        L'ACP résume les sept types de crimes en deux axes principaux. La lecture du plan factoriel F1×F2 fait
+        apparaître <strong>quatre profils d'États</strong> :
+      </p>
+      <div class="comp-grid" style="margin-bottom:1.2rem;">
+        <div class="competence-card valoriser"><h3>États à haute sécurité</h3><p>Faibles taux sur l'ensemble des crimes.</p></div>
+        <div class="competence-card traiter"><h3>Crimes contre les biens &amp; viols</h3><p>Cambriolages, vols et viols surreprésentés.</p></div>
+        <div class="competence-card analyser"><h3>Crimes de sang &amp; agressions physiques</h3><p>Meurtres et agressions physiques marqués.</p></div>
+        <div class="competence-card developper"><h3>Zones d'insécurité majeure</h3><p>Taux élevés sur la plupart des crimes.</p></div>
+      </div>
+      <p>Le plan factoriel commenté (rendu personnel) :</p>
+      <div class="pdf-preview-container">
+        <iframe src="../docs/4.02/plan_factoriel_crimesUSA.pdf" class="pdf-preview"></iframe>
+        <button class="fullscreen-pdf" onclick="openPDF('../docs/4.02/plan_factoriel_crimesUSA.pdf')">
+          <span class="icon">⤢</span> Plein écran
+        </button>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <section class="section-card">
+      <h2>Le jeu de données — crimesUSA</h2>
+      <p>
+        Données publiques du ministère de la Justice et du FBI : taux de criminalité (pour 100 000 habitants) des
+        <strong>50 États</strong> américains pour l'année <strong>2019</strong>, complétés par des variables
+        socio-démographiques et géographiques pour aider à l'interprétation.
+      </p>
+      <p>
+        Deux familles de crimes : les <strong>crimes contre les biens</strong> (cambriolages, larcins, vols de
+        véhicule) et les <strong>crimes violents</strong> (agressions, meurtres, viols, vols qualifiés).
+      </p>
+    </section>
+
+    <!-- ============================================================ -->
+    <section class="section-card">
+      <h2>Compétences mobilisées</h2>
+      <div class="competence-card traiter">
+        <h3>Traiter</h3>
+        <p>Import, contrôle et préparation des données (centrage-réduction) en vue d'une analyse exploratoire.</p>
+      </div>
+      <div class="competence-card analyser">
+        <h3>Analyser</h3>
+        <p>Analyse statistique multivariée (ACP), choix d'une méthode adaptée et interprétation du plan factoriel.</p>
+      </div>
+      <div class="competence-card valoriser">
+        <h3>Valoriser</h3>
+        <p>Restitution des résultats sous forme de reporting interactif (R-Shiny) et mise en récit pour la décision.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <section class="section-card">
+      <h2>Réflexion personnelle</h2>
+      <div class="reflection">
+        <p>Cette SAÉ m'a fait découvrir <strong>R-Shiny</strong> et la logique d'une application web de restitution,
+          ainsi que l'<strong>analyse multivariée</strong> (ACP) pour résumer et expliquer un jeu de données à
+          plusieurs variables.</p>
+        <p>J'ai surtout compris l'intérêt de coupler l'analyse statistique et sa restitution : une ACP n'a de valeur
+          que si on sait l'interpréter et la présenter clairement à un public non spécialiste.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <section class="section-card">
+      <h2>Téléchargements</h2>
+      <div class="download-links">
+        <a href="../docs/4.02/plan_factoriel_crimesUSA.pdf" class="download-link pdf" target="_blank">
+          <div>
+            <strong>Plan factoriel commenté</strong>
+            <small>Interprétation du plan F1×F2 (.pdf)</small>
+          </div>
+        </a>
+        <a href="../docs/4.02/rendu_acp_crimesUSA.xlsx" class="download-link excel" download>
+          <div>
+            <strong>Rendu ACP — calculs</strong>
+            <small>Données centrées-réduites &amp; calculs (.xlsx)</small>
+          </div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Maxence ABRIC--SEGARRA</p>
+  </footer>
+
+  <!-- Lightbox pour images -->
+  <div id="custom-lightbox" onclick="closeLightbox(event)">
+    <span class="lightbox-close" onclick="closeLightbox(event)">×</span>
+    <img id="lightbox-img" src="" alt="Agrandissement" />
+    <div class="lightbox-info">
+      <p id="lightbox-caption">Cliquez à l'extérieur pour fermer</p>
+    </div>
+  </div>
+
+  <!-- Visionneuse PDF -->
+  <div id="pdf-viewer">
+    <div class="pdf-header">
+      <h3>Visualisation PDF</h3>
+      <span id="pdf-close" onclick="closePDF()">×</span>
+    </div>
+    <iframe id="pdf-frame" src=""></iframe>
+  </div>
+
+  <script src="../script.js"></script>
+</body>
+
+</html>
